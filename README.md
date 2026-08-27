@@ -13,7 +13,7 @@
 
 ### ツールを開く
 
-**https://kaiyoshida0318.github.io/rakuten-rpp-budget-navi/**
+**https://kaiyoshida0318.github.io/rpp-navi/**
 
 ブラウザで開くだけです。インストール不要。Chrome / Edge / Safari で動きます。
 
