@@ -13,12 +13,11 @@
 
 ### ツールを開く
 
-**https://ユーザー名.github.io/rakuten-rpp-budget-navi/**
+**[https://ユーザー名.github.io/rakuten-rpp-budget-navi/](https://github.com/kaiyoshida0318/rpp-navi/edit/main/README.md)**
 
 ブラウザで開くだけです。インストール不要。Chrome / Edge / Safari で動きます。
 
-> 初回にリポジトリを作った人へ：上のURLの `ユーザー名` を自分のGitHubアカウント名に
-> 書き換えてこの行をコミットしてください。
+
 
 ### 最初にすること
 
