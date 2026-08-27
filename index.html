@@ -151,6 +151,11 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 .c4c.red{background:#fdeef0;border-color:#f0aeb6}
 .c4c.org{background:#fff6ec;border-color:#f5cba1}
 .c4c.grn{background:#f2fbf6;border-color:#b7e3ca}
+.c4c.run{border-left:4px solid var(--bad)}
+.c4c .rn{position:absolute;left:3px;bottom:2px;font-size:8.5px;font-weight:800;line-height:1.5;
+  padding:0 4px;border-radius:8px;background:var(--bad);color:#fff}
+.rnchip{display:inline-block;font-size:9px;font-weight:800;line-height:1.6;padding:0 5px;
+  border-radius:8px;background:var(--bad);color:#fff;vertical-align:1px}
 .c4c .ev{position:absolute;top:3px;right:4px;font-size:8.5px;font-weight:800;padding:0 4px;
   border-radius:8px;background:#eaf1fd;color:var(--blue)}
 .c4c .miss{font-size:10px;color:#c0c6d0;padding-top:22px;text-align:center}
@@ -242,7 +247,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 <header class="top">
   <div class="brand">
     <img class="logo" src="data:image/png;base64,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" alt="RPP NAVI" width="209" height="72">
-    <span class="ver" id="appVer" title="ビルド 2026-08-27 09:19">v1.0003</span>
+    <span class="ver" id="appVer" title="ビルド 2026-08-27 09:27">v1.0004</span>
   </div>
   <h1 class="sr">楽天RPP 20円広告 暴走抑制・動的予算ナビ（Phase 1）</h1>
   <span class="spacer"></span>
@@ -264,7 +269,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 <nav class="tabs" id="tabs">
   <button data-tab="dash" class="on">ダッシュボード</button>
   <button data-tab="day">当日チェック</button>
-  <button data-tab="cal4">4か月カレンダー</button>
+  <button data-tab="cal4">4か月暴走日</button>
   <button data-tab="ev">イベント設定</button>
   <button data-tab="hist">提案・実行履歴</button>
   <button data-tab="bt">バックテスト</button>
@@ -344,13 +349,36 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
       <span class="spacer"></span>
       <span class="small muted" id="c4Note"></span>
     </div>
+    <div class="row" style="margin-top:10px">
+      <span class="f"><span style="font-size:11.5px;color:var(--tx2);font-weight:600">比率の分母</span>
+        <span class="sw" id="c4Share">
+          <button data-share="cutday" class="on">当日まで</button>
+          <button data-share="allday">全日</button>
+          <button data-share="none">なし</button>
+        </span></span>
+      <span class="spacer"></span>
+      <span class="small muted" id="c4Run"></span>
+    </div>
     <div class="row small" style="margin-top:10px;gap:16px">
       <span><b>主表示＝20円ROAS</b>／<span style="color:var(--bad);font-weight:700">赤 &lt;100%</span>・<span style="color:var(--warn);font-weight:700">橙 100〜300%</span>・<span style="color:var(--ok);font-weight:700">緑 &gt;300%</span></span>
       <span>計実績額：<span style="color:var(--warn);font-weight:700">7万超は橙</span>・<span style="color:var(--bad);font-weight:700">10万超は赤</span></span>
-      <span>比率：月内<span style="color:var(--bad);font-weight:700">上位10%は赤</span>・<span style="color:var(--alert);font-weight:700">上位20%は橙</span></span>
+      <span>比率：<span style="color:var(--bad);font-weight:700">上位10%は赤</span>・<span style="color:var(--alert);font-weight:700">上位20%は橙</span></span>
+      <span><span class="rnchip">暴</span> ＝暴走日（20円ROAS が基準値以下／左端に赤い帯）</span>
     </div>
   </div>
   <div class="cal4" id="c4Grid"></div>
+  <div class="card">
+    <h3>暴走日の一覧 <span class="hint" id="c4ListNote"></span></h3>
+    <div class="row" style="margin-bottom:8px">
+      <span class="sw" id="c4Filt">
+        <button data-filt="run" class="on">暴走日のみ</button>
+        <button data-filt="all">全表示</button>
+      </span>
+      <span class="spacer"></span>
+      <button class="btn ghost sm" id="c4Csv">CSV書出</button>
+    </div>
+    <div id="c4List"></div>
+  </div>
   <div class="card" id="c4Detail"><div class="muted small">日付をクリックすると内訳とタグ付けが表示されます。</div></div>
 </section>
 
@@ -770,7 +798,15 @@ const CFG_DEF={
   calSpendRed:{v:100000,g:'cal', n:'計実績額を赤にする金額(円)超', d:''},
   calRatio1:  {v:10,  g:'cal', n:'比率を赤にする月内上位(%)', d:''},
   calRatio2:  {v:20,  g:'cal', n:'比率を橙にする月内上位(%)', d:''},
-  calMonths:  {v:4,   g:'cal', n:'表示する月数', d:''}
+  calMonths:  {v:4,   g:'cal', n:'表示する月数', d:''},
+  runRoas:    {v:150, g:'cal', n:'暴走日と判定する20円ROAS(%)以下',
+    d:'この値<b>以下</b>の日を「暴走日」として印を付け、下の一覧に集めます。20円実績額が0の日は判定しません（0除算のため）。色分けの境界（100%/300%）とは別の、<b>一覧に載せるかどうかの基準</b>です。'},
+  calShare:   {v:'cutday', g:'cal', n:'比率の分母',
+    d:'比率＝その日の計実績額が、その月の合計に占める割合。<b>当日まで</b>は各月とも1日〜基準日の日にちまでで合計するので、月の途中同士を公平に比べられます。',
+    opts:[['cutday','当日まで（各月とも1日〜基準日／推奨）'],['allday','全日（その月の全日で合計）'],['none','なし（比率を表示しない）']]},
+  calRank:    {v:'month', g:'cal', n:'比率の色を決める母集団',
+    d:'上位10%／20%を判定するときの比較相手です。<b>月ごと</b>＝同じ月の中だけで順位を付けます（仕様書14章の方式。実カレンダー画像4枚と照合済み）。<b>表示中の全日</b>＝4か月分をまとめて順位を付けます（移植元ツールの方式）。<b>変えると色が変わります</b>。',
+    opts:[['month','月ごと（仕様書どおり・推奨）'],['all','表示中の全日をまとめて']]}
 };
 let CFG={}; Object.keys(CFG_DEF).forEach(k=>CFG[k]=CFG_DEF[k].v);
 
@@ -2073,55 +2109,102 @@ function renderDayCurve(){
 /* =========================================================================
    4か月カレンダー（仕様書14章）
    ========================================================================= */
-let C4SEL=null, C4MANUAL=false;
+let C4SEL=null, C4MANUAL=false, C4FILT='run';
+function isRunaway(D){
+  return !!D && D.c20a>0 && isFinite(D.roas20) && D.roas20 <= +CFG.runRoas;
+}
+function c4Months(base){
+  const nMon=Math.max(1,+CFG.calMonths), months=[];
+  const by=parseDate(base).getFullYear(), bm=parseDate(base).getMonth();
+  for(let i=nMon-1;i>=0;i--){ const d=new Date(by,bm-i,1);
+    months.push(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')); }
+  return months;
+}
+/* 表示中の全日を、比率・暴走判定つきで組み立てる */
+function c4Model(){
+  const base=$('#c4Base').value, cutDay=parseDate(base).getDate();
+  const mode=String(CFG.calShare||'cutday');
+  const months=c4Months(base), M={};
+  months.forEach(ym=>{
+    const [y,m]=ym.split('-').map(Number);
+    const last=new Date(y,m,0).getDate();
+    const cut = mode==='allday' ? last : Math.min(cutDay,last);
+    let denom=0, days=[], miss=0, run=0;
+    for(let d=1;d<=last;d++){
+      const ds=ym+'-'+String(d).padStart(2,'0'), D=AGG.day[ds];
+      const inDen = (mode!=='none') && d<=cut;
+      if(D){ if(inDen) denom+=D.alla; if(isRunaway(D)) run++; }
+      else if(AGG.dates.length&&ds>=AGG.dates[0]&&ds<=AGG.dates[AGG.dates.length-1]){ if(d<=cut) miss++; }
+      days.push({ds,d,D,inDen});
+    }
+    days.forEach(x=>{ x.share = (x.D&&x.inDen&&denom>0) ? x.D.alla/denom*100 : null; });
+    M[ym]={ym,y,m,last,cut,denom,days,miss,run,
+           inCount:days.filter(x=>x.D&&x.inDen).length};
+  });
+  /* 比率の色しきい値 */
+  const scope=String(CFG.calRank||'month');
+  const cut1=+CFG.calRatio1/100, cut2=+CFG.calRatio2/100;
+  const qOf=arr=>{ const a=arr.filter(v=>v!=null&&isFinite(v)).sort((x,y)=>y-x);
+    if(!a.length) return {q1:Infinity,q2:Infinity};
+    return { q1:a[Math.max(0,Math.ceil(a.length*cut1)-1)],
+             q2:a[Math.max(0,Math.ceil(a.length*cut2)-1)] }; };
+  if(scope==='all'){
+    const all=[]; months.forEach(ym=>M[ym].days.forEach(x=>{ if(x.share!=null) all.push(x.share); }));
+    const q=qOf(all); months.forEach(ym=>{ M[ym].q1=q.q1; M[ym].q2=q.q2; });
+  } else {
+    months.forEach(ym=>{ const q=qOf(M[ym].days.map(x=>x.share)); M[ym].q1=q.q1; M[ym].q2=q.q2; });
+  }
+  return {base,cutDay,mode,scope,months,M};
+}
+
 function renderCal4(){
   const bi=$('#c4Base');
   if(!C4MANUAL){
     const want=AGG.dates.length?AGG.dates[AGG.dates.length-1]:ymd(new Date());
     if(bi.value!==want) bi.value=want;
   } else if(!bi.value) bi.value=AGG.dates.length?AGG.dates[AGG.dates.length-1]:ymd(new Date());
-  const base=bi.value, cutDay=parseDate(base).getDate();
-  const nMon=Math.max(1,+CFG.calMonths), months=[];
-  const by=parseDate(base).getFullYear(), bm=parseDate(base).getMonth();
-  for(let i=nMon-1;i>=0;i--){ const d=new Date(by,bm-i,1);
-    months.push(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')); }
-  $('#c4Note').innerHTML='各月とも <b>1日〜'+cutDay+'日</b> でそろえて比率を算出'
-    +(AGG.missing.length?'／欠損 '+AGG.missing.length+'日は母数から除外':'');
+
+  $$('#c4Share button').forEach(b=>b.classList.toggle('on',b.dataset.share===String(CFG.calShare||'cutday')));
+
+  const MD=c4Model(), {cutDay,mode,scope,months,M}=MD;
+
+  $('#c4Note').innerHTML =
+    (mode==='none' ? '比率は表示していません'
+     : mode==='allday' ? '各月とも <b>全日</b> の計実績額を分母に比率を算出'
+     : '各月とも <b>1日〜'+cutDay+'日</b> でそろえて比率を算出')
+    + '／色の母集団：<b>'+(scope==='all'?'表示中の全日':'月ごと')+'</b>'
+    + (AGG.missing.length?'／欠損 '+AGG.missing.length+'日は母数から除外':'');
+
+  const totRun=months.reduce((a,ym)=>a+M[ym].run,0);
+  $('#c4Run').innerHTML='この'+months.length+'か月の暴走日：<b style="color:var(--bad)">'+totRun+'日</b>'
+    +'（20円ROAS '+num(+CFG.runRoas)+'% 以下）';
 
   const G=$('#c4Grid'); G.innerHTML='';
   months.forEach(ym=>{
-    const [y,m]=ym.split('-').map(Number);
-    const last=new Date(y,m,0).getDate(), cut=Math.min(cutDay,last);
-    const inR=[]; let denom=0, miss=0;
-    for(let d=1;d<=cut;d++){
-      const ds=ym+'-'+String(d).padStart(2,'0'), D=AGG.day[ds];
-      if(D){ denom+=D.alla; inR.push(D.alla); }
-      else if(AGG.dates.length&&ds>=AGG.dates[0]&&ds<=AGG.dates[AGG.dates.length-1]) miss++;
-    }
-    const rt=inR.map(v=>denom>0?v/denom*100:0).sort((a,b)=>b-a);
-    const q1=rt.length?rt[Math.max(0,Math.ceil(rt.length*(+CFG.calRatio1/100))-1)]:Infinity;
-    const q2=rt.length?rt[Math.max(0,Math.ceil(rt.length*(+CFG.calRatio2/100))-1)]:Infinity;
-
+    const mo=M[ym];
     const box=el('div','mbox');
-    box.appendChild(el('h4',null,y+'/'+String(m).padStart(2,'0')));
+    box.appendChild(el('h4',null,mo.y+'/'+String(mo.m).padStart(2,'0')));
     const sub=el('div','msub');
-    sub.innerHTML='1〜'+cut+'日の計実績額 <b>'+yen(denom)+'</b>（'+inR.length+'日'
-      +(miss?'／<span style="color:var(--bad)">欠損'+miss+'日</span>':'')+'）';
+    sub.innerHTML=(mode==='allday'?'全日':'1〜'+mo.cut+'日')+'の計実績額 <b>'+yen(mo.denom)+'</b>（'+mo.inCount+'日'
+      +(mo.miss?'／<span style="color:var(--bad)">欠損'+mo.miss+'日</span>':'')+'）'
+      +'　暴走日 <b style="color:var(--bad)">'+mo.run+'日</b>';
     box.appendChild(sub);
     const dw=el('div','c4'); DOWJ.forEach((x,i)=>dw.appendChild(el('div','dw'+(i===0?' sun':i===6?' sat':''),x)));
     box.appendChild(dw);
     const g=el('div','c4'); g.style.marginTop='3px';
-    for(let i=0;i<new Date(y,m-1,1).getDay();i++) g.appendChild(el('div','c4c void'));
-    for(let d=1;d<=last;d++){
-      const ds=ym+'-'+String(d).padStart(2,'0'), D=AGG.day[ds];
-      const c=el('div','c4c'); c.appendChild(el('div','d',String(d)));
+    for(let i=0;i<new Date(mo.y,mo.m-1,1).getDay();i++) g.appendChild(el('div','c4c void'));
+    mo.days.forEach(x=>{
+      const ds=x.ds, D=x.D;
+      const c=el('div','c4c'); c.appendChild(el('div','d',String(x.d)));
       if(!D){ c.classList.add('void');
         if(AGG.dates.length&&ds>=AGG.dates[0]&&ds<=AGG.dates[AGG.dates.length-1])
           c.appendChild(el('div','miss','欠損'));
-        g.appendChild(c); continue; }
+        g.appendChild(c); return; }
       const r20=D.roas20;
       const cl=!isFinite(r20)?'':(r20<+CFG.calRed?'red':(r20<=+CFG.calGreen?'org':'grn'));
       if(cl) c.classList.add(cl);
+      const run=isRunaway(D);
+      if(run) c.classList.add('run');
       const rs=el('div','rs',pct(r20,0));
       rs.style.color=cl==='red'?'var(--bad)':cl==='org'?'var(--warn)':'var(--ok)';
       c.appendChild(rs);
@@ -2129,9 +2212,12 @@ function renderCal4(){
       const l2=el('div','kv'); l2.innerHTML='KW<br><b style="color:#9aa3b0">'+num(D.kwa)+'</b>'; c.appendChild(l2);
       const sc=D.alla>+CFG.calSpendRed?'sumRed':D.alla>+CFG.calSpendOrg?'sumOrg':'sum20';
       const l3=el('div','kv'); l3.innerHTML='計<br><b class="'+sc+'">'+num(D.alla)+'</b>'; c.appendChild(l3);
-      if(d<=cut&&denom>0){ const v=D.alla/denom*100;
-        c.appendChild(el('div','rt '+(v>=q1?'rtRed':v>=q2?'rtOrg':'rtBlk'), v.toFixed(1)+'%'));
-      } else c.appendChild(el('div','rt rtBlk','—'));
+      if(mode!=='none'){
+        const v=x.share;
+        if(v!=null) c.appendChild(el('div','rt '+(v>=mo.q1?'rtRed':v>=mo.q2?'rtOrg':'rtBlk'), v.toFixed(1)+'%'));
+        else c.appendChild(el('div','rt rtBlk','—'));
+      }
+      if(run) c.appendChild(el('div','rn','暴'));
       const dt=dayType(ds);
       if(dt!=='normal'){ const e=el('div','ev');
         const ev=eventOf(ds);
@@ -2142,10 +2228,44 @@ function renderCal4(){
       if(C4SEL===ds) c.style.outline='3px solid var(--blue)';
       c.onclick=()=>{ C4SEL=ds; renderCal4(); renderC4Detail(ds); };
       g.appendChild(c);
-    }
+    });
     box.appendChild(g); G.appendChild(box);
   });
+  renderC4List(MD);
   if(C4SEL) renderC4Detail(C4SEL);
+}
+
+/* 暴走日の一覧（仕様書3章：暴走日のみ／全表示） */
+function renderC4List(MD){
+  MD=MD||c4Model();
+  $$('#c4Filt button').forEach(b=>b.classList.toggle('on',b.dataset.filt===C4FILT));
+  const rows=[];
+  MD.months.forEach(ym=>MD.M[ym].days.forEach(x=>{
+    if(!x.D) return;
+    const D=x.D, run=isRunaway(D);
+    if(C4FILT==='run'&&!run) return;
+    rows.push({ds:x.ds, dow:DOWJ[dow(x.ds)], dt:dtLabel(dayType(x.ds)),
+      roas20:isFinite(D.roas20)?D.roas20:null, c20a:D.c20a, c20s:D.c20s,
+      kwa:D.kwa, alla:D.alla, share:x.share, run:run?'暴走':'',
+      tag:DB.tags[x.ds]==='burst'?'暴走日':DB.tags[x.ds]==='restrain'?'予算抑制日':DB.tags[x.ds]==='normal'?'通常日':''});
+  }));
+  const cols=[
+    {k:'ds',t:'日付'},{k:'dow',t:'曜'},{k:'dt',t:'日タイプ'},
+    {k:'run',t:'判定',cls:'',f:r=>r.run},
+    {k:'roas20',t:'20円ROAS',num:1,f:r=>r.roas20==null?'—':Math.round(r.roas20)+'%'},
+    {k:'c20a',t:'20円実績額',num:1,f:r=>yen(r.c20a)},
+    {k:'c20s',t:'20円売上',num:1,f:r=>yen(r.c20s)},
+    {k:'kwa',t:'KW実績額',num:1,f:r=>yen(r.kwa)},
+    {k:'alla',t:'計実績額',num:1,f:r=>yen(r.alla)},
+    {k:'share',t:'比率',num:1,f:r=>r.share==null?'—':r.share.toFixed(1)+'%'},
+    {k:'tag',t:'手動タグ'}
+  ];
+  buildTable($('#c4List'),cols,rows,{sort:{k:'ds',dir:-1},limit:400});
+  const total=MD.months.reduce((a,ym)=>a+MD.M[ym].days.filter(x=>x.D).length,0);
+  $('#c4ListNote').textContent = C4FILT==='run'
+    ? '20円ROAS '+num(+CFG.runRoas)+'% 以下の日を集めています（'+rows.length+' / '+total+'日）'
+    : '表示中の全日（'+rows.length+'日）';
+  $('#c4Csv').onclick=()=>dlCSV('rpp_'+(C4FILT==='run'?'runaway':'cal4')+'_'+ymd(new Date())+'.csv',cols,rows);
 }
 function renderC4Detail(ds){
   const host=$('#c4Detail'); host.innerHTML='';
@@ -2616,6 +2736,10 @@ function bind(){
   // カレンダー
   $('#c4Base').onchange=()=>{ C4MANUAL=true; renderCal4(); };
   $('#c4Latest').onclick=()=>{ C4MANUAL=false; renderCal4(); };
+  $('#c4Share').onclick=e=>{ const b=e.target.closest('button'); if(!b) return;
+    CFG.calShare=b.dataset.share; saveAll(); renderCal4(); renderCfg(); };
+  $('#c4Filt').onclick=e=>{ const b=e.target.closest('button'); if(!b) return;
+    C4FILT=b.dataset.filt; renderC4List(); };
 
   // イベント
   $('#evAdd').onclick=()=>{ const f=$('#evFrom').value, t=$('#evTo').value;
