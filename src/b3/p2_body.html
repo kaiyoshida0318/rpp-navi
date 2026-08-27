@@ -1,0 +1,214 @@
+<header class="top">
+  <h1>楽天RPP 20円広告 暴走抑制・動的予算ナビ <span class="small muted">v3 / Phase 1</span></h1>
+  <span class="sub" id="dataRange">データ未取込</span>
+  <span class="spacer"></span>
+  <span class="sw" id="attrSw" title="売上の帰属期間。楽天レポートの12時間/720時間のどちらを使うか">
+    <button data-attr="720" class="on">720時間帰属</button>
+    <button data-attr="12">12時間帰属</button>
+  </span>
+  <button class="btn ghost sm" id="btnExport">保存(JSON書出)</button>
+  <button class="btn ghost sm" id="btnImport">復元(JSON読込)</button>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="dash" class="on">ダッシュボード</button>
+  <button data-tab="day">当日チェック</button>
+  <button data-tab="cal4">4か月カレンダー</button>
+  <button data-tab="ev">イベント設定</button>
+  <button data-tab="hist">提案・実行履歴</button>
+  <button data-tab="bt">バックテスト</button>
+  <button data-tab="load">データ取込</button>
+  <button data-tab="cfg">設定</button>
+</nav>
+
+<!-- ==================== ダッシュボード ==================== -->
+<section class="page on" id="p-dash">
+  <div class="card">
+    <div class="row">
+      <label class="f">本日（この日を運転する。評価は前日の確定値まで）<input type="date" id="dgDate"></label>
+      <button class="btn ghost sm" id="dgLatest">最新データの翌日に合わせる</button>
+      <span class="spacer"></span>
+      <span id="dgEnv"></span>
+    </div>
+  </div>
+  <div id="dgMain"></div>
+  <div class="grid g4" id="dgTiles"></div>
+  <div class="grid g2">
+    <div class="card"><h3>本日の運転プラン <span class="hint">朝に1日分を固定せず、3回の観測で逐次判断します</span></h3><div id="dgPlan"></div></div>
+    <div class="card"><h3>前日までの20円広告 <span class="hint">KW ROAS・RPP全体ROASは参考値です</span></h3><div id="dgPrev"></div></div>
+  </div>
+  <div class="card"><h3>翌日の仮プラン <span class="hint">前日18:30時点でカレンダー条件だけから出す暫定案</span></h3><div id="dgDraft"></div></div>
+</section>
+
+<!-- ==================== 当日チェック ==================== -->
+<section class="page" id="p-day">
+  <div class="note">当日の<b>20円ROAS・CVR・広告売上は楽天側で取得できません</b>。ここで使うのは累計クリック数・累計実績額・現在の設定予算・予算上限到達の有無だけです。平均CPCは実績額÷クリック数で自動算出します。<b>平均CPCが20円未満であること自体は正常です</b>（全体20円は上限20円）。</div>
+  <div class="card" style="margin-top:14px">
+    <div class="row">
+      <label class="f">日付<input type="date" id="dyDate"></label>
+      <span class="f"><span style="font-size:11.5px;color:var(--tx2);font-weight:600">確認する時刻枠</span>
+        <span class="sw" id="dySlot">
+          <button data-slot="s0930" class="on">9:30</button>
+          <button data-slot="s1500">15:00</button>
+          <button data-slot="s1830">18:30</button>
+          <button data-slot="close">日次締め</button>
+        </span></span>
+      <label class="f">実際の確認時刻<input type="time" id="dyTime"></label>
+      <button class="btn ghost sm" id="dyNow">現在時刻</button>
+      <span class="spacer"></span>
+      <span class="small muted" id="dyWin"></span>
+    </div>
+    <div class="grid g4" style="margin-top:12px">
+      <label class="f">累計クリック数<input type="number" id="dyClicks" min="0" step="1"></label>
+      <label class="f">累計実績額（円）<input type="number" id="dyCost" min="0" step="1"></label>
+      <label class="f">現在の設定予算（円）<input type="number" id="dyBudget" min="0" step="1"></label>
+      <label class="f">平均CPC（自動）<input type="text" id="dyCpc" disabled></label>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <label class="pill" id="dyCapped">予算上限に到達して停止中</label>
+      <label class="pill" id="dyMissing">未観測（この枠は確認できなかった）</label>
+      <select id="dyMissKind" style="display:none"><option value="plan">予定された未観測（休日など）</option><option value="forgot">記録忘れ</option></select>
+      <label class="pill" id="dyBackfill">後日まとめて入力（提案は記録しない）</label>
+      <span class="small muted">未観測は0として扱わず、比較母数から除外します</span>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn" id="dyRun">判定する</button>
+      <button class="btn ghost" id="dySave">観測を保存して提案を記録</button>
+    </div>
+  </div>
+
+  <div id="dyResult"></div>
+
+  <div class="card"><h3>本日の観測</h3><div id="dyToday"></div></div>
+  <div class="card"><h3>時刻枠ごとの消化水準 <span class="hint">過去の記録から学習。予算上限に到達した日は母数から除外</span></h3><div id="dyCurve"></div></div>
+</section>
+
+<!-- ==================== 4か月カレンダー ==================== -->
+<section class="page" id="p-cal4">
+  <div class="card">
+    <div class="row">
+      <label class="f">比較基準日（各月ともこの日付まででそろえる）<input type="date" id="c4Base"></label>
+      <button class="btn ghost sm" id="c4Latest">最新データに合わせる</button>
+      <span class="spacer"></span>
+      <span class="small muted" id="c4Note"></span>
+    </div>
+    <div class="row small" style="margin-top:10px;gap:16px">
+      <span><b>主表示＝20円ROAS</b>／<span style="color:var(--bad);font-weight:700">赤 &lt;100%</span>・<span style="color:var(--warn);font-weight:700">橙 100〜300%</span>・<span style="color:var(--ok);font-weight:700">緑 &gt;300%</span></span>
+      <span>計実績額：<span style="color:var(--warn);font-weight:700">7万超は橙</span>・<span style="color:var(--bad);font-weight:700">10万超は赤</span></span>
+      <span>比率：月内<span style="color:var(--bad);font-weight:700">上位10%は赤</span>・<span style="color:var(--alert);font-weight:700">上位20%は橙</span></span>
+    </div>
+  </div>
+  <div class="cal4" id="c4Grid"></div>
+  <div class="card" id="c4Detail"><div class="muted small">日付をクリックすると内訳とタグ付けが表示されます。</div></div>
+</section>
+
+<!-- ==================== イベント設定 ==================== -->
+<section class="page" id="p-ev">
+  <div class="card">
+    <h3>イベントカレンダー <span class="hint">開始日時・終了日時を保持します。5の倍数は自動判定</span></h3>
+    <div class="note">セール<b>最終日</b>（終了日時の日付）は午前中に終わることが多いため、推奨上限を他条件より<b>優先</b>して適用します。翌月分まで先に登録できます。</div>
+    <div class="row" style="margin:12px 0">
+      <label class="f">種別<select id="evType">
+        <option value="marathon">お買い物マラソン</option><option value="supersale">スーパーSALE</option>
+        <option value="other">その他販促</option></select></label>
+      <label class="f">開始日<input type="date" id="evFrom"></label>
+      <label class="f">開始時刻<input type="time" id="evFromT" value="20:00"></label>
+      <label class="f">終了日<input type="date" id="evTo"></label>
+      <label class="f">終了時刻<input type="time" id="evToT" value="01:59"></label>
+      <label class="f">メモ<input type="text" id="evMemo" placeholder="任意"></label>
+      <button class="btn sm" id="evAdd">登録</button>
+    </div>
+    <div id="evTable"></div>
+  </div>
+  <div class="card"><h3>日タイプ別の推奨上限 <span class="hint">絶対上限ではありません</span></h3><div id="evCaps"></div></div>
+  <div class="card"><h3>今後30日の日タイプと推奨上限</h3><div id="evForecast"></div></div>
+</section>
+
+<!-- ==================== 提案・実行履歴 ==================== -->
+<section class="page" id="p-hist">
+  <div class="note">ツールは<b>提案のみ</b>を行い、実行は担当者が行います。提案と実際の行動を両方保存し、翌日確定した20円ROASと結びつけて後から検証できます。</div>
+  <div class="grid g4" id="hsTiles" style="margin-top:14px"></div>
+  <div class="card"><h3>提案と実行 <span class="hint">「実行」欄で実際の行動を記録してください</span></h3>
+    <div class="row" style="margin-bottom:8px">
+      <label class="f">絞り込み<select id="hsMonth"></select></label>
+      <span class="spacer"></span>
+      <button class="btn ghost sm" id="hsCsv">CSV書出</button>
+    </div>
+    <div id="hsTable"></div></div>
+  <div class="card"><h3>行動別の翌日20円ROAS <span class="hint">どの判断が防衛目標に寄与したかの検証</span></h3><div id="hsEval"></div></div>
+</section>
+
+<!-- ==================== バックテスト ==================== -->
+<section class="page" id="p-bt">
+  <div class="note">初期警戒基準v1（前日20円実績額 <b>または</b> 前日20円ROAS）を過去データで再検証します。閾値を変えて捕捉率と誤警報率のバランスを確認してください。9月以降のデータを足しても同じ方法で再検証できます。</div>
+  <div class="card" style="margin-top:14px">
+    <div class="row">
+      <label class="f">開始日<input type="date" id="btFrom"></label>
+      <label class="f">終了日<input type="date" id="btTo"></label>
+      <label class="f">前日20円実績額 ≥（円）<input type="number" id="btCost" step="1000"></label>
+      <label class="f">前日20円ROAS &lt;（%）<input type="number" id="btRoas" step="5"></label>
+      <button class="btn" id="btRun">再検証</button>
+      <button class="btn ghost sm" id="btReset">初期基準v1に戻す</button>
+      <button class="btn ghost sm" id="btApply">この閾値を設定に反映</button>
+    </div>
+  </div>
+  <div class="grid g4" id="btTiles"></div>
+  <div class="card"><h3>閾値スイープ <span class="hint">どの組み合わせが良いかの俯瞰</span></h3><div id="btSweep"></div></div>
+  <div class="card"><h3>日別の結果</h3><div id="btTable"></div></div>
+</section>
+
+<!-- ==================== データ取込 ==================== -->
+<section class="page" id="p-load">
+  <div class="card">
+    <h3>ファイル取込</h3>
+    <div id="drop">
+      <div class="big">ここに ZIP / CSV / XLSX / TXT をドラッグ＆ドロップ</div>
+      <div class="small muted" style="margin:6px 0 12px">
+        rpp_item_reports_*.zip（商品別）／ rpp_keyword_reports_*.zip（KW別）／ rpp_reports_*.csv（全体日次）<br>
+        rpp_item_keyword_*.csv（CPC設定表）／ YYYYMMDD_Item_SalesList.csv（商品名）<br>
+        当日時間別RPP記録.xlsx（<b>グレーのセルは予算上限到達として読み取ります</b>）／ 注文時間帯データ.xlsx<br>
+        イベント日程.txt（例：5/9 20:00 ～ 5/16 1:59, お買い物マラソン）<br>
+        月フォルダごと・ZIP内ZIPにも対応します。
+      </div>
+      <button class="btn" id="pick">ファイルを選択</button>
+      <input type="file" id="file" multiple style="display:none" accept=".zip,.csv,.xlsx,.xls,.tsv,.txt">
+    </div>
+    <div class="row" style="margin-top:12px">
+      <span class="small" style="font-weight:600">同じ日付を再投入したとき：</span>
+      <label class="pill on" id="dupOver">上書きする</label>
+      <label class="pill" id="dupSkip">スキップする</label>
+      <span class="spacer"></span>
+      <button class="btn ghost sm" id="btnWipe" style="color:var(--bad)">全データ削除</button>
+    </div>
+  </div>
+  <div class="card"><h3>取込ログ</h3><div id="log">待機中…</div></div>
+  <div class="card"><h3>欠損日 <span class="hint">0として扱わず、比較母数から除外します</span></h3><div id="missBox"></div></div>
+  <div class="card"><h3>取込済みデータ</h3><div id="loadTable"></div></div>
+</section>
+
+<!-- ==================== 設定 ==================== -->
+<section class="page" id="p-cfg">
+  <div class="note">これらは<b>確定ルールではありません</b>。運用データを見ながら調整する前提の初期値です。変更したらバックテストで再検証してください。</div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3>目標（20円広告ROAS）</h3><div id="cfg-goal"></div></div>
+    <div class="card"><h3>朝の警戒基準と開始予算</h3><div id="cfg-morn"></div></div>
+    <div class="card"><h3>日タイプ別の推奨上限</h3><div id="cfg-cap"></div></div>
+    <div class="card"><h3>当日の逐次判定</h3><div id="cfg-day"></div></div>
+    <div class="card"><h3>4か月カレンダーの表示条件</h3><div id="cfg-cal"></div></div>
+    <div class="card"><h3>Phase 1の範囲</h3>
+      <div class="small">本ツールは<b>ショップ全体の20円広告の予算制御</b>に集中しています。次のものは<b>実装していません</b>。
+        <ul style="margin:8px 0 0;padding-left:18px">
+          <li>商品単位の一時広告削除候補</li>
+          <li>商品単位の復活候補</li>
+          <li>KWだけ残して20円だけ停止する制御（楽天仕様上できません）</li>
+        </ul>
+        <div class="muted" style="margin-top:8px">まず全体の予算制御で効果を検証し、必要性が確認された場合のみPhase 2として追加します。</div>
+      </div></div>
+  </div>
+  <div class="card"><h3>設定の初期化</h3>
+    <button class="btn ghost" id="cfgReset" style="color:var(--bad)">すべての設定値を初期値に戻す</button></div>
+</section>
+
+</div>
+<div id="toast"></div>
+<div class="modal" id="modal"><div class="box" id="modalBox"></div></div>

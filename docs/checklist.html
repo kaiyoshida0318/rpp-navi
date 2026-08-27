@@ -1,0 +1,538 @@
+<title>RPP予算ナビ 立ち上げ2か月</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+
+<style>
+:root{
+  --ink:#141c28;
+  --ink-2:#465468;
+  --ink-3:#7d8899;
+  --paper:#f4f6f8;
+  --card:#ffffff;
+  --line:#dde3ea;
+  --line-soft:#eaeef3;
+  --accent:#17557f;
+  --accent-soft:#e7eff5;
+  --go:#1a7f4b;
+  --go-soft:#e6f4ec;
+  --hold:#a8621a;
+  --hold-soft:#fbeedd;
+  --stop:#a72f3b;
+  --stop-soft:#fbe9eb;
+  --spine:#c8d3de;
+  --done:#9aa6b4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#e8edf3;
+    --ink-2:#a4b1c1;
+    --ink-3:#71808f;
+    --paper:#0e141c;
+    --card:#161f2a;
+    --line:#28323f;
+    --line-soft:#1f2833;
+    --accent:#69b6e0;
+    --accent-soft:#17293a;
+    --go:#5ec78d;
+    --go-soft:#122a1f;
+    --hold:#e0a765;
+    --hold-soft:#2e2214;
+    --stop:#ef8b96;
+    --stop-soft:#33181d;
+    --spine:#2f3a48;
+    --done:#5a6675;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e8edf3;
+  --ink-2:#a4b1c1;
+  --ink-3:#71808f;
+  --paper:#0e141c;
+  --card:#161f2a;
+  --line:#28323f;
+  --line-soft:#1f2833;
+  --accent:#69b6e0;
+  --accent-soft:#17293a;
+  --go:#5ec78d;
+  --go-soft:#122a1f;
+  --hold:#e0a765;
+  --hold-soft:#2e2214;
+  --stop:#ef8b96;
+  --stop-soft:#33181d;
+  --spine:#2f3a48;
+  --done:#5a6675;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,system-ui,sans-serif;
+  font-size:15px;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:920px;margin:0 auto;padding:56px 24px 96px}
+
+/* ---------- masthead ---------- */
+.mast{border-bottom:2px solid var(--ink);padding-bottom:22px;margin-bottom:14px}
+.eyebrow{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 10px;
+}
+h1{
+  font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
+  font-weight:900;font-size:clamp(30px,5vw,44px);line-height:1.25;
+  letter-spacing:.01em;margin:0;text-wrap:balance;
+}
+.dek{color:var(--ink-2);font-size:15px;margin:14px 0 0;max-width:62ch}
+.meta{
+  display:flex;flex-wrap:wrap;gap:8px 20px;margin:26px 0 44px;
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:12px;color:var(--ink-3);
+}
+.meta b{color:var(--ink-2);font-weight:700}
+
+/* ---------- progress ---------- */
+.prog{
+  display:flex;align-items:center;gap:14px;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:14px 18px;margin-bottom:40px;
+}
+.prog .track{flex:1;height:7px;background:var(--line-soft);border-radius:4px;overflow:hidden}
+.prog .fill{height:100%;width:0;background:var(--accent);border-radius:4px;transition:width .3s ease}
+.prog .cnt{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink-2);
+  white-space:nowrap;
+}
+.prog button{
+  font:inherit;font-size:12px;border:1px solid var(--line);background:transparent;
+  color:var(--ink-3);border-radius:7px;padding:5px 12px;cursor:pointer;
+}
+.prog button:hover{color:var(--ink);border-color:var(--ink-3)}
+.prog button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- daily strip ---------- */
+.daily{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:28px;margin-bottom:52px;
+}
+.daily h2{
+  font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
+  font-size:20px;font-weight:700;margin:0 0 4px;letter-spacing:.01em;
+}
+.daily .sub{color:var(--ink-3);font-size:13px;margin:0 0 22px}
+.slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;
+  background:var(--line);border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.slot{background:var(--card);padding:18px 16px}
+.slot .t{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:19px;font-weight:700;color:var(--accent);letter-spacing:.02em;
+}
+.slot .r{font-size:12px;color:var(--ink-3);margin:2px 0 10px;font-weight:500}
+.slot p{margin:0;font-size:13.5px;line-height:1.7}
+.fields{
+  margin-top:20px;padding-top:18px;border-top:1px dashed var(--line);
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.field{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:12px;font-weight:500;
+  background:var(--accent-soft);color:var(--accent);
+  border-radius:6px;padding:5px 11px;
+}
+.field span{font-family:"Noto Sans JP",sans-serif;font-weight:500}
+
+/* ---------- timeline ---------- */
+.phases{display:grid;gap:0}
+.phase{
+  display:grid;grid-template-columns:64px 1fr;gap:0;
+  position:relative;
+}
+.rail{position:relative}
+.rail::before{
+  content:"";position:absolute;left:17px;top:0;bottom:0;width:2px;background:var(--spine);
+}
+.phase:first-child .rail::before{top:16px}
+.phase:last-child .rail::before{bottom:calc(100% - 16px)}
+.node{
+  position:absolute;left:6px;top:6px;width:24px;height:24px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--spine);
+  display:grid;place-items:center;
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:11px;font-weight:700;color:var(--ink-3);
+}
+.phase.on .node{border-color:var(--accent);color:var(--accent)}
+.body{padding:0 0 40px 8px}
+.when{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 3px;
+}
+.phase h3{
+  font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
+  font-size:22px;font-weight:700;margin:0 0 8px;letter-spacing:.01em;text-wrap:balance;
+}
+.phase .intro{color:var(--ink-2);font-size:14px;margin:0 0 16px;max-width:60ch}
+
+/* ---------- checkitems ---------- */
+ul.checks{list-style:none;margin:0;padding:0;display:grid;gap:1px;
+  background:var(--line-soft);border:1px solid var(--line-soft);border-radius:9px;overflow:hidden}
+ul.checks li{background:var(--card);margin:0}
+label.ck{
+  display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;
+  padding:13px 16px;cursor:pointer;
+}
+label.ck:hover{background:var(--accent-soft)}
+label.ck input{
+  appearance:none;-webkit-appearance:none;margin:4px 0 0;
+  width:18px;height:18px;border:1.5px solid var(--ink-3);border-radius:4px;
+  background:transparent;cursor:pointer;position:relative;flex:none;
+}
+label.ck input:checked{background:var(--accent);border-color:var(--accent)}
+label.ck input:checked::after{
+  content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg);
+}
+label.ck input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ck .txt{font-size:14px;line-height:1.7}
+.ck .txt b{font-weight:700}
+.ck .note{display:block;color:var(--ink-3);font-size:12.5px;line-height:1.65;margin-top:3px}
+label.ck input:checked ~ .txt{color:var(--done);text-decoration:line-through;text-decoration-color:var(--line)}
+label.ck input:checked ~ .txt .note{color:var(--done)}
+
+/* ---------- gate ---------- */
+.gate{
+  margin-top:14px;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;padding:13px 16px;
+}
+.gate .lb{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);
+}
+.gate p{margin:3px 0 0;font-size:13.5px;line-height:1.7}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin-top:14px;border:1px solid var(--line);border-radius:9px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--card)}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line-soft)}
+th{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-3);background:var(--line-soft);white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:none}
+td.n{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---------- callouts ---------- */
+.block{margin:52px 0 0}
+.block h2{
+  font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
+  font-size:22px;font-weight:700;margin:0 0 6px;letter-spacing:.01em;
+}
+.block .lead{color:var(--ink-2);font-size:14px;margin:0 0 18px;max-width:62ch}
+.cards{display:grid;gap:12px}
+.cd{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.cd h4{
+  font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
+  font-size:15.5px;font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:9px;
+}
+.cd p{margin:0;font-size:13.5px;line-height:1.75;color:var(--ink-2)}
+.cd p+p{margin-top:9px}
+.cd code{
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;
+  background:var(--line-soft);border-radius:4px;padding:1px 6px;color:var(--ink);
+}
+.tag{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:10.5px;font-weight:700;letter-spacing:.08em;
+  border-radius:5px;padding:3px 8px;white-space:nowrap;
+}
+.tag.go{background:var(--go-soft);color:var(--go)}
+.tag.hold{background:var(--hold-soft);color:var(--hold)}
+.tag.stop{background:var(--stop-soft);color:var(--stop)}
+.trap{border-left:3px solid var(--stop)}
+.trap h4{color:var(--stop)}
+
+footer{
+  margin-top:60px;padding-top:22px;border-top:1px solid var(--line);
+  color:var(--ink-3);font-size:12.5px;line-height:1.8;
+}
+@media (max-width:640px){
+  .wrap{padding:36px 16px 72px}
+  .phase{grid-template-columns:44px 1fr}
+  .rail::before{left:11px}
+  .node{left:0}
+  .daily{padding:20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">Rakuten RPP · 20円広告</p>
+    <h1>予算ナビ 立ち上げ2か月</h1>
+    <p class="dek">ツールを渡した状態から、実運用に乗せて閾値を自分のデータで再調整するまでの手順。上から順に消し込んでください。チェックはこの端末に保存されます。</p>
+  </header>
+
+  <div class="meta">
+    <span><b>目標</b> 20円ROAS 400%以上（防衛 300%以上）</span>
+    <span><b>現在の警戒基準</b> 前日20円実績30,000円 or 20円ROAS 225%未満</span>
+    <span><b>実績</b> 捕捉率85% / 誤警報14%</span>
+  </div>
+
+  <div class="prog">
+    <span class="cnt" id="cnt">0 / 0</span>
+    <span class="track"><span class="fill" id="fill"></span></span>
+    <button type="button" id="reset">チェックをすべて外す</button>
+  </div>
+
+  <!-- 毎日の手順 -->
+  <section class="daily">
+    <h2>毎日の手順</h2>
+    <p class="sub">立ち上げが終わったあとも、ここだけは毎日繰り返します。所要 5分×4回。</p>
+    <div class="slots">
+      <div class="slot">
+        <div class="t">朝</div>
+        <div class="r">出社後すぐ</div>
+        <p>前日レポートを取込 → ダッシュボードで危険度と開始予算を確認 → RMSで開始予算を設定。</p>
+      </div>
+      <div class="slot">
+        <div class="t">9:30</div>
+        <div class="r">許容 9:00–10:00</div>
+        <p>初動の確認。維持するか、5,000円単位で足すか、足さずに予算切れを許容するか。</p>
+      </div>
+      <div class="slot">
+        <div class="t">15:00</div>
+        <div class="r">許容 14:30–15:30</div>
+        <p>最重要の中間判定。9:30からの増え方で「追加 / 維持 / 18:30まで意図的停止」を決める。</p>
+      </div>
+      <div class="slot">
+        <div class="t">18:30</div>
+        <div class="r">許容 18:00–19:00</div>
+        <p>夜の最終投入。残りの推奨上限と当日の消化状態から追加額を決める。</p>
+      </div>
+    </div>
+    <div class="fields">
+      <span class="field">入力は4項目だけ</span>
+      <span class="field">累計クリック数</span>
+      <span class="field">累計実績額</span>
+      <span class="field">現在の設定予算</span>
+      <span class="field">上限到達の有無</span>
+      <span class="field">平均CPC <span>は自動</span></span>
+    </div>
+  </section>
+
+  <!-- タイムライン -->
+  <div class="phases">
+
+    <section class="phase on">
+      <div class="rail"><span class="node">1</span></div>
+      <div class="body">
+        <p class="when">今日 〜 今週</p>
+        <h3>準備</h3>
+        <p class="intro">所要1時間ほど。ここでイベント登録を落とすと以降ずっと推奨上限が頭打ちになるので、最優先で終わらせてください。</p>
+        <ul class="checks">
+          <li><label class="ck"><input type="checkbox" data-k="p1a"><span class="txt">5〜8月のデータを一括で取り込む
+            <span class="note">RPPデータZIP・当日時間別記録XLSX・注文時間帯XLSX・イベント日程TXTをまとめてドロップ。ZIP内ZIPも自動展開されます。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p1b"><span class="txt">4か月カレンダーが手元の画像と一致することを確認
+            <span class="note">5/2＝83%・20円114,302・計148,354・比率8.4% など。ここが合っていれば取込は正常です。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p1c"><span class="txt"><b>9月のイベント日程を登録する</b>
+            <span class="note">開始20:00 / 終了1:59 が通例。終了日の日付がセール最終日になり、推奨上限70,000円が優先適用されます。翌月分まで先に入れておくのが安全です。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p1d"><span class="txt">「今後30日の日タイプと推奨上限」で9月の並びを確認
+            <span class="note">イベント設定タブの下段。通常日ばかりになっていたら登録漏れです。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p1e"><span class="txt">JSON書出でバックアップを取る
+            <span class="note">データはブラウザ内保存です。別PCへ移すときも書出→読込で移せます。</span></span></label></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="phase">
+      <div class="rail"><span class="node">2</span></div>
+      <div class="body">
+        <p class="when">1〜2週目</p>
+        <h3>並行運転で記録を貯める</h3>
+        <p class="intro">この期間はツールの提案を鵜呑みにしないでください。従来どおりの判断で運用しながら、提案と実際の行動を両方残します。狙いは「提案と自分の判断がどれだけ食い違うか」を見ることです。</p>
+        <ul class="checks">
+          <li><label class="ck"><input type="checkbox" data-k="p2a"><span class="txt">毎日3回の記録を始める（9:30 / 15:00 / 18:30）
+            <span class="note">この2週間でいちばん価値があるのは記録そのものです。判断は従来どおりで構いません。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p2b"><span class="txt">提案を出したら、履歴タブで<b>実際の行動</b>を記録する
+            <span class="note">「提案どおり実行 / 別金額を実行 / 何もしなかった」の3択。これが後の検証の材料になります。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p2c"><span class="txt">提案と自分の判断が食い違った日をメモに残す
+            <span class="note">翌日の20円ROASがどうだったかが、ツールを信用してよいかの答えになります。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p2d"><span class="txt">確認できなかった枠は「未観測」で残す（空欄で飛ばさない）
+            <span class="note">「予定された未観測（休日など）」と「記録忘れ」を選べます。0として扱われず、その枠だけが母数から外れます。</span></span></label></li>
+        </ul>
+        <div class="gate">
+          <span class="lb">Gate</span>
+          <p>15:00枠が<b>3日</b>、18:30枠が<b>あと1日</b>たまると、既定の配分率から実績ベースの判定に切り替わります。対象は「その日一度も予算上限に到達しなかった日」。8月の実績では21日中14日が該当したので、実働1〜2週間が目安です。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="phase">
+      <div class="rail"><span class="node">3</span></div>
+      <div class="body">
+        <p class="when">3〜4週目</p>
+        <h3>判断をツールに寄せる</h3>
+        <p class="intro">実績ベースに切り替わり、判定信頼度が上がってきます。提案どおり実行する日を増やしていきます。</p>
+        <ul class="checks">
+          <li><label class="ck"><input type="checkbox" data-k="p3a"><span class="txt">当日チェックの「記録の蓄積状況」で各枠が実績ベースに切り替わったか確認
+            <span class="note">「実績から学習中」になっていれば切替済みです。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p3b"><span class="txt">提案どおり実行する日を増やす
+            <span class="note">特に15:00の「18:30まで意図的停止」は、従来の感覚と最も食い違いやすい判断です。予算切れは失敗ではありません。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p3c"><span class="txt">信頼度が「低」の日は提案を弱めに受け取る
+            <span class="note">土台が弱い枠では上限超過提案も出ないようにしてあります。</span></span></label></li>
+        </ul>
+        <div class="tw">
+          <table>
+            <thead><tr><th>日タイプ</th><th>全体に占める割合</th><th>信頼度「高」まで</th></tr></thead>
+            <tbody>
+              <tr><td>通常日</td><td class="n">46%</td><td class="n">2〜3週間</td></tr>
+              <tr><td>セールのみ</td><td class="n">29%</td><td class="n">3〜4週間</td></tr>
+              <tr><td>セール＋5の倍数</td><td class="n">11%</td><td class="n">1〜2か月</td></tr>
+              <tr><td>5の倍数</td><td class="n">8%</td><td class="n">2か月以上</td></tr>
+              <tr><td>セール最終日</td><td class="n">6%</td><td class="n">2か月以上</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="gate">
+          <span class="lb">Note</span>
+          <p>各日タイプで3日そろって初めて信頼度「高」です。頻度の低い日タイプは待つしかありませんが、その間は「販促日全般」「全日タイプ」に条件を緩めて判定し、信頼度を下げて表示します。放置して問題ありません。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="phase">
+      <div class="rail"><span class="node">4</span></div>
+      <div class="body">
+        <p class="when">1か月後</p>
+        <h3>閾値を自分のデータで再調整</h3>
+        <p class="intro">9月データを足して、初期基準v1が9月でも通用するかを検証します。ここが立ち上げの山場です。</p>
+        <ul class="checks">
+          <li><label class="ck"><input type="checkbox" data-k="p4a"><span class="txt">9月データを取り込んでバックテストを再実行
+            <span class="note">いま5〜8月で 捕捉率85% / 誤警報14%。9月込みで同じ水準が出るかを見ます。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p4b"><span class="txt">閾値スイープで緑のセルと現在値を見比べる
+            <span class="note">緑は（捕捉率−誤警報率）が最大の組み合わせ。捕捉率を上げれば誤警報も増えるので、どちらを重く見るかで選びます。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p4c"><span class="txt">必要なら「この閾値を設定に反映」で切り替える
+            <span class="note">反映後は翌朝の判定から新しい基準になります。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p4d"><span class="txt">履歴タブの「行動別の翌日20円ROAS」を確認
+            <span class="note">30件を超えたあたりから、提案どおり実行した日と何もしなかった日で防衛目標の達成率に差が出ているか読めます。</span></span></label></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="phase">
+      <div class="rail"><span class="node">5</span></div>
+      <div class="body">
+        <p class="when">2か月後</p>
+        <h3>Phase 2の要否を決める</h3>
+        <p class="intro">全体の予算制御だけでどこまで届いたかを見て、商品単位の制御に進むかを判断します。</p>
+        <ul class="checks">
+          <li><label class="ck"><input type="checkbox" data-k="p5a"><span class="txt">20円ROASが理想目標400%に届くようになったか確認
+            <span class="note">4か月カレンダーで緑（300%超）の日がどれだけ増えたかが分かりやすい指標です。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p5b"><span class="txt">届いていない日に、特定商品への異常消化が残っているか確認
+            <span class="note">カレンダーの日別詳細に商品別内訳を参考表示しています。特定商品に偏っていればPhase 2の出番です。</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p5c"><span class="txt">Phase 2（商品単位の一時削除・復活）に進むか決める
+            <span class="note">全体の予算制御で足りているなら、作らないほうが運用は軽く済みます。</span></span></label></li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 休日の扱い -->
+  <section class="block">
+    <h2>休日など、その場で入力できない日</h2>
+    <p class="lead">土日にツールを触れない場合の扱いです。数値が手元にあるかどうかで分かれます。</p>
+    <div class="cards">
+      <div class="cd">
+        <h4><span class="tag go">数値がある</span>後日まとめて入力</h4>
+        <p>「後日まとめて入力（提案は記録しない）」をONにして、日付を正しく指定して保存します。数値はその日付のものとして保存され、<b>消化カーブの学習にそのまま使われます</b>。</p>
+        <p>判定は参考表示され、<b>提案・実行履歴には記録されません</b>。その場で判断していない提案が履歴に混ざると、「どの判断が20円ROASの防衛に効いたか」の検証が濁るためです。</p>
+      </div>
+      <div class="cd">
+        <h4><span class="tag hold">数値がない</span>未観測として残す</h4>
+        <p>RMSは現在の累計しか見えないため、後から9:30時点の数値を復元することはできません。その場合は「未観測（予定された未観測）」で記録します。</p>
+        <p>失うのは<b>消化カーブの学習だけ</b>です。その日の最終実績額は翌朝の日次レポートから入るので、カレンダー・バックテスト・翌朝の危険度判定はそのまま使えます。</p>
+      </div>
+      <div class="cd">
+        <h4><span class="tag go">補足</span>0時の記録は不要</h4>
+        <p>その日の最終実績額は翌朝に取り込む日次レポートから取得します。必要な記録は <code>9:30</code> <code>15:00</code> <code>18:30</code> の3枠だけです。</p>
+        <p>平日しか運用しないのであれば、土日が学習に入らないことによる実害はありません。判定に使うのは平日の水準だからです。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 落とし穴 -->
+  <section class="block">
+    <h2>落とし穴</h2>
+    <p class="lead">実際に効いてくる順に3つ。</p>
+    <div class="cards">
+      <div class="cd trap">
+        <h4><span class="tag stop">影響 大</span>イベント登録の漏れ</h4>
+        <p>登録しないとセール期間が「通常日」になり、推奨上限が70,000円で頭打ちになります。本来120,000円まで使える日を絞ることになり、売上機会をそのまま落とします。<b>月初に翌月分まで入れる</b>運用にしてください。</p>
+      </div>
+      <div class="cd trap">
+        <h4><span class="tag stop">影響 中</span>記録を空欄で飛ばす</h4>
+        <p>空欄のまま放置すると、その日が学習に使われたのか使われていないのか分からなくなります。確認できなかった枠は必ず「未観測」として残してください。0として扱われません。</p>
+      </div>
+      <div class="cd trap">
+        <h4><span class="tag stop">影響 小</span>上限到達日の記録を省く</h4>
+        <p>上限に到達した日は消化カーブの学習には使えませんが、<b>記録自体は取る意味があります</b>。提案・実行履歴に残り、後から「その日の判断が正しかったか」の検証に効きます。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    判定はすべてルールベースで、閾値は設定タブから変更できます。初期値は5〜8月の115日で検証した値であり、確定ルールではありません。<br>
+    このツールは提案のみを行い、楽天側の設定は変更しません。実行は担当者が行ってください。
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY='rpp-rollout-checks-v1';
+  var boxes=[].slice.call(document.querySelectorAll('.ck input[type=checkbox]'));
+  var fill=document.getElementById('fill');
+  var cnt=document.getElementById('cnt');
+
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ return {}; }
+  }
+  function save(st){
+    try{ localStorage.setItem(KEY,JSON.stringify(st)); }catch(e){}
+  }
+  function paint(){
+    var done=boxes.filter(function(b){return b.checked;}).length;
+    cnt.textContent=done+' / '+boxes.length;
+    fill.style.width=(boxes.length?done/boxes.length*100:0)+'%';
+    boxes.forEach(function(b){
+      var ph=b.closest('.phase');
+      if(!ph) return;
+      var all=[].slice.call(ph.querySelectorAll('input[type=checkbox]'));
+      ph.classList.toggle('on', all.some(function(x){return !x.checked;}));
+    });
+  }
+
+  var st=load();
+  boxes.forEach(function(b){
+    if(st[b.dataset.k]) b.checked=true;
+    b.addEventListener('change',function(){
+      var s=load(); s[b.dataset.k]=b.checked; save(s); paint();
+    });
+  });
+  document.getElementById('reset').addEventListener('click',function(){
+    boxes.forEach(function(b){b.checked=false;});
+    save({}); paint();
+  });
+  paint();
+})();
+</script>
