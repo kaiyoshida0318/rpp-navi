@@ -238,6 +238,14 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 .collbar{height:10px;background:#eef0f3;border-radius:6px;overflow:hidden}
 .collbar .fill{height:100%;background:var(--blue);border-radius:6px;transition:width .3s}
 .collbar .fill.done{background:var(--ok)}
+.sug{border:1px solid var(--line);border-left:4px solid var(--blue);background:#f7f9fd;
+  border-radius:0 9px 9px 0;padding:11px 14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.sug.ask{border-left-color:var(--alert);background:var(--alertbg)}
+.sug.stop{border-left-color:var(--bad);background:var(--badbg)}
+.sug .lb{font-size:10.5px;font-weight:700;color:var(--tx3);letter-spacing:.04em}
+.sug .amt{font-size:19px;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums}
+.sug .sub{font-size:11.5px;color:var(--tx2)}
+.sug .why{font-size:11.5px;color:var(--tx2);flex:1;min-width:220px}
 .cfm{border:2px solid var(--blue);background:var(--bluebg);border-radius:10px;padding:13px 15px}
 .cfm .ttl{font-size:11.5px;font-weight:700;color:var(--blue);margin-bottom:8px;letter-spacing:.02em}
 .cfm .items{display:flex;flex-wrap:wrap;gap:7px 20px;font-size:13.5px;color:var(--tx)}
@@ -293,7 +301,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 <header class="top">
   <div class="brand">
     <img class="logo" src="data:image/png;base64,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" alt="RPP NAVI" width="209" height="72">
-    <span class="ver" id="appVer" title="ビルド 2026-08-28 05:43">v1.0025</span>
+    <span class="ver" id="appVer" title="ビルド 2026-08-28 08:40">v1.0027</span>
   </div>
   <h1 class="sr">楽天RPP 20円広告 暴走抑制・動的予算ナビ（Phase 1）</h1>
   <span class="spacer"></span>
@@ -367,13 +375,13 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
     <div id="dySlotWarn"></div>
 
     <div class="dystep"><span class="no">2</span>RMSの画面から数字を入れる
-      <span class="hint">いずれも「その日の0時からの累計」です</span></div>
+      <span class="hint">RMSの表記に合わせています。いずれも<b>当日分</b>の行の数字です</span></div>
     <div class="row" style="margin-bottom:12px">
       <label class="pill big" id="dyCapped">予算上限に到達して停止中</label>
     </div>
     <div class="grid g4">
-      <label class="f">累計クリック数<input type="number" id="dyClicks" min="0" step="1"></label>
-      <label class="f">累計実績額（円）<input type="number" id="dyCost" min="0" step="1"></label>
+      <label class="f" title="RMSの表記そのままです。当日分の行の数字を入れてください">当月暫定クリック数（当日分）<input type="number" id="dyClicks" min="0" step="1"></label>
+      <label class="f" title="RMSの表記そのままです。当日分の行の数字を入れてください">当月暫定ご利用金額（当日分）<input type="number" id="dyCost" min="0" step="1"></label>
       <label class="f">現在の設定予算（円）<input type="number" id="dyBudget" min="0" step="1"></label>
       <label class="f">平均CPC（自動計算）<input type="text" id="dyCpc" disabled></label>
     </div>
@@ -387,9 +395,10 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
       <span class="small muted">未観測は0として扱わず、比較母数から除外します</span>
     </div>
 
-    <div class="dystep"><span class="no">4</span>実際に行った操作
-      <span class="hint">判定を見てRMSを操作したあと、実際の金額をここに入れます</span></div>
-    <div class="row">
+    <div class="dystep"><span class="no">4</span>ツールの提案を見て、実際に行った操作を入れる
+      <span class="hint">ここで完結します。提案・実行履歴タブに移る必要はありません</span></div>
+    <div id="dySuggest"></div>
+    <div class="row" style="margin-top:12px">
       <span class="f"><span style="font-size:11.5px;color:var(--tx2);font-weight:600">実際に追加した金額</span>
         <span class="sw" id="dyAddPick">
           <button data-add="0">0円</button>
@@ -402,14 +411,17 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
       <label class="f">操作後の設定予算（円）<input type="number" id="dyBudgetAfter" min="0" step="1000"></label>
       <span class="small muted" id="dyAddNote"></span>
     </div>
+    <div class="row" style="margin-top:10px">
+      <label class="f" style="flex:1;min-width:320px">メモ（任意）<input type="text" id="dyMemo" placeholder="例：セール最終日で午前に終了。夜は伸びないと判断"></label>
+    </div>
 
     <div class="dystep"><span class="no">5</span>この内容で合っていますか
       <span class="hint">ボタンを押す前にここを確認してください</span></div>
     <div id="dyConfirm"></div>
     <div class="row" style="margin-top:12px">
-      <button class="btn" id="dyRun">判定する</button>
-      <button class="btn ghost" id="dySave">観測を保存して提案を記録</button>
-      <span class="small muted">「判定する」は保存しません。内容を見てから保存できます。</span>
+      <button class="btn" id="dySave">この内容を記録する</button>
+      <button class="btn ghost" id="dyRun">詳しい内訳を見る</button>
+      <span class="small muted">記録すると、観測・提案・実行の3つが「提案・実行履歴」にまとめて残ります。「詳しい内訳を見る」は保存しません。</span>
     </div>
   </div>
 
@@ -2358,6 +2370,8 @@ function renderDay(){
   const prevObs=rec[DYSLOT];
   $('#dyAdd').value = prevObs && prevObs.addActual!=null ? prevObs.addActual : '';
   $('#dyBudgetAfter').value = prevObs && prevObs.budgetAfter!=null ? prevObs.budgetAfter : '';
+  const prevPr=DB.props.filter(x=>x.date===d&&x.slot===DYSLOT).sort((a,b)=>b.ts-a.ts)[0];
+  $('#dyMemo').value = prevPr && prevPr.memo ? prevPr.memo : '';
   dyAddSync();
 
   syncCpc(); dyConfirm(); renderDayCollect(); renderDayToday(); renderDayCurve();
@@ -2372,6 +2386,69 @@ function dyAddSync(){
   if(a==null) n.innerHTML='<span class="muted">RMSを操作したら、実際に足した金額を入れてください。0円（何もしなかった）も記録します。</span>';
   else if(a===0) n.innerHTML='<b>何も追加しなかった</b>として記録します。';
   else n.innerHTML='<b>'+yen(a)+'</b> 追加として記録します。';
+}
+/** ④の中にツールの提案を出す。判断材料をこの画面だけで完結させるため（v1.0026） */
+function dySuggest(){
+  const host=$('#dySuggest'); if(!host) return;
+  host.innerHTML='';
+  const mk=(cls,amt,sub,why,chip,btn)=>{
+    const b=el('div','sug'+(cls?' '+cls:''));
+    const L=el('div'); L.style.minWidth='170px';
+    L.appendChild(el('div','lb','ツールの提案'));
+    const a=el('div','amt'); a.innerHTML=amt; L.appendChild(a);
+    if(sub){ const sv=el('div','sub'); sv.innerHTML=sub; L.appendChild(sv); }
+    if(chip){ const cw=el('div'); cw.style.marginTop='5px'; cw.appendChild(chip); L.appendChild(cw); }
+    b.appendChild(L);
+    const W=el('div','why'); W.innerHTML=why; b.appendChild(W);
+    if(btn) b.appendChild(btn);
+    host.appendChild(b);
+    return b;
+  };
+  const i=dayInput();
+  if(i.missing){ mk('','—','','「未観測」を選んでいるため、提案は出しません。'); return; }
+  if(i.slot==='close'){ mk('','—','','日次締めの記録では判定を行いません。その日の最終実績額として消化水準の学習にだけ使います。'); return; }
+  if(!(i.cost>0 && i.clicks>0 && i.budget>0)){
+    mk('','—','','<b>②</b>の「当月暫定クリック数」「当月暫定ご利用金額」「現在の設定予算」を入れると、'
+      +'ここに<b>追加すべきかどうか／追加するならいくら</b>が出ます。');
+    return;
+  }
+  let R; try{ R=navigate(i); }catch(e){ mk('','—','','いまの入力では判定できませんでした（'+e.message+'）'); return; }
+
+  const cls = R.action==='ask' ? 'ask' : R.action==='stop' ? 'stop' : (R.over||R.action==='bridge') ? 'warn' : '';
+  const amt =
+    R.action==='ask'    ? '推奨額なし' :
+    R.action==='bridge' ? yen(R.addYen)+' 追加' :
+    (R.action==='add'||R.action==='over') ? yen(R.addYen)+' 追加' :
+    R.action==='stop'   ? '意図的停止' : '追加しない';
+  const sub = R.needAsk
+    ? 'データ不足のため断定できません'
+    : '変更後の設定予算 <b>'+yen(R.newBudget)+'</b>'
+      + (R.action==='bridge' ? '　<b style="color:var(--warn)">日中つなぎ</b>' : '')
+      + (R.morningAdd>0 ? '<br>うち '+yen(R.morningAdd)+' は翌朝分（上限とは別枠）' : '')
+      + (R.over ? '<br><b style="color:var(--warn)">推奨上限 '+yen(R.cap)+' を超える提案です</b>' : '');
+
+  const why=[];
+  why.push('<b>'+R.actionText+'</b>');
+  (R.reasons||[]).slice(0,3).forEach(t=>why.push('・'+t));
+  why.push('<span class="muted">実績額 通常比 '+(isFinite(R.costRatio)?R.costRatio.toFixed(2)+'倍':'—')
+    +'／クリック 通常比 '+(isFinite(R.clickRatio)?R.clickRatio.toFixed(2)+'倍':'—')
+    +'／着地見込み '+(isFinite(R.landing)?yen(R.landing):'—')+'</span>');
+
+  let btn=null;
+  if(!R.needAsk){
+    btn=el('button','btn ghost sm', R.addYen>0 ? '提案どおり '+yen(R.addYen)+' を入れる' : '提案どおり 0円 で記録');
+    btn.onclick=()=>{
+      $('#dyAdd').value=R.addYen||0;
+      $('#dyBudgetAfter').value='';
+      dyAddSync(); dyConfirm();
+    };
+  }
+  mk(cls, amt, sub, why.join('<br>'), confChip(R.conf), btn);
+
+  const nt=el('div','small muted'); nt.style.marginTop='7px';
+  nt.innerHTML='ここは<b>提案</b>です。実際にRMSで行った操作を下に入れてください。'
+    +'提案と実行の両方がこの保存で「提案・実行履歴」に記録されます。';
+  host.appendChild(nt);
 }
 /** 早期暴走検知ロジックの再分析に必要なデータが、どこまで貯まったか */
 function renderDayCollect(){
@@ -2429,6 +2506,7 @@ function dayInput(){
 }
 /** ボタンを押す前の確認欄。選んだ内容と、気になる点をまとめて出す */
 function dyConfirm(){
+  dySuggest();
   const host=$('#dyConfirm'); if(!host) return;
   host.innerHTML='';
   const i=dayInput(), s=slotByKey(i.slot), d=i.date;
@@ -2452,6 +2530,8 @@ function dyConfirm(){
   if(!i.missing){
     add('実際に追加した額', i.addActual==null?'<span class="muted">未入力</span>':'<b>'+yen(i.addActual)+'</b>');
     add('操作後の設定予算', i.budgetAfter==null?'<span class="muted">未入力</span>':'<b>'+yen(i.budgetAfter)+'</b>');
+    const mm=($('#dyMemo').value||'').trim();
+    if(mm) add('メモ','<b>'+mm.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))+'</b>');
   }
   box.appendChild(it);
 
@@ -2598,9 +2678,11 @@ function runDay(save){
       doneAdd: inp.addActual,
       doneBudget: inp.budgetAfter!=null ? inp.budgetAfter
                  : (inp.addActual!=null ? (inp.budget||0)+inp.addActual : null),
-      doneTime: inp.addActual==null?'':($('#dyTime').value||''), memo:''});
+      doneTime: inp.addActual==null?'':($('#dyTime').value||''), memo:($('#dyMemo').value||'').trim()});
     saveAll(); renderDayToday(); renderDayCurve(); renderHist(); renderDash();
-    toast('観測と提案を記録しました。履歴タブで実際の行動を記録してください');
+    toast(inp.addActual==null
+      ? '観測と提案を記録しました（実行は未入力のままです）'
+      : '観測・提案・実行をまとめて記録しました');
   }
 }
 function renderDayToday(){
@@ -2612,7 +2694,7 @@ function renderDayToday(){
       time:o?o.time:'', cost:o&&!o.missing?o.cost:null, clicks:o&&!o.missing?o.clicks:null,
       cpc:o&&!o.missing&&o.cpc?o.cpc:null, budget:o?o.budget:null,
       capped:o?o.capped:false, missing:o?!!o.missing:null,
-      act:pr?pr.actionText:''};
+      act:pr?pr.actionText:'', memo:pr&&pr.memo?pr.memo:''};
   });
   buildTable(host,[
     {t:'枠',k:'slot',sort:false},
@@ -2627,6 +2709,7 @@ function renderDayToday(){
     {t:'操作後の設定予算',k:'budgetAfter',num:1,sort:false,
       f:r=>r.o&&r.o.budgetAfter!=null?yen(r.o.budgetAfter):el('span','small muted','—')},
     {t:'提案',k:'act',cls:'name',sort:false},
+    {t:'メモ',k:'memo',cls:'name',sort:false,f:r=>r.memo?r.memo:el('span','small muted','—')},
     {t:'',k:'_',sort:false,f:r=>{ if(!r.o) return '';
       const b=el('button','btn ghost sm','削除');
       b.onclick=()=>{ DB.obs=DB.obs.filter(x=>!(x.date===d&&x.slot===r.key));
@@ -3402,6 +3485,7 @@ function bind(){
     $('#dyAdd').value = ($('#dyAdd').value!=='' && toNum($('#dyAdd').value)===v) ? '' : v;
     $('#dyBudgetAfter').value=''; dyAddSync(); dyConfirm(); };
   ['#dyAdd','#dyBudgetAfter'].forEach(x=>$(x).oninput=()=>{ dyAddSync(); dyConfirm(); });
+  $('#dyMemo').oninput=()=>dyConfirm();
   $('#dyTime').onchange=dyConfirm;
   $('#dyMissKind').onchange=dyConfirm;
   $('#dyNow').onclick=()=>{ const n=new Date();
