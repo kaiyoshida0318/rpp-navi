@@ -224,6 +224,9 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 .dywarn{margin-top:9px;border-radius:8px;padding:9px 12px;font-size:12px;font-weight:600;
   background:var(--warnbg);border:1px solid #f0dda0;color:#8a6100}
 .dywarn.bad{background:var(--badbg);border-color:#eb9aa4;color:#a81e2d}
+.collbar{height:10px;background:#eef0f3;border-radius:6px;overflow:hidden}
+.collbar .fill{height:100%;background:var(--blue);border-radius:6px;transition:width .3s}
+.collbar .fill.done{background:var(--ok)}
 .cfm{border:2px solid var(--blue);background:var(--bluebg);border-radius:10px;padding:13px 15px}
 .cfm .ttl{font-size:11.5px;font-weight:700;color:var(--blue);margin-bottom:8px;letter-spacing:.02em}
 .cfm .items{display:flex;flex-wrap:wrap;gap:7px 20px;font-size:13.5px;color:var(--tx)}
@@ -279,7 +282,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 <header class="top">
   <div class="brand">
     <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANEAAABICAMAAABfjeBWAAAAwFBMVEXXAwndAASrDBkSLjDfAAUAEDUJCVRjBg4AEDfeAAYTcwFBegBVAFUAcnJzc3NtbgH1hQAAFkEAAP+eZAOpAlUAGEHzgwL/AP8A/wDgagQ+eAAA/////wD///9AewDqiAA8eQGqVVUADjMBFUE4jQBDgQD/AGr/kQA/dgBBfgBFhABDgACqqlXzfwAAAAAAHEPeAArmAAp+AAAAADcAFzwABzIAEzp/AH8AIEgAAH/4hgAAEjj5AAAACzOZAAA4ADiftLO3AAAAQHRSTlMeXgULnZcHA2fQDOQDAgIElqYBBQPRRgEBEeUBAQG+Jl4DxmEVYQL/vGUw7QNCAf38/QIH+C/PAv4C+bAFTAUEscNGYQAAEFxJREFUeNqVW4li2zYSpUnzkEJJlWPXdpM27fbaE7IGFCFUlPj/f7WDewBStookjiISIN6cbwZMxuIBjFWF+nBoym2vxnbbnA8DfjNWgt02irnvKqD/HFj1/rSCA/MzYP380TM5l+b2bHoF/5zLfrfbHXfqh/rZPW3P6lrFYG41/LLsrw+UyUFJhMxYs8M/3pnQnHEXohLg1q/Y4frtp1Lfz6sEEejfeOVQWjBhHBFXX+K2uH7IKkG0LtjJwNe/1O3RQJF0ejYLWj509tJRCc18JhN2SoSFQQSw5uxMrtKlzY/dzqwfIRKCCYXntLs2upKzJWdfUhUJ0bLrs5xQdqeCVXIdEH00oz+gWg0mUSCij9bH3fGASE+U+FU5vZNoategIFLDExKV9iEiJZHGSf0mROppHMwEfsP9SgRFQCQxIshUEF3fPz11XZcIbhMjUlNvQnTcnZ0zjbfsUENim5sRHXcHxpeZ9yLUGFFQd2oKru2SH87NyQQINas7s6KlaloCE7fpCFc9mIAGN+0Q7z8b3xA33t9zWWlEA+p2ZHwb4Jy53a4NAvzXk18RBVcnllffiAgfqRxpyW7c4a5HwzH+cNv9JSuMjuABXah3LqPCBuMjr2q1VxvRVcg4umm8jhFtCKIuDP05DpxW6NTqzK1+XrzFxvgtxrpu5gFmwjE8oKu0H0mBjsB7++XpoNIbielGSWgt595LgrOBhn0eEHXnQzzOzZbs8IRmBxEijOvJhLI7kvsrFiPqmuT+puyoBKwfVdWTj0esGJeTHCrYSBytYZ4BgLYioqPDNAM31OyU2qEgOiqn+Z9onLM20VEzuf8QzOBkEXG3V+W6nKUKUr5pkn4Te6wLDozqCC/pNWxkGauKbWlsQL9dRTpi41iY9TgvRs6Jwaj7R3w41dE5pksc12+IxBDRA97f+NjMUwGsdNY2Pwq3MIqusvxM/S4IIr1EYGTABurWndo7oNwpooLcrS2GRN1GCTKKDEGaivkJdBrOnASOHdc6erC3o0lwweZUZBUFXhxlAj1CBGZvYT6RuUtJs4j0FBDF0NDIyiDyO4cIFKDBSIA8PoPwRVdMNAQuArStNrzngpmHqXUBgh4THUUZOLIi5A1M1FWEiEdPBDESM9I6WiMiEi4Lk3IsKhXXQuJR0ZtbqpA4B9WSfKwf67x+zEVbGIs49tykiomOcBUZHqaWaKGgVoeIYIwiQ5FQkJFRHY1MwpzVgafXBUF00FbX25VHoTUpLRSAwfA26fe+btGmn45G2NwjLpLIgOuYzMhw6siJyLWnA4yJ1YH1CmMUxI/wMZVhQbsJIhAbrSgMKMEG0I/c8zpetfPlD357d6/HHct92OlpvIkQFcuVIq9ytUL8KrAUUfRuhYhYTSkxwOGvUcU5jHuY+rgPx1oCEa/rzup+jIhcDfxU8CTWVbL32bkVroKhgVvk7G6vxz3LwCmEGimP8lFMKKqq6ShNUZMSHU3y0Zbmo0oIFlvd+/nI3dtXWHQLb3BRiFOI3nAgolz4EH5Ch5Fga+eACOl6r//0T7rCfEqoKkez2lA/OsUUoDhTDnDSuQBjLMmw6f2nmDNYT1cqEg6IDb0eVhYQobMj0+7t7iqTkeBKxXecFMMn63xxNRHI3ISO6tAYZdj3yTryOmG8yqRMIaJCzrEFqiMspazdqtggTRRtb60muBE5jDdzb7RhFOHf4t6HzjHItNauXz9/fn19XaPKAiIpVhWr7BzVHUJQYnMbopCr2hvrI1PF3qyjHsuFzMt7DHRaiR3Eiw/ZF6qjkKP7YmiNbd5Ww/a23os5wAeAdIG9uQ0RSmyFiEr7uY2YHGP/Zd9/p8erJH6Ugy4emohjAL8Bkeq7jLDWaUfehsj1GQBuQmRMIDNe3qf9wIG9su/+/AvHn9+zONaphKoDsuJooOnex4hODSc85IYq+7jrFd3RiFabD+8/YuFte0EmMJy8Pfjnfmbf/aVHjAi5neoHehY5yUehIo3FxypbdcGKvR8ZdIPv1LShc/TyDiLT3iP9Ou5iBBBI6udVRMqveWfTpRwgYaqkhu3DY3u+4mFxoJGhS7qrp9OpURoFbvMIxCxo0lI9lc1B9VTN+tkhMFxSoWAIm0eUqaaq9IhGSJnqjsRMIlf0Iq7TgWm6vM8ZNFUsSOdWRCzoyv1WWpm509mPlPVm89tyiQbyOq+jgRQ8ljVLmo8COSqqqP+HCgVZgWXMEfeukAC2y9W61rlgXfCxSDqCnCxlq4kKS+cWOZaoeKFrZrMzSBG5RZ7FNR0JtraIbGWj6f9cfSQK2mFQzQnRhs485d411L46kCIcSoAvMEiso0UPwIRcW6tzVdeGLf/1++8///zzsr2CCEwJ5/xoqSJFUk04aqiCbhm1E4uVMMk7ro+43z3Mlc6otpn6CK4cu9jIgHxLM6DN8pMePyyvRIbaKDzxvrjiG3012la0rWPzF0z8qJgtM2mHk1/R0Rwik4/KB11GILH+CeH88OnTHCJVTVxAl/GFW1vYSu2UNoJ18TaMpLGp+9KjLgVpTeqrcmDXRT/bOVlFtTx4RCdLIc0Ny58+aUjXEGWmRW4yrOnroF8lNawwy0u9laKj9V7biml9xGmYHaZ4llH+ckYA85p1LEgDV8cA7yDSfoSCZ/YATIlByUEmVhf1tmhlg3lTKbCe9aP3zyTn/YiAIjpqXAgFryOEdB2ROpmpbF1egTvXoDVsERkD7Q/ujrj9Fl4SRNUtiJL0ANf9iNsSFkW9hKWJDNd1pHid3aMyF324A0t3ahmdEZniSsiCbf1FQ6dfVtX1XtC0y6H75GdbPB7jyACTI9TMiVdvpIWPEF3E2tUOqqnhJdWUJbKXU1mWB3Ksq8MA1mulGqetulw6KqgnlPhVw5K+NEwaNxJZU2km+AdMfMnaXeay8Ulvz0Xvq4ggsJuek2YrWfmZvUQ1/TObHN0PwP7GAMbE7XdjxjROobu7TkcK0beAKIvykUubxKNVF5BXBUf6Ms4ELSSpqhOluAonx7gF0pfiXZ/wyn4RegU9rnRJAyLXOunRZ5ErWUS/XYne4J20i49VFBUUsJzZHGpMCn8YyGR6Xdqvok75GkuONcyYlvmnZDNRziISjtIonxXrzT8/ffqP5gwbh+h/jPbrqkL2M0E3v2TZJc/zi/JUCLaVZ3mNfwBmno+bbvOsxpn5xR5D+YviMVfLZXkm08QjBa6Iy16yjfQ4c/Vv/FagjgZUkrM7tnxG3v3v5WbJvgJ7/fbt2+vra/61xo2ZwYQLxl0VYtoLhSbZxm5h/ULsXzL2Hhtj8oFeepDkjDc0qbVLbX4JmpwuJzC/IPmyhy3Fh26Hdln5vLj2ZKT+mt3ZoY50hOeqzH2fyXrqILUY3LSMbSSh3O0XP1E1w8wVVVot1xhswzUbkvIX/9VDxsLhhD4/XBZFvTTl06ZW47OxFchzyFXlZfJCz+sqnG1e2P3ejjvTitBiF+DMdZ+Z6jdWUh6m7TPct3T0rEZE7sLw1Z/Mq0aXqJ/dpUXmrni3wMdnhmWVHhK/ZhmmZWITI1I6mug1ojcdDtWaL8I7sXqS+t4jIirKH7I3N5QkqGHWuOKby4HEvUA/y0/xz7fPQcllptnujv3K+BUrnz70FlvuTG7XxFwsd09RkNTmH/SbG+ATGdGRP2Sjs972i6HWwc1erCF7M1PfhufamzGT9Y+DkRGq6NFag3QNRY9IE8Gj6xK+FFFCc8ESK1Kk3EfLfyoZmBuRG9k9MNJeRh1BGqLzIajISHxI1B5U4cN/EAN+f5FERzGiwG31y0xWAQ/qrG4J6qUuoTLhYUsOPNYxOwyIlPDMroeBIjI2bw7ZIFWRnhUiPN6U/xiUBLBylk9VBL4qyqeIdB1j+eSTwjTq1g2Yt9QqjbAMBw2desumlT50X9LNPeTRkzQi39vUp8fgVbQPMhdXlHSBWRUxqI18ZnREnF6Znm2A6oO0UW/8sE06sie+rASzcTVGhN481LXxY+JH5PgcyN72i4Vx6kU+UH4IQ+a0gd+vrcU+BxXlrWCx1e0jRKgl3xM4qq7uIZzgHZqevnxjOpn2KAi+JH5kIGGs16QhiQyDe6uR1cNgrerujko9pNxYHYqBi1hxVJ9ziLD2r0p6gtX1W+Tu2210SNeTnmKoawIi99e9yQssixHBxKj2b/llYcWeP1KO9jkoySWeek31FtZLEK3cJYxfpLEbt5Vd1KYvSTa6o6DSnt/e4t7mH33UhCgCopgzgPfwO8buJglGB6Yk8wga0zDrPXtqJXQ+Uo8xiIC+g8WaPrGvgK1Tr3Wxfpc0siQR+MKlWpO9PSKMDI+kMwA0Zvy4dlFt8fWRnDKC07BOVrrh4pOUCnSDi3QPFuneIYrrecabfu4YoOu26jU1WZGrqood1CYDIh/HNR8CgijSEawHr8tLRpUEgU+zPyKvEZGKchkOhpjTkbG6pLzQLweWT87inL70W5EcVVL18VuUOslmVjWISGQLAslJOWZBUhAyMYhaONHfE0Q6NmSeCuVDpKL4LcwY0bR/qRjo4Vyenp7UMdCTfUFchTZID0TtuVMWdNSyACljQ0D0C7FvEEPAIKRXMc64hJsAanIBIhVdSJk8gGWqb/OImOcM6av6tpEVQdJ1n9CBFldUufWiIe3tPu48otq/xzPAJajoNb+8Yl23JwdU4d2DwAXuWY1Ub0HoAiXUF8u9HaJp70UFiVDQc14Q0hP133a7X7GYD9UEIsLAkzkasMiCjj5TLwpmZse9z/nRucTj5wUhAyTQMcrDIDPc2yCCma7sTKfWnfvo1wZLGgAPg/UjjSh/AFFbSPiA+zsave0L9jI3Zo/jztbGWdAF7ZW2VEmPsYpkEjldHZaxj3oxpDlgdb0iBw668SvyoKMv8MzCjvcL71KP4cTHm48NuTaH2UhRhw0JeMwXXibTQAdW+pcU0U0ts/DmRkHeANwdnxCRtTpDu4UkStiniOTgqybCMQh/QnkImfIbzRW9iv6oIwLIpjr6oAOWxPc1QgpvSyG/G0XNDFdQfgTu3SjKxlWG9YJXAX4f8W46VJxfuo4ZmrDXZ8hNdbxRXDBGtGJ/c0Qvh6mm2FB7HQ3m/zmsk+InZFjQHj4FQpR0UcWGMScZlOTU/ZaJx1T2Jh+5WAcfHbBNvzMvFRstncZx+UL8yLl/RMf3JMOCVhFxIT/MptGTcvdOpHY6a22k1oXkTV2XYV0+mmlZfuxXlT0UKytMFPUlQSTkA6YfR65pnwHI0+99S0z3pe4CL6L7uRCv07JZ27poZXcrBVo9QbS6KRxMr2C2Ojf6f7OhHZPI8MWdb9f5ELVTHo1LyschRK94LHyrJI+beiR+xHWRfRTMVeVzmQjivAQs6kNz8tMgetMZ1v/vpPpL4ENvFpH1i72NaqqtrLrBlwtA/nWuqAAIrSujIqgBUpFbP5pD9M7pLkw+B1pBOQOQ/u6w2CcdyPVjZr97y55zcARO/dW6u98G3YxyC9UwBF+7Y/XM3i5JB3J215B+iN8bovhWKlgv1LvGi3vP5Vf6Qdm9HYYzoA0h6zPjnv0SPxq3ZS/dMdL6R/s1q6s599kAIZ1A+G2ef49+/H/reu5HR0nt5QAAAABJRU5ErkJggg==" alt="RPP NAVI" width="209" height="72">
-    <span class="ver" id="appVer" title="ビルド 2026-08-28 01:51">v1.0013</span>
+    <span class="ver" id="appVer" title="ビルド 2026-08-28 03:10">v1.0014</span>
   </div>
   <h1 class="sr">楽天RPP 20円広告 暴走抑制・動的予算ナビ（Phase 1）</h1>
   <span class="spacer"></span>
@@ -385,6 +388,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 
   <div id="dyResult"></div>
 
+  <div class="card"><h3>データ収集の進捗 <span class="hint">3枠すべてで実績額・クリック数・設定予算がそろった日数</span></h3><div id="dyCollect"></div></div>
   <div class="card"><h3>本日の観測</h3><div id="dyToday"></div></div>
   <div class="card"><h3>時刻枠ごとの消化水準 <span class="hint">過去の記録から学習。予算上限に到達した日は母数から除外</span></h3><div id="dyCurve"></div></div>
 </section>
@@ -470,13 +474,14 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 
 <!-- ==================== バックテスト ==================== -->
 <section class="page" id="p-bt">
-  <div class="note">初期警戒基準v1（前日20円実績額 <b>または</b> 前日20円ROAS）を過去データで再検証します。閾値を変えて捕捉率と誤警報率のバランスを確認してください。9月以降のデータを足しても同じ方法で再検証できます。</div>
+  <div class="note">朝の警戒基準を過去データで再検証します。<b>前日20円実績額</b>／<b>前日20円ROAS</b>／<b>前日20円シェア</b>のいずれか（OR）で判定します。閾値を変えて捕捉率と誤警報率のバランスを確認してください。9月以降のデータを足しても同じ方法で再検証できます。</div>
   <div class="card" style="margin-top:14px">
     <div class="row">
       <label class="f">開始日<input type="date" id="btFrom"></label>
       <label class="f">終了日<input type="date" id="btTo"></label>
       <label class="f">前日20円実績額 ≥（円）<input type="number" id="btCost" step="1000"></label>
       <label class="f">前日20円ROAS &lt;（%）<input type="number" id="btRoas" step="5"></label>
+      <label class="f">前日20円シェア ≥（%）　0=使わない<input type="number" id="btShare" step="5"></label>
       <button class="btn" id="btRun">再検証</button>
       <button class="btn ghost sm" id="btReset">初期基準v1に戻す</button>
       <button class="btn ghost sm" id="btApply">この閾値を設定に反映</button>
@@ -528,6 +533,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
     <div class="card"><h3>朝の警戒基準と開始予算</h3><div id="cfg-morn"></div></div>
     <div class="card"><h3>日タイプ別の推奨上限</h3><div id="cfg-cap"></div></div>
     <div class="card"><h3>当日の逐次判定</h3><div id="cfg-day"></div></div>
+    <div class="card"><h3>20円シェアと Risk Boundary <span class="hint">翌日の答え合わせ用。当日の強制停止には使いません</span></h3><div id="cfg-rb"></div></div>
     <div class="card"><h3>露出の確保と学習</h3><div id="cfg-expo"></div></div>
     <div class="card"><h3>4か月カレンダーの表示条件</h3><div id="cfg-cal"></div></div>
     <div class="card"><h3>Phase 1の範囲</h3>
@@ -817,6 +823,29 @@ const CFG_DEF={
   startNormal:{v:45,  g:'morn', n:'開始予算：通常日の推奨上限に対する割合(%)', d:'朝に1日分を固定投入せず、9:30以降で再判定する前提の初期額。'},
   startWarn:  {v:30,  g:'morn', n:'開始予算：強警戒時の割合(%)', d:''},
   unit:       {v:5000,g:'morn', n:'予算の刻み(円)', d:'提案額はこの単位に丸めます。'},
+
+  /* 20円シェアと Risk Boundary（翌日の答え合わせ用） */
+  shareOn:    {v:1, g:'rb', n:'20円シェアを使う',
+    d:'<b>20円シェア＝ 20円実績額 ÷ 計実績額（20円＋KW）</b>。暴走日とは「20円側が全体を食い始める日」であることが116日の集計でわかっています。最終300%以上の日はシェア中央値31.4%、300%未満の日は60.2%。<b>当日は観測できません</b>（20円とKWの切り分けは翌日のレポートでしか得られないため）。'
+     +'そのため本ツールでは<b>翌日の答え合わせと状態把握にのみ</b>使い、当日の予算追加可否の判定には使いません。',
+    opts:[['1','使う（推奨）'],['0','使わない']]},
+  warnShare:  {v:45, g:'rb', n:'強警戒：前日の20円シェア(%)以上',
+    d:'116日の集計：シェア35%未満の66日は防衛300%達成<b>100%</b>・暴走0%。45〜60%の15日は達成20%。60%以上の15日は達成0%・暴走53%。<b>その日が暴走だったかの説明力は最も高い指標です。</b><br>'
+     +'ただし<b>「翌日を予測する条件」としては、既存の実績額・ROAS条件に情報を足しませんでした</b>（116日で追加検出0日／捕捉85%・誤警報14%のまま変化なし）。'
+     +'閾値を35%まで下げると15日多く拾いますが、誤警報が14%→31%、適中が65%→47%に悪化します。'
+     +'当面はこの値のままにし、<b>バックテストタブの「シェア条件の効果」で効き始めたかを監視</b>してください。9月以降のデータで変わる可能性があります。'},
+  rbNormal:   {v:37000, g:'rb', n:'Risk Boundary：通常日(円)',
+    d:'<b>翌日の答え合わせ用の暫定基準です。当日の強制停止には使いません。</b>実測：未満42日 防衛88% ／ 以上11日 防衛<b>0%</b>。'},
+  rbFive:     {v:30000, g:'rb', n:'Risk Boundary：5の倍数(円)',
+    d:'<b>暫定値。</b>実測は9日しかなく分離が弱いため（¥27,000で 未満80% / 以上50%）、データが貯まるまでの仮置きです。'},
+  rbSale:     {v:31000, g:'rb', n:'Risk Boundary：セールのみ(円)',
+    d:'実測：未満27日 防衛93% ／ 以上6日 防衛<b>0%</b>。'},
+  rbSaleFive: {v:0, g:'rb', n:'Risk Boundary：セール＋5の倍数(円)　0=境界なし',
+    d:'<b>0＝境界を設けません。</b>実測13日すべてが防衛300%を達成しており、どこで切っても分離できませんでした。この日タイプに制限をかける根拠がありません。'},
+  rbSaleLast: {v:24000, g:'rb', n:'Risk Boundary：セール最終日(円)',
+    d:'実測：未満5日 防衛100% ／ 以上3日 防衛<b>0%</b>。<b>推奨上限¥70,000に対して極端に低い</b>点に注意してください。'},
+  collectDays:{v:30, g:'rb', n:'投入額ロジック再分析に必要な日数',
+    d:'9:30・15:00・18:30の3枠すべてで<b>実績額・クリック数・設定予算</b>が揃った日数がこれに達したら、時刻枠ごとの投入額ロジックを再分析します。現状は15:00の記録が0件、クリックの記録が9件しかなく、早期検知の指標を作っても検証できません。'},
 
   /* 日タイプ別の推奨上限 */
   capNormal:  {v:70000, g:'cap', n:'通常日の推奨上限(円)', d:'絶対上限ではありません。好調時は理由付きで超過提案します。'},
@@ -1463,16 +1492,33 @@ function morningPlan(today){
   out.prevCost=P.c20a; out.prevRoas=P.roas20; out.prevCvr=P.cvr20;
   out.prevKwRoas=P.roasKw; out.prevAllRoas=P.roasAll; out.prevCpc=P.cpc20;
 
+  const prevShare=share20(prev);
+  out.prevShare=prevShare;
+  const useShare = String(CFG.shareOn)==='1';
   const hitCost = P.c20a>=+CFG.warnCost;
   const hitRoas = isFinite(P.roas20) && P.roas20<+CFG.warnRoas;
-  const warn = hitCost||hitRoas;
+  const hitShare = useShare && isFinite(prevShare) && prevShare>=+CFG.warnShare;
+  const warn = hitCost||hitRoas||hitShare;
   out.level = warn?'warn':'ok';
   out.levelName = warn?'強警戒':'通常開始';
-  out.hitCost=hitCost; out.hitRoas=hitRoas;
+  out.hitCost=hitCost; out.hitRoas=hitRoas; out.hitShare=hitShare;
 
   if(hitCost) out.reasons.push(`前日の<b>20円実績額 ${yen(P.c20a)}</b> が警戒基準 ${yen(CFG.warnCost)} 以上です。`);
   if(hitRoas) out.reasons.push(`前日の<b>20円ROAS ${pct(P.roas20,0)}</b> が警戒基準 ${CFG.warnRoas}% を下回っています。`);
-  if(!warn) out.reasons.push(`前日の20円実績額 ${yen(P.c20a)}（基準 ${yen(CFG.warnCost)} 未満）、20円ROAS ${pct(P.roas20,0)}（基準 ${CFG.warnRoas}% 以上）。どちらの警戒条件にも当たりません。`);
+  if(hitShare) out.reasons.push(`前日の<b>20円シェア ${pct(prevShare,1)}</b>（20円実績額 ${yen(P.c20a)} ÷ 計実績額 ${yen(P.alla)}）が警戒基準 ${CFG.warnShare}% 以上です。<b>暴走日は20円側が全体を食い始める形</b>で現れます（116日の集計で、最終300%以上の日はシェア中央値31.4%、300%未満の日は60.2%）。`);
+  else if(useShare && isFinite(prevShare)) out.reasons.push(`前日の20円シェアは ${pct(prevShare,1)}（基準 ${CFG.warnShare}% 未満）。`);
+  if(!warn) out.reasons.push(`前日の20円実績額 ${yen(P.c20a)}（基準 ${yen(CFG.warnCost)} 未満）、20円ROAS ${pct(P.roas20,0)}（基準 ${CFG.warnRoas}% 以上）。どの警戒条件にも当たりません。`);
+
+  /* 前日の Risk Boundary 答え合わせ（当日の判定には使わない・記録と表示のみ） */
+  const rb=rbCheck(prev);
+  out.prevRb=rb;
+  if(rb && rb.boundary!=null){
+    out.reasons.push(rb.over
+      ? `【翌日の答え合わせ】前日は ${dtLabel(rb.dtype)} の Risk Boundary <b>${yen(rb.boundary)}</b> を <b>${yen(rb.diff)} 超過</b>して着地しました（20円実績額 ${yen(rb.c20a)}／20円ROAS ${pct(rb.roas,0)}）。<b>これは当日の停止基準ではなく、事後の評価です。</b>`
+      : `【翌日の答え合わせ】前日は ${dtLabel(rb.dtype)} の Risk Boundary ${yen(rb.boundary)} の内側（${yen(rb.c20a)}）で着地しました。`);
+  } else if(rb){
+    out.reasons.push(`【翌日の答え合わせ】${dtLabel(rb.dtype)} には Risk Boundary を設けていません（実測で分離できなかったため）。`);
+  }
 
   const b=baseType(today,'c20a');
   out.base=b;
@@ -1493,6 +1539,52 @@ function morningPlan(today){
 /* =========================================================================
    当日の消化水準（同時刻枠・同日タイプ／欠損は母数から除外）
    ========================================================================= */
+/* ============================================================
+   20円シェアと Risk Boundary
+   20円シェア = 20円実績額 ÷ 計実績額。116日の集計で、金額の絶対値より
+   鋭く暴走日を分けた。ただし20円とKWの切り分けは翌日レポートでしか
+   得られないため、【当日は観測できない】。翌朝の判定にのみ使う。
+   ============================================================ */
+function share20(d){
+  const D=AGG.day[d];
+  return (D && D.alla>0 && isFinite(D.c20a)) ? D.c20a/D.alla*100 : NaN;
+}
+/** 日タイプ別の Risk Boundary。0または未設定なら「境界なし」= null */
+function riskBoundary(dateOrType){
+  const t = /^\d{4}-/.test(String(dateOrType)) ? dayType(dateOrType) : dateOrType;
+  const v = {normal:+CFG.rbNormal, five:+CFG.rbFive, sale:+CFG.rbSale,
+             saleFive:+CFG.rbSaleFive, saleLast:+CFG.rbSaleLast}[t];
+  return (isFinite(v) && v>0) ? v : null;
+}
+/** 翌日の答え合わせ：確定した20円実績額が Risk Boundary を超えたか */
+function rbCheck(d){
+  const D=AGG.day[d];
+  if(!D || !(D.c20a>0)) return null;
+  const b=riskBoundary(d);
+  return {date:d, dtype:dayType(d), boundary:b, c20a:D.c20a,
+          over: b!=null && D.c20a>b,
+          diff: b!=null ? D.c20a-b : null,
+          share:share20(d), roas:D.roas20};
+}
+/** 3枠フル観測（実績額・クリック・設定予算がすべて埋まっている）日数 */
+function collectStatus(){
+  const need=['s0930','s1500','s1830'];
+  const byDate={};
+  DB.obs.forEach(o=>{ (byDate[o.date]=byDate[o.date]||{})[o.slot]=o; });
+  const full=[], part={s0930:0,s1500:0,s1830:0}, withClk={s0930:0,s1500:0,s1830:0}, withBud={s0930:0,s1500:0,s1830:0};
+  for(const d in byDate){
+    let ok=true;
+    need.forEach(k=>{
+      const o=byDate[d][k];
+      if(o&&!o.missing){ part[k]++; if(o.clicks>0) withClk[k]++; if(o.budget>0) withBud[k]++; }
+      if(!o||o.missing||!(o.clicks>0)||!(o.budget>0)) ok=false;
+    });
+    if(ok) full.push(d);
+  }
+  return {full:full.length, need:+CFG.collectDays, dates:full.sort(), part, withClk, withBud,
+          days:Object.keys(byDate).length};
+}
+
 function obsOf(date,slot){ return DB.obs.filter(o=>o.date===date&&o.slot===slot).sort((a,b)=>b.ts-a.ts)[0]||null; }
 function dayFinal(d){
   const D=AGG.day[d]; if(D&&D.alla>0) return D.alla;
@@ -1740,7 +1832,7 @@ function navigate(inp){
     if(String(CFG.expoOn)==='1' && +CFG.expoMorning>0){
       morningAdd=Math.max(0,round5(+CFG.expoMorning));
       target+=morningAdd;
-      reasons.push(`<b>翌朝分として ${yen(morningAdd)} を上乗せ</b>しています。予算が切れたまま日付が変わると<b>翌朝9:30まで約15時間、20円広告が完全に止まります</b>。露出が長時間ゼロになると長期的な検索順位の低下につながるためです。この分は当日の推奨上限とは<b>別枠</b>として扱い、上限超過とはみなしません。`);
+      reasons.push(`<b>翌朝分として ${yen(morningAdd)} を上乗せ</b>しています。予算が切れたまま日付が変わると<b>翌朝9:30まで約15時間、20円広告が完全に止まります</b>。長時間の広告停止による販売機会の損失を抑えるためです（<b>自然検索順位への影響は未検証</b>）。この分は当日の推奨上限とは<b>別枠</b>として扱い、上限超過とはみなしません。`);
     }
   } else if(warnDay && veryFast){
     // 意図的停止
@@ -1784,7 +1876,7 @@ function navigate(inp){
           .replace('追加せず予算切れを許容します。','本来ならここは追加せず予算切れを許容する場面です。')
           .replace('ここでは追加せず、18:30にあらためて判断します。','本来ならここは追加しない場面です。')
           .replace('18:30にあらためて判断します。','');
-        reasons.push(`このまま追加しないと、<b>${fmtHour(expo.stopAt)}頃から${fmtHour(expo.resume)}まで約${expo.gap.toFixed(1)}時間、20円広告が完全に止まります</b>（${expo.how}／許容 ${CFG.expoMaxGap}時間）。露出がこれだけ長くゼロになると<b>長期的な検索順位の低下</b>につながるため、<b>絞りつつ露出は絶やさない</b>方針で日中つなぎ <b>${yen(br)}</b> を入れます。`);
+        reasons.push(`このまま追加しないと、<b>${fmtHour(expo.stopAt)}頃から${fmtHour(expo.resume)}まで約${expo.gap.toFixed(1)}時間、20円広告が完全に止まります</b>（${expo.how}／許容 ${CFG.expoMaxGap}時間）。長時間の広告停止による<b>販売機会の損失</b>を抑えるため、<b>絞りつつ露出は絶やさない</b>方針で日中つなぎ <b>${yen(br)}</b> を入れます。<b>※楽天の自然検索順位への影響は、本ツールのデータでは検証できていません。</b>`);
         reasons.push(`これは暴走を容認するものではありません。つなぎ額は<b>推奨上限 ${yen(cap)} を超えず</b>、この額で夜まで持たせることが目的です。18:30にあらためて判断します。`);
       } else {
         reasons.push(`露出ゼロが約${expo.gap.toFixed(1)}時間続く見込みですが、<b>設定予算がすでに推奨上限 ${yen(cap)} に達している</b>ため、ここでのつなぎ投入は行いません。18:30に翌朝分とあわせて判断します。`);
@@ -1861,7 +1953,7 @@ function tomorrowDraft(today){
 /* =========================================================================
    バックテスト（初期基準v1の再検証）
    ========================================================================= */
-function backtest(from,to,thCost,thRoas){
+function backtest(from,to,thCost,thRoas,thShare){
   const days=rangeDays(from,to);
   const rows=[];
   for(let i=0;i<days.length;i++){
@@ -1871,11 +1963,13 @@ function backtest(from,to,thCost,thRoas){
     const gap=Math.round((parseDate(d)-parseDate(prev))/86400000);
     if(gap!==1) { rows.push({d, skip:true, gap, dtype:dtLabel(dayType(d))}); continue; }
     const P=AGG.day[prev], D=AGG.day[d];
+    const pShare=share20(prev);
     const hitCost=P.c20a>=thCost, hitRoas=isFinite(P.roas20)&&P.roas20<thRoas;
-    const warn=hitCost||hitRoas;
-    rows.push({d, prev, skip:false, warn, hitCost, hitRoas,
+    const hitShare=(thShare>0)&&isFinite(pShare)&&pShare>=thShare;
+    const warn=hitCost||hitRoas||hitShare;
+    rows.push({d, prev, skip:false, warn, hitCost, hitRoas, hitShare, prevShare:pShare,
       prevCost:P.c20a, prevRoas:P.roas20, roas20:D.roas20, c20a:D.c20a,
-      dtype:dtLabel(dayType(d)), tag:DB.tags[d]||null});
+      rbOver:(rbCheck(d)||{}).over, dtype:dtLabel(dayType(d)), tag:DB.tags[d]||null});
   }
   const use=rows.filter(r=>!r.skip&&isFinite(r.roas20));
   const cap=(lim)=>{ const t=use.filter(r=>r.roas20<lim);
@@ -2030,6 +2124,20 @@ function renderDash(){
   T.appendChild(tile('前日の20円実績額', yen(M.prevCost),
     '警戒基準 '+yen(CFG.warnCost)+' 以上で強警戒',
     M.hitCost?'bad':null));
+  if(String(CFG.shareOn)==='1'){
+    const sh=M.prevShare;
+    const cls=!isFinite(sh)?null:(sh>=+CFG.warnShare?'bad':sh>=35?'warn':'ok');
+    T.appendChild(tile('前日の20円シェア', isFinite(sh)?pct(sh,1):'—',
+      isFinite(sh)?('20円 '+yen(M.prevCost)+' ÷ 計 '+yen(AGG.day[M.prev]?AGG.day[M.prev].alla:NaN)
+        +'<br>警戒基準 '+CFG.warnShare+'% 以上／<b>当日は観測できません</b>')
+        :'前日の確定データがありません', cls));
+    const rb=M.prevRb;
+    if(rb) T.appendChild(tile('前日のRisk Boundary',
+      rb.boundary==null?'設定なし':(rb.over?'超過 '+yen(rb.diff):'内側'),
+      rb.boundary==null? dtLabel(rb.dtype)+'には境界を設けていません'
+        : (dtLabel(rb.dtype)+' 境界 '+yen(rb.boundary)+'<br>実績 '+yen(rb.c20a)+'／<b>翌日の答え合わせ用。当日の停止基準ではありません</b>'),
+      rb.boundary==null?'grey':(rb.over?'bad':'ok')));
+  }
 
   /* --- 運転プラン --- */
   const pl=$('#dgPlan'); pl.innerHTML='';
@@ -2154,7 +2262,45 @@ function renderDay(){
       +'別の枠を入力するつもりなら、上のボタンで枠を選び直してください。';
     w.appendChild(e);
   }
-  syncCpc(); dyCapCheck(); dyConfirm(); renderDayToday(); renderDayCurve();
+  syncCpc(); dyCapCheck(); dyConfirm(); renderDayCollect(); renderDayToday(); renderDayCurve();
+}
+/** 早期暴走検知ロジックの再分析に必要なデータが、どこまで貯まったか */
+function renderDayCollect(){
+  const host=$('#dyCollect'); if(!host) return;
+  host.innerHTML='';
+  const C=collectStatus(), need=C.need, pctv=Math.min(100, need?C.full/need*100:0);
+  const bar=el('div','collbar'); const fill=el('div','fill');
+  fill.style.width=pctv.toFixed(1)+'%';
+  if(C.full>=need) fill.classList.add('done');
+  bar.appendChild(fill); host.appendChild(bar);
+  const h=el('div'); h.style.margin='8px 0 10px';
+  h.innerHTML='3枠フル観測 <b style="font-size:17px">'+C.full+'</b> / '+need+' 日'
+    +(C.full>=need
+      ? '　<b style="color:var(--ok)">再分析に必要な日数に到達しました。</b>時刻枠ごとの投入額ロジックを見直せます。'
+      : '　あと <b>'+(need-C.full)+'日</b>。ここに到達するまで、9:30／15:00／18:30の投入額ロジックは変更しません（作っても検証できないため）。');
+  host.appendChild(h);
+  const tw=el('div'); host.appendChild(tw);
+  buildTable(tw,[
+    {t:'枠',k:'slot',sort:false},
+    {t:'観測を記録した日数',k:'n',num:1,sort:false,f:r=>num(r.n)+'日'},
+    {t:'うちクリック数あり',k:'clk',num:1,sort:false,f:r=>num(r.clk)+'日',
+      color:r=>r.n>0&&r.clk<r.n?'warn':null},
+    {t:'うち設定予算あり',k:'bud',num:1,sort:false,f:r=>num(r.bud)+'日',
+      color:r=>r.n>0&&r.bud<r.n?'warn':null},
+    {t:'状態',k:'st',sort:false}
+  ],[
+    {slot:'9:30', n:C.part.s0930, clk:C.withClk.s0930, bud:C.withBud.s0930,
+     st:C.part.s0930===0?'記録なし':(C.withClk.s0930<C.part.s0930||C.withBud.s0930<C.part.s0930)?'項目の欠けあり':'そろっている'},
+    {slot:'15:00',n:C.part.s1500, clk:C.withClk.s1500, bud:C.withBud.s1500,
+     st:C.part.s1500===0?'記録なし':(C.withClk.s1500<C.part.s1500||C.withBud.s1500<C.part.s1500)?'項目の欠けあり':'そろっている'},
+    {slot:'18:30',n:C.part.s1830, clk:C.withClk.s1830, bud:C.withBud.s1830,
+     st:C.part.s1830===0?'記録なし':(C.withClk.s1830<C.part.s1830||C.withBud.s1830<C.part.s1830)?'項目の欠けあり':'そろっている'}
+  ],{});
+  const n=el('div','small muted'); n.style.marginTop='8px';
+  n.innerHTML='早期に暴走を捕まえるには「CPCの低下」「クリックの急増」「消化速度」を時刻枠ごとに比べる必要があり、'
+    +'そのためには<b>実績額・クリック数・設定予算の3つが同じ枠で揃っている</b>ことが条件です。'
+    +'現状ここが埋まっていない枠があるため、指標を作っても検証できません。<b>3枠とも毎日記録してください。</b>';
+  host.appendChild(n);
 }
 function syncCpc(){
   const c=toNum($('#dyCost').value), k=toNum($('#dyClicks').value);
@@ -2579,6 +2725,7 @@ function renderC4List(MD){
     rows.push({ds:x.ds, dow:DOWJ[dow(x.ds)], dt:dtLabel(dayType(x.ds)),
       roas20:isFinite(D.roas20)?D.roas20:null, c20a:D.c20a, c20s:D.c20s,
       kwa:D.kwa, alla:D.alla, share:x.share, run:run?'暴走':'',
+      sh20:share20(x.ds), rb:(rbCheck(x.ds)||{}),
       tag:DB.tags[x.ds]==='burst'?'暴走日':DB.tags[x.ds]==='restrain'?'予算抑制日':DB.tags[x.ds]==='normal'?'通常日':''});
   }));
   const cols=[
@@ -2589,7 +2736,14 @@ function renderC4List(MD){
     {k:'c20s',t:'20円売上',num:1,f:r=>yen(r.c20s)},
     {k:'kwa',t:'KW実績額',num:1,f:r=>yen(r.kwa)},
     {k:'alla',t:'計実績額',num:1,f:r=>yen(r.alla)},
-    {k:'share',t:'比率',num:1,f:r=>r.share==null?'—':r.share.toFixed(1)+'%'},
+    {k:'sh20',t:'20円シェア',num:1,title:'20円実績額 ÷ 計実績額。暴走日は20円側が全体を食い始める',
+      f:r=>isFinite(r.sh20)?r.sh20.toFixed(1)+'%':'—',
+      color:r=>!isFinite(r.sh20)?null:(r.sh20>=+CFG.warnShare?'bad':r.sh20>=35?'warn':'ok')},
+    {k:'rbo',t:'Risk Boundary',sort:false,title:'翌日の答え合わせ用。当日の停止基準ではありません',
+      f:r=>r.rb.boundary==null?'—':(r.rb.over?'超過 '+yen(r.rb.diff):'内側'),
+      color:r=>r.rb.boundary==null?null:(r.rb.over?'bad':'ok')},
+    {k:'share',t:'月内比率',num:1,title:'その日の計実績額が月内に占める割合（20円シェアとは別物）',
+      f:r=>r.share==null?'—':r.share.toFixed(1)+'%'},
     {k:'tag',t:'手動タグ'}
   ];
   buildTable($('#c4List'),cols,rows,{sort:{k:'ds',dir:-1},limit:400});
@@ -2859,10 +3013,12 @@ function renderBt(){
   }
   if(!$('#btCost').value) $('#btCost').value=CFG.warnCost;
   if(!$('#btRoas').value) $('#btRoas').value=CFG.warnRoas;
+  if($('#btShare').value==='') $('#btShare').value=String(CFG.shareOn)==='1'?CFG.warnShare:0;
 }
 function runBt(){
-  const thC=toNum($('#btCost').value), thR=toNum($('#btRoas').value);
-  const R=backtest($('#btFrom').value,$('#btTo').value,thC,thR);
+  const thC=toNum($('#btCost').value), thR=toNum($('#btRoas').value), thS=toNum($('#btShare').value);
+  const R=backtest($('#btFrom').value,$('#btTo').value,thC,thR,thS);
+  const R0=backtest($('#btFrom').value,$('#btTo').value,thC,thR,0);
   const T=$('#btTiles'); T.innerHTML='';
   const p=(o)=>o.n?pct(o.hit/o.n*100,0):'—';
   T.appendChild(tile('20円ROAS<'+CFG.defRoas+'% の捕捉率', p(R.c300),
@@ -2878,10 +3034,18 @@ function runBt(){
     '警戒 '+R.prec.n+'日のうち 20円ROAS<'+CFG.defRoas+'% が '+R.prec.hit+'日'));
   g.appendChild(tile('評価対象', num(R.use)+'日',
     '欠損をまたぐ '+R.skipped+'日は「前日」が存在しないため母数から除外'));
-  g.appendChild(tile('現在の基準', yen(thC)+' / '+thR+'%',
-    '前日20円実績額 ≥ '+yen(thC)+' <b>または</b> 前日20円ROAS &lt; '+thR+'%'));
-  g.appendChild(tile('設定中の基準', yen(CFG.warnCost)+' / '+CFG.warnRoas+'%',
-    thC===+CFG.warnCost&&thR===+CFG.warnRoas?'同じ値です':'「設定に反映」で切り替えられます'));
+  g.appendChild(tile('現在の基準', yen(thC)+' / '+thR+'%'+(thS>0?' / シェア'+thS+'%':''),
+    '前日20円実績額 ≥ '+yen(thC)+' <b>または</b> 20円ROAS &lt; '+thR+'%'
+    +(thS>0?' <b>または</b> 20円シェア ≥ '+thS+'%':'／シェア条件なし')));
+  const d3=(R.c300.n?R.c300.hit/R.c300.n*100:0)-(R0.c300.n?R0.c300.hit/R0.c300.n*100:0);
+  const df=(R.fp.n?R.fp.hit/R.fp.n*100:0)-(R0.fp.n?R0.fp.hit/R0.fp.n*100:0);
+  g.appendChild(tile('シェア条件の効果',
+    thS>0?((d3>=0?'+':'')+d3.toFixed(0)+'pt'):'—',
+    thS>0?('捕捉率が '+(R0.c300.n?(R0.c300.hit/R0.c300.n*100).toFixed(0):0)+'% → '
+      +(R.c300.n?(R.c300.hit/R.c300.n*100).toFixed(0):0)+'%<br>誤警報は '
+      +(df>=0?'+':'')+df.toFixed(0)+'pt')
+      :'シェア条件を0にしています',
+    thS>0?(d3>0?'ok':d3<0?'bad':'grey'):'grey'));
   T.parentNode.insertBefore(g,$('#btSweep').parentNode);
 
   // スイープ
@@ -2976,7 +3140,7 @@ function renderLoad(){
    設定
    ========================================================================= */
 function renderCfg(){
-  const G={goal:'#cfg-goal',morn:'#cfg-morn',cap:'#cfg-cap',day:'#cfg-day',expo:'#cfg-expo',cal:'#cfg-cal'};
+  const G={goal:'#cfg-goal',morn:'#cfg-morn',rb:'#cfg-rb',cap:'#cfg-cap',day:'#cfg-day',expo:'#cfg-expo',cal:'#cfg-cal'};
   Object.values(G).forEach(s=>$(s).innerHTML='');
   Object.keys(CFG_DEF).forEach(k=>{
     const D=CFG_DEF[k], host=$(G[D.g]); if(!host) return;
@@ -3121,8 +3285,10 @@ function bind(){
 
   // バックテスト
   $('#btRun').onclick=runBt;
-  $('#btReset').onclick=()=>{ $('#btCost').value=30000; $('#btRoas').value=225; runBt(); };
+  $('#btReset').onclick=()=>{ $('#btCost').value=30000; $('#btRoas').value=225; $('#btShare').value=45; runBt(); };
   $('#btApply').onclick=()=>{ CFG.warnCost=toNum($('#btCost').value); CFG.warnRoas=toNum($('#btRoas').value);
+    const s=toNum($('#btShare').value);
+    CFG.shareOn = s>0?'1':'0'; if(s>0) CFG.warnShare=s;
     saveAll(); rebuild(); renderAll(); toast('警戒基準を設定に反映しました'); };
 
   // 設定
