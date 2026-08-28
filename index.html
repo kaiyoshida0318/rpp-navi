@@ -205,6 +205,38 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 .pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:#fff;
   border-radius:20px;padding:3px 11px;font-size:11.5px;font-weight:600;cursor:pointer}
 .pill.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.pill.big{padding:7px 15px;font-size:12.5px;border-radius:22px}
+.pill.hot{border-color:var(--alert);color:var(--alert);background:var(--alertbg)}
+.pill.on.hot{background:var(--alert);border-color:var(--alert);color:#fff}
+
+/* ---------- 当日チェックの入力（誤入力を防ぐ段組み） ---------- */
+.dystep{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:var(--tx);
+  margin:18px 0 10px;padding-top:15px;border-top:1px solid var(--line2)}
+.dystep.first{margin-top:0;padding-top:0;border-top:none}
+.dystep .no{display:grid;place-items:center;width:21px;height:21px;border-radius:50%;flex:0 0 auto;
+  background:var(--blue);color:#fff;font-size:11.5px;font-weight:800}
+.dystep .hint{font-weight:400;font-size:11.5px;color:var(--tx3)}
+.sw.big button{padding:10px 22px;font-size:14.5px;font-weight:700}
+.sw.big button .ck{font-size:11px;margin-left:6px;color:var(--ok);font-weight:800}
+.sw.big button.on .ck{color:#fff}
+.sw.big button.rec{background:#f2fbf6}
+.sw.big button.rec.on{background:var(--blue)}
+.dywarn{margin-top:9px;border-radius:8px;padding:9px 12px;font-size:12px;font-weight:600;
+  background:var(--warnbg);border:1px solid #f0dda0;color:#8a6100}
+.dywarn.bad{background:var(--badbg);border-color:#eb9aa4;color:#a81e2d}
+.cfm{border:2px solid var(--blue);background:var(--bluebg);border-radius:10px;padding:13px 15px}
+.cfm .ttl{font-size:11.5px;font-weight:700;color:var(--blue);margin-bottom:8px;letter-spacing:.02em}
+.cfm .items{display:flex;flex-wrap:wrap;gap:7px 20px;font-size:13.5px;color:var(--tx)}
+.cfm .items .k{color:var(--tx2);font-size:11.5px;font-weight:700;margin-right:5px}
+.cfm .items b{font-variant-numeric:tabular-nums;font-size:14.5px}
+.cfm .flag{display:inline-block;font-size:11px;font-weight:800;padding:1px 8px;border-radius:20px;
+  background:var(--alert);color:#fff}
+.cfm .chk{margin-top:9px;font-size:12px;font-weight:700}
+.cfm .chk.ok{color:var(--ok)}
+.cfm .chk.warn{color:var(--alert)}
+.cfm .chk.bad{color:var(--bad)}
+.cfm .chk div{margin-top:2px}
+
 .note{background:#fffbe9;border:1px solid #f0dda0;border-radius:8px;padding:9px 12px;font-size:11.5px;color:#7a5c00}
 .note.blue{background:var(--bluebg);border-color:#bcd3f7;color:#1a4a94}
 .reason{background:#f7f9fc;border-left:3px solid var(--blue);border-radius:0 7px 7px 0;padding:9px 12px;font-size:12.5px}
@@ -247,7 +279,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 <header class="top">
   <div class="brand">
     <img class="logo" src="data:image/png;base64,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" alt="RPP NAVI" width="209" height="72">
-    <span class="ver" id="appVer" title="ビルド 2026-08-28 01:06">v1.0007</span>
+    <span class="ver" id="appVer" title="ビルド 2026-08-28 01:28">v1.0009</span>
   </div>
   <h1 class="sr">楽天RPP 20円広告 暴走抑制・動的予算ナビ（Phase 1）</h1>
   <span class="spacer"></span>
@@ -301,10 +333,13 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 <section class="page" id="p-day">
   <div class="note">当日の<b>20円ROAS・CVR・広告売上は楽天側で取得できません</b>。ここで使うのは累計クリック数・累計実績額・現在の設定予算・予算上限到達の有無だけです。平均CPCは実績額÷クリック数で自動算出します。<b>平均CPCが20円未満であること自体は正常です</b>（全体20円は上限20円）。</div>
   <div class="card" style="margin-top:14px">
+
+    <div class="dystep first"><span class="no">1</span>いつの記録か
+      <span class="hint" id="dyAuto"></span></div>
     <div class="row">
       <label class="f">日付<input type="date" id="dyDate"></label>
-      <span class="f"><span style="font-size:11.5px;color:var(--tx2);font-weight:600">確認する時刻枠</span>
-        <span class="sw" id="dySlot">
+      <span class="f"><span style="font-size:11.5px;color:var(--tx2);font-weight:600">確認する時刻枠　<span class="muted" style="font-weight:400">✓＝記録済み</span></span>
+        <span class="sw big" id="dySlot">
           <button data-slot="s0930" class="on">9:30</button>
           <button data-slot="s1500">15:00</button>
           <button data-slot="s1830">18:30</button>
@@ -312,25 +347,39 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
         </span></span>
       <label class="f">実際の確認時刻<input type="time" id="dyTime"></label>
       <button class="btn ghost sm" id="dyNow">現在時刻</button>
-      <span class="spacer"></span>
-      <span class="small muted" id="dyWin"></span>
     </div>
-    <div class="grid g4" style="margin-top:12px">
+    <div class="small muted" style="margin-top:6px" id="dyWin"></div>
+    <div id="dySlotWarn"></div>
+
+    <div class="dystep"><span class="no">2</span>RMSの画面から数字を入れる
+      <span class="hint">いずれも「その日の0時からの累計」です</span></div>
+    <div class="grid g4">
       <label class="f">累計クリック数<input type="number" id="dyClicks" min="0" step="1"></label>
       <label class="f">累計実績額（円）<input type="number" id="dyCost" min="0" step="1"></label>
       <label class="f">現在の設定予算（円）<input type="number" id="dyBudget" min="0" step="1"></label>
-      <label class="f">平均CPC（自動）<input type="text" id="dyCpc" disabled></label>
+      <label class="f">平均CPC（自動計算）<input type="text" id="dyCpc" disabled></label>
     </div>
-    <div class="row" style="margin-top:10px">
-      <label class="pill" id="dyCapped">予算上限に到達して停止中</label>
+    <div class="row" style="margin-top:11px">
+      <label class="pill big" id="dyCapped">予算上限に到達して停止中</label>
+      <span class="small" id="dyCapNote"></span>
+    </div>
+
+    <div class="dystep"><span class="no">3</span>記録の種類
+      <span class="hint">ふだんは触らなくて大丈夫です</span></div>
+    <div class="row">
       <label class="pill" id="dyMissing">未観測（この枠は確認できなかった）</label>
       <select id="dyMissKind" style="display:none"><option value="plan">予定された未観測（休日など）</option><option value="forgot">記録忘れ</option></select>
       <label class="pill" id="dyBackfill">後日まとめて入力（提案は記録しない）</label>
       <span class="small muted">未観測は0として扱わず、比較母数から除外します</span>
     </div>
+
+    <div class="dystep"><span class="no">4</span>この内容で合っていますか
+      <span class="hint">ボタンを押す前にここを確認してください</span></div>
+    <div id="dyConfirm"></div>
     <div class="row" style="margin-top:12px">
       <button class="btn" id="dyRun">判定する</button>
       <button class="btn ghost" id="dySave">観測を保存して提案を記録</button>
+      <span class="small muted">「判定する」は保存しません。内容を見てから保存できます。</span>
     </div>
   </div>
 
@@ -2019,28 +2068,149 @@ function renderDash(){
 /* =========================================================================
    当日チェック（9:30 / 15:00 / 18:30 の逐次ナビ）
    ========================================================================= */
-let DYSLOT='s0930';
+let DYSLOT='s0930', DYMANUAL=false, DYLASTDATE='', DYCAPMANUAL=false;
+
+function dyDate(){ return $('#dyDate').value||ymd(new Date()); }
+function dyRecorded(d){ const m={}; SLOTS.forEach(x=>m[x.key]=obsOf(d,x.key)); return m; }
+
+/** 日付と現在時刻から「いま入れるべき枠」を自動で選ぶ（枠の変え忘れ防止） */
+function autoSlot(d){
+  const now=new Date();
+  if(d===ymd(now)){
+    const h=now.getHours()+now.getMinutes()/60;
+    return {key:slotOf(h).key, why:'現在時刻 '+fmtHour(h)+' から自動で選びました'};
+  }
+  const rec=dyRecorded(d);
+  const first=SLOTS.find(x=>x.key!=='close'&&!rec[x.key]);
+  return {key:(first||SLOTS[0]).key, why:'まだ記録のない最初の枠を自動で選びました'};
+}
+
 function renderDay(){
   if(!$('#dyDate').value) $('#dyDate').value=ymd(new Date());
+  const d=dyDate();
+  if(d!==DYLASTDATE){ DYLASTDATE=d; DYMANUAL=false; DYCAPMANUAL=false; }
+  if(!DYMANUAL){
+    const a=autoSlot(d);
+    if(a.key!==DYSLOT){ DYSLOT=a.key; $('#dyTime').value=''; }
+    $('#dyAuto').textContent='（'+a.why+'。押して変更できます）';
+  } else {
+    $('#dyAuto').textContent='（手動で選択中。日付を変えると自動選択に戻ります）';
+  }
+
+  const rec=dyRecorded(d);
+  $$('#dySlot button').forEach(b=>{
+    const k=b.dataset.slot, o=rec[k], lb=slotByKey(k).label;
+    b.classList.toggle('on',k===DYSLOT);
+    b.classList.toggle('rec',!!o);
+    b.innerHTML=lb+(o?'<span class="ck">✓</span>':'');
+    b.title=o?('記録済み：'+(o.missing?'未観測':(o.time||'')+'／実績額 '+yen(o.cost)+'／クリック '+num(o.clicks)+'回'))
+             :'まだ記録がありません';
+  });
+
   const s=slotByKey(DYSLOT);
   $('#dyWin').innerHTML='この枠の許容範囲：'+fmtHour(s.from)+'〜'+fmtHour(s.to)+
     '。枠外の時刻でも記録できますが、判定信頼度が下がります。';
   if(!$('#dyTime').value) $('#dyTime').value=fmtHour(s.target);
-  syncCpc(); renderDayToday(); renderDayCurve();
+
+  const w=$('#dySlotWarn'); w.innerHTML='';
+  const cur=rec[DYSLOT];
+  if(cur){
+    const e=el('div','dywarn');
+    e.innerHTML='<b>'+s.label+' はすでに記録済みです</b>（'
+      +(cur.missing?'未観測として記録':(cur.time||'')+'／実績額 '+yen(cur.cost)+'／クリック '+num(cur.clicks)+'回')
+      +'）。このまま保存すると<b>上書き</b>され、同じ枠の古い提案記録も置き換わります。'
+      +'別の枠を入力するつもりなら、上のボタンで枠を選び直してください。';
+    w.appendChild(e);
+  }
+  syncCpc(); dyCapCheck(); dyConfirm(); renderDayToday(); renderDayCurve();
 }
 function syncCpc(){
   const c=toNum($('#dyCost').value), k=toNum($('#dyClicks').value);
   $('#dyCpc').value = k>0 ? (c/k).toFixed(1)+' 円' : '—';
 }
+/** 上限到達の押し忘れ・押し間違いを検知する */
+function dyCapCheck(){
+  const cost=toNum($('#dyCost').value), bud=toNum($('#dyBudget').value);
+  const pill=$('#dyCapped'), note=$('#dyCapNote');
+  const reached = bud>0 && cost>0 && cost>=bud;
+  if(reached && !DYCAPMANUAL) pill.classList.add('on');
+  const on=pill.classList.contains('on');
+  pill.classList.toggle('hot', reached);
+  if(reached){
+    note.innerHTML = on
+      ? '<b style="color:var(--alert)">実績額が設定予算に達しています。</b>自動でONにしました。違う場合は押してOFFにしてください。'
+      : '<b style="color:var(--bad)">実績額が設定予算に達しています。ONにし忘れていませんか？</b>';
+  } else if(on && bud>0 && cost>0){
+    note.innerHTML='<b style="color:var(--warn)">設定予算に '+yen(bud-cost)+' の余りがあります。</b>本当に上限到達で止まっていますか？';
+  } else {
+    note.innerHTML='<span class="muted">RMSで配信が止まっているときだけONにします。ONだと「意図的停止」の判定に使われます。</span>';
+  }
+}
 function dayInput(){
   const tm=($('#dyTime').value||fmtHour(slotByKey(DYSLOT).target)).split(':');
-  return { date:$('#dyDate').value||ymd(new Date()), slot:DYSLOT,
+  return { date:dyDate(), slot:DYSLOT,
     hour:(+tm[0]||0)+(+tm[1]||0)/60,
     clicks:toNum($('#dyClicks').value), cost:toNum($('#dyCost').value),
     budget:toNum($('#dyBudget').value),
     capped:$('#dyCapped').classList.contains('on'),
     missing:$('#dyMissing').classList.contains('on'),
     backfill:$('#dyBackfill').classList.contains('on') };
+}
+/** ボタンを押す前の確認欄。選んだ内容と、気になる点をまとめて出す */
+function dyConfirm(){
+  const host=$('#dyConfirm'); if(!host) return;
+  host.innerHTML='';
+  const i=dayInput(), s=slotByKey(i.slot), d=i.date;
+  const box=el('div','cfm');
+  box.appendChild(el('div','ttl','この内容で記録します'));
+  const it=el('div','items');
+  const add=(k,v)=>{ const sp=el('span'); sp.innerHTML='<span class="k">'+k+'</span>'+v; it.appendChild(sp); };
+  add('日付','<b>'+d+'</b>（'+DOWJ[dow(d)]+'）'+dtLabel(dayType(d)));
+  add('時刻枠','<b>'+s.label+'</b>');
+  add('確認時刻','<b>'+($('#dyTime').value||'—')+'</b>');
+  if(i.missing){
+    add('種類','<span class="flag">未観測として記録（'+($('#dyMissKind').value==='plan'?'予定された未観測':'記録忘れ')+'）</span>');
+  } else {
+    add('累計クリック','<b>'+num(i.clicks)+'</b> 回');
+    add('累計実績額','<b>'+yen(i.cost)+'</b>');
+    add('設定予算','<b>'+yen(i.budget)+'</b>');
+    add('平均CPC','<b>'+(i.clicks>0?(i.cost/i.clicks).toFixed(1)+' 円':'—')+'</b>');
+    add('上限到達', i.capped?'<span class="flag">停止中</span>':'なし');
+  }
+  if(i.backfill) add('モード','<span class="flag">後日まとめて入力（提案は記録しない）</span>');
+  box.appendChild(it);
+
+  const ck=[]; let worst='ok';
+  const bad=t=>{ ck.push(['bad',t]); worst='bad'; };
+  const wrn=t=>{ ck.push(['warn',t]); if(worst!=='bad') worst='warn'; };
+  if(obsOf(d,i.slot)) bad(s.label+' はすでに記録済みです。保存すると上書きされます');
+  if(!i.missing){
+    if(!(i.cost>0)&&!(i.clicks>0)) bad('累計クリック数と累計実績額が両方とも0です。入力し忘れていませんか');
+    else if(!(i.cost>0)) wrn('累計実績額が0です');
+    else if(!(i.clicks>0)) wrn('累計クリック数が0です');
+    if(!(i.budget>0)) wrn('現在の設定予算が未入力です');
+    if(i.budget>0&&i.cost>i.budget&&!i.capped)
+      wrn('累計実績額が設定予算を超えています。「予算上限に到達して停止中」のONを確認してください');
+    const idx=SLOTS.findIndex(x=>x.key===i.slot);
+    for(let j=idx-1;j>=0;j--){
+      const pv=obsOf(d,SLOTS[j].key);
+      if(pv&&!pv.missing){
+        if(i.cost<pv.cost) bad(SLOTS[j].label+' の累計実績額 '+yen(pv.cost)+' を下回っています。差分ではなく<b>0時からの累計</b>を入れてください');
+        if(i.clicks<pv.clicks) bad(SLOTS[j].label+' の累計クリック '+num(pv.clicks)+'回 を下回っています');
+        break;
+      }
+    }
+    if(i.slot!=='close'){
+      if(!inWindow(i.hour)) wrn('確認時刻 '+fmtHour(i.hour)+' はどの枠の許容範囲にも入っていません。判定信頼度が下がります');
+      else if(slotOf(i.hour).key!==i.slot)
+        wrn('確認時刻 '+fmtHour(i.hour)+' は「'+slotOf(i.hour).label+'」枠の範囲ですが、いま選んでいるのは <b>'+s.label+'</b> です。枠の選び間違いではありませんか');
+    }
+  }
+  const c=el('div','chk '+worst);
+  if(!ck.length) c.innerHTML='✓ 気になる点はありません';
+  else ck.forEach(([lv,t])=>{ const dv=el('div'); dv.innerHTML=(lv==='bad'?'⚠ ':'・')+t; c.appendChild(dv); });
+  box.appendChild(c);
+  host.appendChild(box);
 }
 function runDay(save){
   const inp=dayInput();
@@ -2134,6 +2304,7 @@ function runDay(save){
       toast('観測だけを保存しました（提案は記録していません）');
       return;
     }
+    DB.props=DB.props.filter(x=>!(x.date===inp.date&&x.slot===inp.slot));
     DB.props.push({ts:Date.now(), date:inp.date, slot:inp.slot, slotLabel:R.slot.label,
       time:$('#dyTime').value||'', cap:R.cap, cost:inp.cost, clicks:inp.clicks,
       curBudget:inp.budget, addYen:R.addYen, newBudget:R.newBudget,
@@ -2168,7 +2339,7 @@ function renderDayToday(){
     {t:'',k:'_',sort:false,f:r=>{ if(!r.o) return '';
       const b=el('button','btn ghost sm','削除');
       b.onclick=()=>{ DB.obs=DB.obs.filter(x=>!(x.date===d&&x.slot===r.key));
-        saveAll(); renderDayToday(); renderDayCurve(); }; return b; }}
+        saveAll(); renderDay(); }; return b; }}
   ], rows, {});
   const fin=dayFinal(d);
   host.appendChild(el('div','small muted','その日の最終実績額：'+(isFinite(fin)?yen(fin):'未確定（翌日レポート取込または日次締めの記録で確定します）')));
@@ -2819,7 +2990,9 @@ function loadFsz(){
 function bind(){
   $('#tabs').onclick=e=>{ const b=e.target.closest('button'); if(!b) return;
     $$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
-    $$('section.page').forEach(s=>s.classList.toggle('on',s.id==='p-'+b.dataset.tab)); };
+    $$('section.page').forEach(s=>s.classList.toggle('on',s.id==='p-'+b.dataset.tab));
+    // 当日チェックを開いたら、現在時刻から時刻枠を選び直す（枠の変え忘れ防止）
+    if(b.dataset.tab==='day'){ DYMANUAL=false; DYLASTDATE=''; renderDay(); } };
   $('#fszDown').onclick=()=>setFsz(FSZ-FSZ_STEP);
   $('#fszUp').onclick  =()=>setFsz(FSZ+FSZ_STEP);
   $('#fszVal').onclick =()=>setFsz(100);
@@ -2863,21 +3036,37 @@ function bind(){
 
   // 当日チェック
   $('#dySlot').onclick=e=>{ const b=e.target.closest('button'); if(!b) return;
-    $$('#dySlot button').forEach(x=>x.classList.toggle('on',x===b));
-    DYSLOT=b.dataset.slot; $('#dyTime').value=fmtHour(slotByKey(DYSLOT).target); renderDay(); };
+    DYMANUAL=true; DYSLOT=b.dataset.slot;
+    $('#dyTime').value=fmtHour(slotByKey(DYSLOT).target); renderDay(); };
   $('#dyDate').onchange=renderDay;
-  ['#dyCost','#dyClicks'].forEach(s=>$(s).oninput=syncCpc);
+  ['#dyCost','#dyClicks','#dyBudget'].forEach(x=>$(x).oninput=()=>{ syncCpc(); dyCapCheck(); dyConfirm(); });
+  $('#dyTime').onchange=dyConfirm;
+  $('#dyMissKind').onchange=dyConfirm;
   $('#dyNow').onclick=()=>{ const n=new Date();
     $('#dyTime').value=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
-    $('#dyDate').value=ymd(n); };
-  $('#dyCapped').onclick=()=>$('#dyCapped').classList.toggle('on');
+    $('#dyDate').value=ymd(n); DYMANUAL=false; DYLASTDATE=''; renderDay(); };
+  $('#dyCapped').onclick=()=>{ DYCAPMANUAL=true; $('#dyCapped').classList.toggle('on');
+    dyCapCheck(); dyConfirm(); };
   $('#dyMissing').onclick=()=>{ $('#dyMissing').classList.toggle('on');
-    $('#dyMissKind').style.display=$('#dyMissing').classList.contains('on')?'':'none'; };
+    $('#dyMissKind').style.display=$('#dyMissing').classList.contains('on')?'':'none'; dyConfirm(); };
   $('#dyBackfill').onclick=()=>{ $('#dyBackfill').classList.toggle('on');
     $('#dySave').textContent = $('#dyBackfill').classList.contains('on')
-      ? '観測だけ保存（提案は記録しない）' : '観測を保存して提案を記録'; };
+      ? '観測だけ保存（提案は記録しない）' : '観測を保存して提案を記録';
+    dyConfirm(); };
   $('#dyRun').onclick=()=>runDay(false);
-  $('#dySave').onclick=()=>runDay(true);
+  $('#dySave').onclick=()=>{
+    const i=dayInput(), prev=obsOf(i.date,i.slot);
+    if(prev){
+      const t=prev.missing?'未観測として記録済み'
+        :'実績額 '+yen(prev.cost)+'／クリック '+num(prev.clicks)+'回'+(prev.time?'（'+prev.time+'）':'');
+      if(!confirm(i.date+' の '+slotByKey(i.slot).label+' はすでに記録があります。\n\n'
+        +'　既存：'+t+'\n'
+        +'　今回：'+(i.missing?'未観測':'実績額 '+yen(i.cost)+'／クリック '+num(i.clicks)+'回')+'\n\n'
+        +'上書きして保存しますか？（同じ枠の古い提案記録も置き換わります）\n'
+        +'別の枠を入力するつもりだった場合は「キャンセル」を押して、時刻枠を選び直してください。')) return;
+    }
+    runDay(true);
+  };
 
   // カレンダー
   $('#c4Base').onchange=()=>{ C4MANUAL=true; renderCal4(); };
