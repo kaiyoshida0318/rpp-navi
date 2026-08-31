@@ -227,6 +227,15 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 .pill.cb.on{font-weight:700;box-shadow:0 1px 4px rgba(37,99,235,.28)}
 .pill.cb.on.hot::before{color:var(--alert)}
 
+/* ---------- 0:00 自動追加予約（翌日分。当日の予算とは別枠であることを見た目で分ける） ---------- */
+.mid{margin-top:14px;border:1px dashed var(--line);border-radius:11px;padding:11px 13px 13px;background:#fbfcfe}
+.mid .hd{font-size:11.5px;font-weight:800;color:var(--tx2);letter-spacing:.03em;margin-bottom:9px;
+  display:flex;align-items:center;gap:8px}
+.mid .tg{font-size:10.5px;font-weight:700;color:#fff;background:var(--tx3);border-radius:20px;padding:2px 9px;letter-spacing:0}
+.sug .mid2{border-top:1px dashed var(--line);margin-top:9px;padding-top:9px;width:100%;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.sug .mid2 .amt{font-size:16px}
+
 /* ---------- 当日チェックの入力（誤入力を防ぐ段組み） ---------- */
 .dystep{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:var(--tx);
   margin:18px 0 10px;padding-top:15px;border-top:1px solid var(--line2)}
@@ -308,7 +317,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 <header class="top">
   <div class="brand">
     <img class="logo" src="data:image/png;base64,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" alt="RPP NAVI" width="209" height="72">
-    <span class="ver" id="appVer" title="ビルド 2026-08-28 08:54">v1.0029</span>
+    <span class="ver" id="appVer" title="ビルド 2026-08-28 10:05">v1.0032</span>
   </div>
   <h1 class="sr">楽天RPP 20円広告 暴走抑制・動的予算ナビ（Phase 1）</h1>
   <span class="spacer"></span>
@@ -417,6 +426,22 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
       <label class="f">金額（円）<input type="number" id="dyAdd" min="0" step="1000"></label>
       <label class="f">操作後の設定予算（円）<input type="number" id="dyBudgetAfter" min="0" step="1000"></label>
       <span class="small muted" id="dyAddNote"></span>
+    </div>
+    <div class="mid" id="dyMidRow" style="display:none">
+      <div class="hd">0:00 自動追加予約（翌日の開始予算）<span class="tg" id="dyMidFor"></span></div>
+      <div class="row">
+        <span class="f"><span style="font-size:11.5px;color:var(--tx2);font-weight:600">0:00に自動追加する額</span>
+          <span class="sw" id="dyMidPick">
+            <button data-mid="0">0円</button>
+            <button data-mid="10000">10,000</button>
+            <button data-mid="20000">20,000</button>
+            <button data-mid="30000">30,000</button>
+          </span></span>
+        <label class="f">予約額（円）<input type="number" id="dyMidAdd" min="0" step="1000"></label>
+        <label class="f">予約を登録した時刻<input type="time" id="dyMidTime"></label>
+        <label class="pill cb" id="dyMidDone">自動ツールに予約を登録した</label>
+      </div>
+      <div class="small muted" id="dyMidNote" style="margin-top:7px"></div>
     </div>
     <div class="row" style="margin-top:10px">
       <label class="f" style="flex:1;min-width:320px">メモ（任意）<input type="text" id="dyMemo" placeholder="例：セール最終日で午前に終了。夜は伸びないと判断"></label>
@@ -591,7 +616,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
     <div class="card"><h3>日タイプ別の推奨上限</h3><div id="cfg-cap"></div></div>
     <div class="card"><h3>当日の逐次判定</h3><div id="cfg-day"></div></div>
     <div class="card"><h3>20円シェアと Risk Boundary <span class="hint">翌日の答え合わせ用。当日の強制停止には使いません</span></h3><div id="cfg-rb"></div></div>
-    <div class="card"><h3>露出の確保と学習</h3><div id="cfg-expo"></div></div>
+    <div class="card"><h3>露出の確保・0:00自動追加・学習</h3><div id="cfg-expo"></div></div>
     <div class="card"><h3>4か月カレンダーの表示条件</h3><div id="cfg-cal"></div></div>
     <div class="card"><h3>Phase 1の範囲</h3>
       <div class="small">本ツールは<b>ショップ全体の20円広告の予算制御</b>に集中しています。次のものは<b>実装していません</b>。
@@ -944,8 +969,8 @@ const CFG_DEF={
     d:'<b>初期値0＝自動推奨しません（v1.0014の方針）。</b>3枠フル観測のデータが不足しているため、いくら足すのが妥当かをツールが断定できないためです。'
      +'露出ゼロが上限時間を超える見込みのときは、状況（何時から何時まで・約何時間止まるか）だけを示し、<b>追加額は人間が0円・5,000円・10,000円などから選びます</b>。'
      +'その選択は「実際に追加した金額」として記録され、3枠フル観測30日が揃った時点で、翌日の20円ROASと突き合わせて投入額ロジックを組み立てる材料になります。'},
-  expoMorning:{v:20000, g:'expo', n:'翌朝分として18:30に上乗せする額(円)',
-    d:'予算が切れたまま日付が変わると、翌朝9:30まで露出ゼロになります。それを避けるため18:30の投入に上乗せします。<b>当日の推奨上限とは別枠</b>として扱い、上限超過とはみなしません。'},
+  midnightAdd:{v:20000, g:'expo', n:'0:00 自動追加予約額(円)',
+    d:'18:30チェック時に、<b>翌日0:00に外部の自動ツールで追加予約する</b>予算額です。<b>当日の設定予算には加算しません。</b>翌日の開始予算として扱います。翌日に広告を出さない日は 0 にしてください。日タイプ別の出し分けは、データが貯まるまで行いません（全日共通）。'},
   learnOn:    {v:1, g:'expo', n:'実際の追加額から学習する',
     d:'提案・実行履歴に記録された<b>実際の追加額</b>と提案額の差を時刻枠ごとに集計し、中央値のぶんだけ次回以降の提案額を寄せます。記録が増えるほどあなたの運用に近づきます。理由欄に必ず根拠と記録数を表示します。',
     opts:[['1','学習する（推奨）'],['0','学習しない：提案は計算値のまま']]},
@@ -972,6 +997,7 @@ const CFG_DEF={
     opts:[['month','月ごと（仕様書どおり・推奨）'],['all','表示中の全日をまとめて']]}
 };
 let CFG={}; Object.keys(CFG_DEF).forEach(k=>CFG[k]=CFG_DEF[k].v);
+/* v1.0030：expoMorning（18:30に翌朝分を上乗せ）は廃止。保存済みの値があっても読み込まない */
 
 /* ---------------- 状態 ---------------- */
 const DB={
@@ -1326,6 +1352,9 @@ function applyObs(o){
     budget:o.budget!=null?o.budget:null, capped:!!o.capped,
     addActual:o.addActual!=null?o.addActual:null,
     budgetAfter:o.budgetAfter!=null?o.budgetAfter:(o.addActual!=null&&o.budget!=null?o.budget+o.addActual:null),
+    /* 0:00 自動追加予約（18:30枠のみ。翌日の開始予算であり当日の予算ではない） */
+    midAdd:o.midAdd!=null?o.midAdd:null, midTime:o.midTime||'', midDone:!!o.midDone,
+    midDate:o.midDate||'',
     note:o.note||'', src:o.src||'manual', ts:Date.parse(o.date+'T00:00:00')+o.hour*3600000 };
   DB.obs=DB.obs.filter(x=>!(x.date===rec.date && x.slot===rec.slot && x.src===rec.src));
   DB.obs.push(rec);
@@ -1654,6 +1683,11 @@ function joinObsDaily(onlyFull){
       cap2:b?!!b.capped:null, ad2:b?b.addActual:null, ba2:b?b.budgetAfter:null,
       c3:c?c.cost:null, k3:c?c.clicks:null, p3:cpc(c), b3:c?c.budget:null,
       cap3:c?!!c.capped:null, ad3:c?c.addActual:null, ba3:c?c.budgetAfter:null,
+      /* 前日18:30に予約した 0:00 追加額（＝この日の翌日の開始予算） */
+      mid:c&&c.midAdd!=null?c.midAdd:null, midDone:c?!!c.midDone:null,
+      /* この日の朝に入っていた 0:00 追加額（＝前日18:30の予約。翌朝実績と突き合わせる） */
+      midIn:(function(){ const y=byDate[addDays(d,-1)]; const o=y&&y.s1830;
+        return (o&&!o.missing&&o.midAdd!=null)?o.midAdd:null; })(),
       /* 翌日確定 */
       f20:D?D.c20a:null, fkw:D?D.kwa:null, fall:D?D.alla:null,
       fsh:D?share20(d):null, froas:D?D.roas20:null,
@@ -1661,6 +1695,15 @@ function joinObsDaily(onlyFull){
     });
   });
   return rows;
+}
+/** その日の0:00に自動追加された額（＝前日18:30に予約した額）。無ければ null */
+function midnightIn(date){
+  const y=addDays(date,-1);
+  /* 同じ日付・枠に取込由来と手入力の両方が残ることがある。0:00予約が入っている記録を優先する */
+  const o=DB.obs.filter(x=>x.date===y && x.slot==='s1830' && !x.missing && x.midAdd!=null)
+                .sort((a,b)=>b.ts-a.ts)[0];
+  if(!o) return null;
+  return {amt:o.midAdd, from:y, booked:!!o.midDone, time:o.midTime||''};
 }
 /** 3枠フル観測（実績額・クリック・設定予算がすべて埋まっている）日数 */
 function collectStatus(){
@@ -1888,7 +1931,7 @@ function navigate(inp){
   const ns=nightShare();
 
   let target, action, actionText, over=false;
-  let bridged=false, morningAdd=0, learnDiff=0, needAsk=false;
+  let bridged=false, learnDiff=0, needAsk=false, midnight=null;
   const reasons=[];
   reasons.push(`本日は<b>${dayEnvText(inp.date)}</b>／推奨上限 <b>${yen(cap)}</b>／朝の判定 <b>${M.levelName}</b>`
     + (M.prev?`（前日${M.prev}の20円ROAS ${pct(M.prevRoas,0)}・20円実績額 ${yen(M.prevCost)}）`:''));
@@ -1925,11 +1968,9 @@ function navigate(inp){
       reasons.push('強警戒かつ消化が速いため、夜の投入も半分に抑えます。'); }
     reasons.push(`夜(18:30以降)の需要シェアは <b>${pct(ns.v,1)}</b>（${ns.src}）。本日の想定総額 ${yen(planTotal)} に対する夜の想定消化は ${yen(planTotal*ns.v/100)} です。`);
     if(inp.capped) reasons.push('予算切れで停止中です。<b>夜の販売機会を落とさないため、ここで再投入します。</b>');
-    if(String(CFG.expoOn)==='1' && +CFG.expoMorning>0){
-      morningAdd=Math.max(0,round5(+CFG.expoMorning));
-      target+=morningAdd;
-      reasons.push(`<b>翌朝分として ${yen(morningAdd)} を上乗せ</b>しています。予算が切れたまま日付が変わると<b>翌朝9:30まで約15時間、20円広告が完全に止まります</b>。長時間の広告停止による販売機会の損失を抑えるためです（<b>自然検索順位への影響は未検証</b>）。この分は当日の推奨上限とは<b>別枠</b>として扱い、上限超過とはみなしません。`);
-    }
+    /* v1.0030：翌朝分の前倒し投入は廃止。0:00に外部の自動ツールで追加予約する方式に変更した。
+       ここでの判断は「今日18:30〜24:00に予算を追加する価値があるか」だけに限定する。 */
+    reasons.push('この判定は<b>本日18:30〜24:00ぶんだけ</b>の判断です。翌朝分はここには含めません（0:00の自動追加予約として別に出します）。');
   } else if(warnDay && veryFast){
     // 意図的停止
     target = inp.budget;
@@ -1987,7 +2028,7 @@ function navigate(inp){
         reasons.push(`このまま追加しないと、<b>${fmtHour(expo.stopAt)}頃から${fmtHour(expo.resume)}まで約${expo.gap.toFixed(1)}時間、20円広告が完全に止まります</b>（${expo.how}／許容 ${CFG.expoMaxGap}時間）。長時間の広告停止による<b>販売機会の損失</b>を抑えるため、<b>絞りつつ露出は絶やさない</b>方針で日中つなぎ <b>${yen(br)}</b> を入れます。<b>※楽天の自然検索順位への影響は、本ツールのデータでは検証できていません。</b>`);
         reasons.push(`これは暴走を容認するものではありません。つなぎ額は<b>推奨上限 ${yen(cap)} を超えず</b>、この額で夜まで持たせることが目的です。18:30にあらためて判断します。`);
       } else {
-        reasons.push(`露出ゼロが約${expo.gap.toFixed(1)}時間続く見込みですが、<b>設定予算がすでに推奨上限 ${yen(cap)} に達している</b>ため、ここでのつなぎ投入は行いません。18:30に翌朝分とあわせて判断します。`);
+        reasons.push(`露出ゼロが約${expo.gap.toFixed(1)}時間続く見込みですが、<b>設定予算がすでに推奨上限 ${yen(cap)} に達している</b>ため、ここでのつなぎ投入は行いません。18:30にあらためて判断します。`);
       }
     } else {
       reasons.push(`停止が続く見込みは約${expo.gap.toFixed(1)}時間で、許容範囲（${CFG.expoMaxGap}時間）に収まります。<b>この長さなら意図的停止のほうが有効</b>です。`);
@@ -1998,7 +2039,7 @@ function navigate(inp){
   const learn=learnedAdd(inp.slot);
   if(learn && learn.ready && addYen>0 && learn.diff!==0){
     const before=addYen;
-    const hardMax=cap*(+CFG.overRate/100)+(inp.slot==='s1830'?morningAdd:0);
+    const hardMax=cap*(+CFG.overRate/100);
     addYen=Math.max(0, round5(addYen+learn.diff));
     newBudget=(inp.budget||0)+addYen;
     if(newBudget>hardMax){ newBudget=round5(hardMax); addYen=Math.max(0,newBudget-(inp.budget||0)); }
@@ -2018,6 +2059,15 @@ function navigate(inp){
     } else {
       reasons.push('予算上限に到達して停止中です。消化ペースは想定内のため、意図せぬ機会損失を防ぐ範囲で再開します。');
     }
+  }
+
+  /* --- 0:00 自動追加予約（v1.0030）。当日の設定予算・推奨上限には一切含めない --- */
+  if(inp.slot==='s1830'){
+    const amt=Math.max(0, round5(+CFG.midnightAdd||0));
+    midnight={amt, date:addDays(inp.date,1), dtype:dayType(addDays(inp.date,1))};
+    reasons.push(amt>0
+      ? `<b>0:00 自動追加予約 ${yen(amt)}</b>：日付が変わった時点で外部の自動ツールが追加します。翌朝9:30までの露出を確保するための<b>翌日（${midnight.date}）の開始予算</b>で、<b>本日の設定予算にも推奨上限にも含めません。</b>現時点では学習データがないため全日共通の基本値です（設定で変更可・翌日に広告を出さない日は0にしてください）。`
+      : `<b>0:00 自動追加予約は 0円</b>です（設定で0にしています）。翌朝9:30までは前日の残予算だけで配信されます。`);
   }
 
   if(needAsk){
@@ -2044,7 +2094,7 @@ function navigate(inp){
   return {morning:M, slot, cap, planTotal, nrm, costRatio, clickRatio, cpc, cpcRatio,
           paceLabel, paceCls, landing, target, addYen, newBudget, action, actionText,
           over, conf, confWhy, reasons, nextSlot:nx, warnDay,
-          bridged, morningAdd, learnDiff, learn, expo, needAsk};
+          bridged, learnDiff, learn, expo, needAsk, midnight};
 }
 
 /* =========================================================================
@@ -2216,6 +2266,15 @@ function renderDash(){
   const st=el('div'); st.style.marginTop='8px';
   st.innerHTML='<div class="small">本日の開始予算</div><div style="font-size:24px;font-weight:800;font-variant-numeric:tabular-nums">'+yen(M.start)+'</div>';
   L.appendChild(st);
+  /* 前日18:30に予約した 0:00 自動追加は、この日の開始予算として入っている */
+  const mi=midnightIn(M.today);
+  if(mi){
+    const mv=el('div'); mv.style.marginTop='6px';
+    mv.innerHTML='<div class="small">0:00 自動追加済み</div>'
+      +'<div style="font-size:16px;font-weight:800;font-variant-numeric:tabular-nums">'+yen(mi.amt)+'</div>'
+      +'<div class="small" style="opacity:.85">'+mi.from+' 18:30の予約'+(mi.booked?'（登録済み）':'（<b>予約の登録は未記録</b>）')+'</div>';
+    L.appendChild(mv);
+  }
   bar.appendChild(L);
   const W=el('div','why');
   const hd=el('div'); hd.innerHTML='<b>判定理由</b>'; W.appendChild(hd);
@@ -2379,6 +2438,14 @@ function renderDay(){
   $('#dyBudgetAfter').value = prevObs && prevObs.budgetAfter!=null ? prevObs.budgetAfter : '';
   const prevPr=DB.props.filter(x=>x.date===d&&x.slot===DYSLOT).sort((a,b)=>b.ts-a.ts)[0];
   $('#dyMemo').value = prevPr && prevPr.memo ? prevPr.memo : '';
+  /* 0:00 自動追加予約は18:30枠だけの項目 */
+  const isN = (DYSLOT==='s1830');
+  $('#dyMidRow').style.display = isN ? '' : 'none';
+  $('#dyMidFor').textContent = '対象日 '+addDays(d,1);
+  $('#dyMidAdd').value  = (isN && prevObs && prevObs.midAdd!=null) ? prevObs.midAdd : '';
+  $('#dyMidTime').value = (isN && prevObs && prevObs.midTime) ? prevObs.midTime : '';
+  $('#dyMidDone').classList.toggle('on', !!(isN && prevObs && prevObs.midDone));
+  dyMidSync();
   dyAddSync();
 
   syncCpc(); dyConfirm(); renderDayCollect(); renderDayToday(); renderDayCurve();
@@ -2431,7 +2498,6 @@ function dySuggest(){
     ? 'データ不足のため断定できません'
     : '変更後の設定予算 <b>'+yen(R.newBudget)+'</b>'
       + (R.action==='bridge' ? '　<b style="color:var(--warn)">日中つなぎ</b>' : '')
-      + (R.morningAdd>0 ? '<br>うち '+yen(R.morningAdd)+' は翌朝分（上限とは別枠）' : '')
       + (R.over ? '<br><b style="color:var(--warn)">推奨上限 '+yen(R.cap)+' を超える提案です</b>' : '');
 
   const why=[];
@@ -2450,12 +2516,48 @@ function dySuggest(){
       dyAddSync(); dyConfirm();
     };
   }
-  mk(cls, amt, sub, why.join('<br>'), confChip(R.conf), btn);
+  const box=mk(cls, amt, sub, why.join('<br>'), confChip(R.conf), btn);
+
+  /* 0:00 自動追加予約は「今日の追加」と完全に分けて出す */
+  if(R.midnight){
+    const m=el('div','mid2');
+    const A=el('div'); A.style.minWidth='170px';
+    A.appendChild(el('div','lb','0:00 自動追加予約'));
+    const av=el('div','amt'); av.innerHTML=yen(R.midnight.amt); A.appendChild(av);
+    const sv=el('div','sub');
+    sv.innerHTML='予約後の翌朝開始予算 <b>'+yen(R.midnight.amt)+'</b>（対象日 '+R.midnight.date+'）';
+    A.appendChild(sv);
+    m.appendChild(A);
+    const W2=el('div','why');
+    W2.innerHTML = R.midnight.amt>0
+      ? '日付が変わった時点で外部の自動ツールが追加します。<b>本日の設定予算・推奨上限には含めません。</b><br>'
+        +'翌朝9:30までの露出を確保するための<b>翌日の開始予算</b>です。翌日に広告を出さない日は 0 にしてください。'
+      : '設定で0にしているため、0:00の自動追加は行いません。翌朝9:30までは前日の残予算だけで配信されます。';
+    m.appendChild(W2);
+    const mb=el('button','btn ghost sm','予約額 '+yen(R.midnight.amt)+' を入れる');
+    mb.onclick=()=>{ $('#dyMidAdd').value=R.midnight.amt; if(!$('#dyMidTime').value) $('#dyMidTime').value=$('#dyTime').value||'';
+      dyMidSync(); dyConfirm(); };
+    m.appendChild(mb);
+    box.appendChild(m);
+    /* 未入力なら提案額を初期値として入れておく */
+    if($('#dyMidAdd').value===''){ $('#dyMidAdd').value=R.midnight.amt; dyMidSync(); }
+  }
 
   const nt=el('div','small muted'); nt.style.marginTop='7px';
   nt.innerHTML='ここは<b>提案</b>です。実際にRMSで行った操作を下に入れてください。'
     +'提案と実行の両方がこの保存で「提案・実行履歴」に記録されます。';
   host.appendChild(nt);
+}
+/** 0:00 自動追加予約の入力を整える。当日の設定予算には足さない */
+function dyMidSync(){
+  const v=$('#dyMidAdd').value===''?null:toNum($('#dyMidAdd').value);
+  $$('#dyMidPick button').forEach(b=>b.classList.toggle('on', v!=null && +b.dataset.mid===v));
+  const n=$('#dyMidNote'); if(!n) return;
+  const d=addDays(dyDate(),1);
+  if(v==null) n.innerHTML='<span class="muted">18:30の判定に出た予約額を入れてください。'
+    +'この額は<b>本日の設定予算には加算されません</b>。0:00に自動ツールが追加し、'+d+' の開始予算になります。</span>';
+  else if(v===0) n.innerHTML='<b>0:00の自動追加はしない</b>として記録します。'+d+' は前日の残予算だけで9:30まで配信されます。';
+  else n.innerHTML='0:00に <b>'+yen(v)+'</b> を自動追加する予約として記録します。→ <b>'+d+' の開始予算 '+yen(v)+'</b>（本日の予算・推奨上限には含めません）';
 }
 /** 早期暴走検知ロジックの再分析に必要なデータが、どこまで貯まったか */
 function renderDayCollect(){
@@ -2509,7 +2611,11 @@ function dayInput(){
     missing:$('#dyMissing').classList.contains('on'),
     backfill:$('#dyBackfill').classList.contains('on'),
     addActual: $('#dyAdd').value===''?null:toNum($('#dyAdd').value),
-    budgetAfter: $('#dyBudgetAfter').value===''?null:toNum($('#dyBudgetAfter').value) };
+    budgetAfter: $('#dyBudgetAfter').value===''?null:toNum($('#dyBudgetAfter').value),
+    /* 0:00 自動追加予約（18:30枠のみ。当日の予算とは別枠） */
+    midAdd: $('#dyMidAdd').value===''?null:toNum($('#dyMidAdd').value),
+    midTime: $('#dyMidTime').value||'',
+    midDone: $('#dyMidDone').classList.contains('on') };
 }
 /** ボタンを押す前の確認欄。選んだ内容と、気になる点をまとめて出す */
 function dyConfirm(){
@@ -2537,6 +2643,10 @@ function dyConfirm(){
   if(!i.missing){
     add('実際に追加した額', i.addActual==null?'<span class="muted">未入力</span>':'<b>'+yen(i.addActual)+'</b>');
     add('操作後の設定予算', i.budgetAfter==null?'<span class="muted">未入力</span>':'<b>'+yen(i.budgetAfter)+'</b>');
+    if(i.slot==='s1830'){
+      add('0:00 自動追加予約', i.midAdd==null?'<span class="muted">未入力</span>':'<b>'+yen(i.midAdd)+'</b>（対象日 '+addDays(d,1)+'）');
+      if(i.midAdd!=null) add('予約の登録', (i.midDone?'<b>登録済み</b>':'<span class="flag">未登録</span>')+(i.midTime?'　'+i.midTime:''));
+    }
     const mm=($('#dyMemo').value||'').trim();
     if(mm) add('メモ','<b>'+mm.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))+'</b>');
   }
@@ -2568,6 +2678,10 @@ function dyConfirm(){
         wrn('確認時刻 '+fmtHour(i.hour)+' は「'+slotOf(i.hour).label+'」枠の範囲ですが、いま選んでいるのは <b>'+s.label+'</b> です。枠の選び間違いではありませんか');
     }
     if(i.addActual==null) wrn('<b>実際に追加した金額</b>が未入力です。RMSを操作したら入力してください（0円でも記録します）');
+    if(i.slot==='s1830'){
+      if(i.midAdd==null) wrn('<b>0:00 自動追加予約額</b>が未入力です。0:00に追加しない場合は 0円 を入れてください');
+      else if(i.midAdd>0 && !i.midDone) wrn('0:00に '+yen(i.midAdd)+' を予約する記録ですが、<b>「自動ツールに予約を登録した」がOFF</b>です。予約の登録を忘れていませんか');
+    }
     else if(i.budgetAfter!=null && i.budget>0 && i.budgetAfter!==i.budget+i.addActual)
       wrn('操作後の設定予算 '+yen(i.budgetAfter)+' が「現在の設定予算 '+yen(i.budget)+' ＋ 追加 '+yen(i.addActual)+' = '+yen(i.budget+i.addActual)+'」と一致しません');
   }
@@ -2640,11 +2754,27 @@ function runDay(save){
   const addNote=[R.needAsk?'<b style="color:var(--alert)">推奨額なし</b>':'変更後の設定予算 '+yen(R.newBudget)];
   if(R.needAsk) addNote.push('データ不足のため断定できません。<br>上の④で実際に入れた金額を記録してください');
   if(R.bridged) addNote.push('<b style="color:var(--warn)">日中つなぎ</b>：露出ゼロを避けるための最小投入');
-  if(R.morningAdd>0) addNote.push('うち <b>'+yen(R.morningAdd)+'</b> は翌朝分（上限とは別枠）');
+
   if(R.learnDiff) addNote.push('実行履歴からの学習で <b>'+(R.learnDiff>0?'+':'')+yen(R.learnDiff)+'</b> 調整');
-  g.appendChild(tile('推奨追加額', R.needAsk?'—':yen(R.addYen), addNote.join('<br>'),
+  g.appendChild(tile(R.slot.key==='s1830'?'本日夜間の推奨追加額':'推奨追加額', R.needAsk?'—':yen(R.addYen), addNote.join('<br>'),
     R.needAsk?'alert':(R.addYen>0?(R.over?'warn':'ok'):'grey')));
   host.appendChild(g);
+
+  /* 0:00 自動追加予約は当日の予算とは別枠。行を分けて出す */
+  if(R.midnight){
+    const gm=el('div','grid g4'); gm.style.marginTop='10px';
+    gm.appendChild(tile('0:00 自動追加予約額', yen(R.midnight.amt),
+      '外部の自動ツールが日付変更時に追加します。<br><b>本日の設定予算・推奨上限には含めません</b>',
+      R.midnight.amt>0?'ok':'grey'));
+    gm.appendChild(tile('予約後の翌朝開始予算', yen(R.midnight.amt),
+      '対象日 <b>'+R.midnight.date+'</b>（'+dtLabel(R.midnight.dtype)+'）／翌朝9:30まではこの予算で配信'));
+    gm.appendChild(tile('本日の設定予算（予約を除く）', yen(R.newBudget),
+      '0:00予約分は加算していません。本日は '+yen(R.newBudget)+' のままです'));
+    gm.appendChild(tile('予約の記録', ($('#dyMidDone').classList.contains('on'))?'登録済み':'未登録',
+      '④の「自動ツールに予約を登録した」で記録します',
+      $('#dyMidDone').classList.contains('on')?'ok':'grey'));
+    host.appendChild(gm);
+  }
 
   const g2=el('div','grid g4'); g2.style.marginTop='10px';
   g2.appendChild(tile('実績額 通常比', isFinite(R.costRatio)?R.costRatio.toFixed(2)+'倍':'—',
@@ -2666,7 +2796,11 @@ function runDay(save){
   if(save){
     applyObs({date:inp.date, hour:inp.hour, cost:inp.cost, clicks:inp.clicks,
       budget:inp.budget, capped:inp.capped, time:$('#dyTime').value, src:'manual',
-      addActual:inp.addActual, budgetAfter:inp.budgetAfter});
+      addActual:inp.addActual, budgetAfter:inp.budgetAfter,
+      midAdd:(inp.slot==='s1830'?inp.midAdd:null),
+      midTime:(inp.slot==='s1830'?inp.midTime:''),
+      midDone:(inp.slot==='s1830'?!!inp.midDone:false),
+      midDate:(inp.slot==='s1830'?addDays(inp.date,1):'')});
     if(inp.backfill){
       saveAll(); renderDayToday(); renderDayCurve(); renderDash();
       toast('観測だけを保存しました（提案は記録していません）');
@@ -2685,11 +2819,20 @@ function runDay(save){
       doneAdd: inp.addActual,
       doneBudget: inp.budgetAfter!=null ? inp.budgetAfter
                  : (inp.addActual!=null ? (inp.budget||0)+inp.addActual : null),
-      doneTime: inp.addActual==null?'':($('#dyTime').value||''), memo:($('#dyMemo').value||'').trim()});
+      doneTime: inp.addActual==null?'':($('#dyTime').value||''), memo:($('#dyMemo').value||'').trim(),
+      /* 0:00 自動追加予約（提案と実行を分けて保存） */
+      midProp: R.midnight?R.midnight.amt:null,
+      midDone: inp.slot==='s1830'?inp.midAdd:null,
+      midBooked: inp.slot==='s1830'?!!inp.midDone:false,
+      midTime: inp.slot==='s1830'?(inp.midTime||''):'',
+      midDate: inp.slot==='s1830'?addDays(inp.date,1):'',
+      midRunAt: inp.slot==='s1830'?(addDays(inp.date,1)+' 00:00'):''});
     saveAll(); renderDayToday(); renderDayCurve(); renderHist(); renderDash();
     toast(inp.addActual==null
       ? '観測と提案を記録しました（実行は未入力のままです）'
-      : '観測・提案・実行をまとめて記録しました');
+      : (inp.slot==='s1830' && inp.midAdd!=null
+         ? '観測・提案・実行と、0:00の自動追加予約（'+yen(inp.midAdd)+'／対象日 '+addDays(inp.date,1)+'）を記録しました'
+         : '観測・提案・実行をまとめて記録しました'));
   }
 }
 function renderDayToday(){
@@ -2701,7 +2844,8 @@ function renderDayToday(){
       time:o?o.time:'', cost:o&&!o.missing?o.cost:null, clicks:o&&!o.missing?o.clicks:null,
       cpc:o&&!o.missing&&o.cpc?o.cpc:null, budget:o?o.budget:null,
       capped:o?o.capped:false, missing:o?!!o.missing:null,
-      act:pr?pr.actionText:'', memo:pr&&pr.memo?pr.memo:''};
+      act:pr?pr.actionText:'', memo:pr&&pr.memo?pr.memo:'',
+      midAdd:o&&o.midAdd!=null?o.midAdd:null, midDone:o?!!o.midDone:false};
   });
   buildTable(host,[
     {t:'枠',k:'slot',sort:false},
@@ -2715,6 +2859,10 @@ function renderDayToday(){
       f:r=>r.o&&r.o.addActual!=null?yen(r.o.addActual):el('span','small muted','—')},
     {t:'操作後の設定予算',k:'budgetAfter',num:1,sort:false,
       f:r=>r.o&&r.o.budgetAfter!=null?yen(r.o.budgetAfter):el('span','small muted','—')},
+    {t:'0:00予約',k:'midAdd',num:1,sort:false,
+      f:r=>r.key!=='s1830'?el('span','small muted','—')
+         :(r.midAdd!=null?(yen(r.midAdd)+(r.midDone?' ✓':'')):el('span','small muted','—')),
+      title:'翌日0:00に自動追加する予約額。当日の予算には含みません'},
     {t:'提案',k:'act',cls:'name',sort:false},
     {t:'メモ',k:'memo',cls:'name',sort:false,f:r=>r.memo?r.memo:el('span','small muted','—')},
     {t:'',k:'_',sort:false,f:r=>{ if(!r.o) return '';
@@ -3117,6 +3265,13 @@ function renderHist(){
     withRoas.length&&defended.length/withRoas.length>=0.7?'ok':'warn'));
   T.appendChild(tile('意図的停止の提案',num(rows.filter(r=>r.action==='stop').length),
     '予算切れは失敗ではなく正式な打ち手です'));
+  const mid=rows.filter(r=>r.slot==='s1830'&&r.midDone!=null);
+  T.appendChild(tile('0:00 自動追加の予約',num(mid.length),
+    mid.length
+      ? ('予約額の合計 '+yen(mid.reduce((a,r)=>a+(r.midDone||0),0))
+         +'／未登録 '+mid.filter(r=>r.midDone>0&&!r.midBooked).length+'件')
+      : '18:30チェックで記録します。翌日の開始予算であり当日の予算には含みません',
+    mid.filter(r=>r.midDone>0&&!r.midBooked).length?'warn':null));
 
   HSCOLS=[
     {t:'日付',k:'date',f:r=>r.date+'('+DOWJ[dow(r.date)]+')'},
@@ -3127,12 +3282,24 @@ function renderHist(){
     {t:'その時の実績額',k:'cost',num:1,f:r=>yen(r.cost)},
     {t:'通常比',k:'costRatio',num:1,f:r=>r.costRatio!=null?r.costRatio.toFixed(2)+'倍':'—'},
     {t:'提案前の設定予算',k:'curBudget',num:1,f:r=>yen(r.curBudget)},
-    {t:'推奨追加額',k:'addYen',num:1,f:r=>yen(r.addYen),color:r=>r.over?'warn':null},
+    {t:'夜間追加の提案',k:'addYen',num:1,f:r=>yen(r.addYen),color:r=>r.over?'warn':null,
+      title:'その枠で当日中に追加することを提案した額'},
     {t:'変更後の設定予算',k:'newBudget',num:1,f:r=>yen(r.newBudget)},
     {t:'提案',k:'actionText',cls:'name'},
     {t:'信頼度',k:'conf',f:r=>confChip(r.conf)},
     {t:'実行',k:'doneKind',sort:false,f:r=>doneSelect(r)},
     {t:'実際の追加額',k:'doneAdd',num:1,sort:false,f:r=>doneAmt(r)},
+    {t:'0:00追加の提案',k:'midProp',num:1,sort:false,
+      f:r=>r.slot==='s1830'&&r.midProp!=null?yen(r.midProp):el('span','small muted','—'),
+      title:'18:30時点でツールが提案した0:00自動追加額'},
+    {t:'0:00 実際の予約額',k:'midDone',num:1,sort:false,
+      f:r=>r.slot!=='s1830'||r.midDone==null?el('span','small muted','—')
+         :(yen(r.midDone)+(r.midBooked?' ✓登録済み':' ※未登録')),
+      color:r=>(r.slot==='s1830'&&r.midDone>0&&!r.midBooked)?'warn':null},
+    {t:'0:00の対象日',k:'midDate',sort:false,
+      f:r=>r.midDate?(r.midDate+'('+DOWJ[dow(r.midDate)]+') 0:00'):el('span','small muted','—'),
+      title:'0:00追加は翌日の開始予算です。当日の予算には含みません'},
+    {t:'予約登録時刻',k:'midTime',sort:false,f:r=>r.midTime||el('span','small muted','—')},
     {t:'メモ',k:'memo',cls:'name',sort:false,f:r=>{
       const i=el('input'); i.type='text'; i.value=r.memo||''; i.style.width='100%'; i.style.fontSize='11px';
       i.onchange=()=>{ const p=DB.props.find(x=>x.ts===r.ts); if(p){p.memo=i.value; saveAll();} }; return i;}},
@@ -3210,6 +3377,10 @@ function renderJoin(){
     {t:'18:30 CPC',k:'p3',num:1,f:r=>c(r.p3)},
     {t:'18:30 予算',k:'b3',num:1,f:r=>y(r.b3)},
     {t:'18:30 追加',k:'ad3',num:1,f:r=>y(r.ad3)},
+    {t:'18:30に予約した0:00追加',k:'mid',num:1,f:r=>y(r.mid),
+      title:'この日の18:30に予約した、翌日0:00の自動追加額'},
+    {t:'この日の朝の0:00追加済み',k:'midIn',num:1,f:r=>y(r.midIn),
+      title:'前日18:30に予約され、この日の0:00に追加された額（＝この日の開始予算）'},
     {t:'翌日確定 20円実績',k:'f20',num:1,f:r=>y(r.f20)},
     {t:'KW実績',k:'fkw',num:1,f:r=>y(r.fkw)},
     {t:'計実績',k:'fall',num:1,f:r=>y(r.fall)},
@@ -3493,6 +3664,16 @@ function bind(){
     $('#dyBudgetAfter').value=''; dyAddSync(); dyConfirm(); };
   ['#dyAdd','#dyBudgetAfter'].forEach(x=>$(x).oninput=()=>{ dyAddSync(); dyConfirm(); });
   $('#dyMemo').oninput=()=>dyConfirm();
+  $('#dyMidPick').onclick=e=>{ const b=e.target.closest('button'); if(!b) return;
+    const v=+b.dataset.mid;
+    $('#dyMidAdd').value = ($('#dyMidAdd').value!=='' && toNum($('#dyMidAdd').value)===v) ? '' : v;
+    dyMidSync(); dyConfirm(); };
+  $('#dyMidAdd').oninput=()=>{ dyMidSync(); dyConfirm(); };
+  $('#dyMidTime').oninput=()=>dyConfirm();
+  $('#dyMidDone').onclick=()=>{ $('#dyMidDone').classList.toggle('on');
+    if($('#dyMidDone').classList.contains('on') && !$('#dyMidTime').value)
+      $('#dyMidTime').value=fmtHour(new Date().getHours()+new Date().getMinutes()/60);
+    dyConfirm(); };
   $('#dyTime').onchange=dyConfirm;
   $('#dyMissKind').onchange=dyConfirm;
   $('#dyNow').onclick=()=>{ const n=new Date();
