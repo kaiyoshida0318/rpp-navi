@@ -249,6 +249,14 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 .pend ul{margin:0;padding-left:18px;font-size:11.5px;color:var(--tx);line-height:1.85;
   max-height:220px;overflow:auto}
 .pend ul li.ig{color:var(--tx3)}
+/* ---------- 記録の抜け ---------- */
+.gap{margin-bottom:14px;border:1px solid var(--line);border-left:4px solid var(--bad);
+  border-radius:0 11px 11px 0;padding:12px 14px 13px;background:var(--badbg)}
+.gap.today{border-left-color:var(--warn);background:var(--warnbg,#fff8ec)}
+.gap .hd{font-size:12.5px;font-weight:800;color:var(--tx);margin-bottom:8px}
+.gap .ln{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:5px 0;font-size:11.5px}
+.gap .ln .d{font-weight:700;min-width:150px}
+.gap .why{font-size:11.5px;color:var(--tx2);margin-top:9px;line-height:1.7}
 .sug .mid2{border-top:1px dashed var(--line);margin-top:9px;padding-top:9px;width:100%;
   display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .sug .mid2 .amt{font-size:16px}
@@ -336,7 +344,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 <header class="top">
   <div class="brand">
     <img class="logo" id="btnHome" title="押すと最新の状態に読み込み直して、ダッシュボードに戻ります" src="data:image/png;base64,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" alt="RPP NAVI" width="209" height="72">
-    <span class="ver" id="appVer" title="ビルド 2026-09-01 08:03">v1.0063</span>
+    <span class="ver" id="appVer" title="ビルド 2026-09-02 00:51">v1.0064</span>
   </div>
   <h1 class="sr">楽天RPP 20円広告 暴走抑制・動的予算ナビ（Phase 1）</h1>
   <span class="spacer"></span>
@@ -388,6 +396,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 
 <!-- ==================== 当日チェック ==================== -->
 <section class="page" id="p-day">
+  <div id="dyGaps"></div>
   <div class="note">当日の<b>20円ROAS・CVR・広告売上は楽天側で取得できません</b>。ここで使うのは累計クリック数・累計実績額・本日の予算枠（継続月予算−前日までの利用金額）・予算上限到達の有無だけです。平均CPCは実績額÷クリック数で自動算出します。<b>平均CPCが20円未満であること自体は正常です</b>（全体20円は上限20円）。</div>
   <div class="card" style="margin-top:14px">
 
@@ -2703,7 +2712,7 @@ function renderDay(){
   dyMidSync();
   dyAddSync();
 
-  dyBudgetSync(); syncCpc(); dyConfirm(); renderDayCollect(); renderDayToday(); renderDayCurve();
+  dyBudgetSync(); syncCpc(); dyConfirm(); renderGaps(); renderDayCollect(); renderDayToday(); renderDayCurve();
 }
 /** 実際に追加した金額 → 操作後の本日の予算枠を自動計算し、選択ピルの状態を合わせる */
 function dyAddSync(){
@@ -2843,6 +2852,81 @@ function dyMidSync(){
   else n.innerHTML='0:00に <b>'+yen(v)+'</b> を<b>追加</b>する予約として記録します（「翌朝の残高を '+yen(v)+' にする」ではありません）。'
     +'継続月予算を '+yen(v)+' 引き上げる操作にあたるので、'+d+' の予算枠は <b>本日の残り ＋ '+yen(v)+'</b> になります。'
     +'（本日の予算枠・推奨上限には含めません）';
+}
+/* =========================================================================
+   記録の抜けを知らせる（v1.0064）
+   9:30 / 15:00 / 18:30 の観測は、その時刻にRMSを見ないと二度と取れない。
+   日付が変わると前日の枠は永久に欠ける。日次締め(close)は翌日の日次レポートから
+   最終額が取れるため対象外。
+   ========================================================================= */
+const GAP_DAYS = 7;   // さかのぼって確認する日数
+function gapSlots(){
+  const today=ymd(new Date());
+  const now=new Date().getHours()+new Date().getMinutes()/60;
+  /* 記録を始めた日より前はさかのぼらない */
+  const first=DB.obs.length ? DB.obs.map(o=>o.date).sort()[0] : today;
+  const past=[], cur=[];
+  for(let i=GAP_DAYS;i>=0;i--){
+    const d=addDays(today,-i);
+    if(d<first) continue;
+    const miss=SLOTS.filter(x=>x.key!=='close').filter(x=>{
+      if(obsOf(d,x.key)) return false;                 // 未観測として記録済みも「抜け」ではない
+      if(d===today && now < x.to) return false;        // 今日のまだ来ていない枠は対象外
+      return true;
+    });
+    if(miss.length) (d===today?cur:past).push({d, miss});
+  }
+  return {past, cur};
+}
+function renderGaps(){
+  const host=$('#dyGaps'); if(!host) return;
+  host.innerHTML='';
+  const G=gapSlots();
+  const mk=(cls,head,rows,why)=>{
+    const box=el('div','gap'+(cls?' '+cls:''));
+    box.appendChild(el('div','hd',head));
+    rows.slice(0,5).forEach(r=>{
+      const ln=el('div','ln');
+      ln.appendChild(el('span','d', r.d+'（'+DOWJ[dow(r.d)]+'）'+dtLabel(dayType(r.d))));
+      r.miss.forEach(m=>{
+        const b=el('button','btn ghost sm', m.label+' を入れる');
+        b.onclick=()=>{
+          $('#dyDate').value=r.d; DYLASTDATE=r.d; DYMANUAL=true; DYSLOT=m.key;
+          $('#dyTime').value=fmtHour(m.target);
+          renderDay();
+          $('#dyDate').scrollIntoView({behavior:'smooth',block:'center'});
+        };
+        ln.appendChild(b);
+      });
+      const mk2=el('button','btn ghost sm','この日をまとめて未観測にする');
+      mk2.style.marginLeft='6px';
+      mk2.onclick=()=>{
+        if(!confirm(r.d+' の '+r.miss.map(m=>m.label).join('・')
+          +' を「未観測（記録忘れ）」として記録します。\n\n'
+          +'0として扱わず、比較の母数から除外されます。あとから数値を入れ直すこともできます。\n\nよろしいですか？')) return;
+        r.miss.forEach(m=>{
+          DB.obs=DB.obs.filter(x=>!(x.date===r.d&&x.slot===m.key&&x.src==='manual'));
+          DB.obs.push({date:r.d, slot:m.key, slotLabel:m.label, hour:m.target, time:'',
+            clicks:null, cost:null, cpc:null, budget:null, capped:false,
+            missing:true, missKind:'forgot', note:'', src:'manual',
+            ts:Date.parse(r.d+'T00:00:00')+m.target*3600000});
+        });
+        saveAll(); renderDay(); toast(r.d+' の未記録分を「記録忘れ」として記録しました');
+      };
+      ln.appendChild(mk2);
+      box.appendChild(ln);
+    });
+    if(rows.length>5) box.appendChild(el('div','small muted','ほか '+(rows.length-5)+'日'));
+    const w=el('div','why'); w.innerHTML=why; box.appendChild(w);
+    host.appendChild(box);
+  };
+  if(G.cur.length) mk('today','本日、まだ記録していない枠があります', G.cur,
+    'いまRMSを開けば入れられます。<b>時刻がずれていても、その時点の数字を入れてください</b>（確認時刻を実際の時刻にすれば、判定側で信頼度を下げて扱います）。');
+  if(G.past.length) mk('', '過去の枠が記録されないまま日付が変わりました', G.past,
+    '9:30・15:00・18:30の数字は<b>その時刻にRMSを見ないと二度と取れません</b>。翌日の日次レポートからも復元できません。'
+    +'<br>入力できないと分かっている枠は<b>「まとめて未観測にする」</b>で記録忘れとして残してください。0として扱わず母数から除外されるので、'
+    +'集計が歪まず、この案内も消えます。'
+    +'<br><span class="muted">日次締め（0時）は対象外です。その日の最終額は翌朝の日次レポートから取れるため、入力しなくて問題ありません。</span>');
 }
 /** 早期暴走検知ロジックの再分析に必要なデータが、どこまで貯まったか */
 function renderDayCollect(){
