@@ -543,6 +543,36 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 .note.blue{background:var(--bluebg);border-color:#bcd3f7;color:#1a4a94}
 .note.bad{background:var(--badbg);border-color:#f3b7bf;color:#8f1220}
 .note code{background:rgba(0,0,0,.06);border-radius:4px;padding:1px 5px;font-size:11px}
+
+/* 枠外で予算を足したときの手順（v1.0166）。文章で並べると読まれないので、
+   どの枠のどの欄に何を入れるかを、流れの図として出す。 */
+.howto{margin:10px 0 0;color:var(--tx)}
+.howto .hlg{display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+  font-size:11px;color:var(--tx2);font-weight:600;margin-bottom:8px}
+.howto .hstep{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.howto .hstep.a{border-color:#bcd3f7;box-shadow:0 0 0 2px var(--bluebg)}
+.howto .hhd{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:7px}
+.howto .hno{background:var(--blue);color:#fff;border-radius:999px;
+  font-size:11px;font-weight:800;padding:2px 10px;white-space:nowrap}
+.howto .hti{font-weight:800;font-size:14px}
+.howto .hsub{font-size:11.5px;color:var(--tx2);font-weight:600}
+.howto table{width:100%;border-collapse:collapse;font-size:12.5px}
+.howto td{padding:5px 6px;vertical-align:top;border-top:1px solid var(--line2)}
+.howto tr:first-child td{border-top:0}
+.howto td.hc{width:66px;white-space:nowrap}
+.howto td.hk{width:32%;color:var(--tx2);font-weight:600}
+.howto .tg{display:inline-block;border-radius:5px;font-size:10.5px;font-weight:800;
+  padding:1px 6px;white-space:nowrap}
+.howto .t-keep{background:var(--line2);color:var(--tx2)}
+.howto .t-in{background:var(--bluebg);color:#1a4a94}
+.howto .t-auto{background:var(--okbg);color:#0f7a45}
+.howto .harw{text-align:center;font-size:11.5px;color:var(--tx2);font-weight:700;
+  margin:7px 0;line-height:1.45}
+.howto .harw b{color:var(--tx);font-variant-numeric:tabular-nums}
+.howto .hnum{font-variant-numeric:tabular-nums;font-weight:800}
+.howto .hwhy{font-size:11.5px;color:var(--tx2);margin-top:9px;line-height:1.6}
+@media(max-width:700px){ .howto td.hk{width:auto} .howto table,.howto tbody,.howto tr,.howto td{display:block}
+  .howto td{border-top:0;padding:2px 0} .howto tr{border-top:1px solid var(--line2);padding:5px 0} }
 .reason{background:#f7f9fc;border-left:3px solid var(--blue);border-radius:0 7px 7px 0;padding:9px 12px;font-size:12.5px}
 .reason ul{margin:5px 0 0;padding-left:18px}
 .setrow{display:grid;grid-template-columns:minmax(230px,1.4fr) 130px 1fr;gap:10px;align-items:center;
@@ -583,7 +613,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 <header class="top">
   <div class="brand">
     <img class="logo" id="btnHome" title="押すと最新の状態に読み込み直して、ダッシュボードに戻ります" src="data:image/png;base64,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" alt="RPP NAVI" width="209" height="72">
-    <span class="ver" id="appVer" title="ビルド 2026-10-23 02:44">v1.0165</span>
+    <span class="ver" id="appVer" title="ビルド 2026-10-23 03:41">v1.0166</span>
   </div>
   <h1 class="sr">楽天RPP 20円広告 暴走抑制・動的予算ナビ（Phase 1）</h1>
   <span class="spacer"></span>
@@ -4067,30 +4097,57 @@ function dyAfterCheck(a,bud){
    文章だけで、判定・提案・学習には一切関与しない。
    ───────────────────────────────────────────────────────────── */
 function midAddHowTo(){
-  return '<div class="note" style="margin:10px 0 0">'
-    +'<b>いまこの時刻に予算を足した（これから足す）ときは、この枠には入れません。</b>'
-    +'<br>金額の欄はここには無く、入れても<b>継続月予算の引き継ぎに反映されません</b>。'
-    +'次の手順で<b>9:30の枠</b>に付けてください。'
-    +'<ol style="margin:7px 0 0 18px;padding:0">'
-    +'<li>先にこの画面で<b>12:30の数字だけ</b>保存する（任意）。'
-    +'継続月予算は<b>いまRMSに出ている額</b>＝足したあとの額を入れます。</li>'
-    +'<li>上の「確認する時刻枠」で<b>9:30</b>を押して、9:30の記録を開き直す。</li>'
-    +'<li><b>①の実際の確認時刻、②の累計クリック数・累計実績額・継続月予算・前日まで は触らない。</b>'
-    +'朝に見た数字のまま残します（ここを今の数字に直すと、朝の進捗として誤って学習されます）。</li>'
-    +'<li>④の<b>金額</b>に、朝のチェック以降に足した額の<b>合計</b>を入れる。'
-    +'朝に+20,000、いま+10,000なら <b>30,000</b> です。</li>'
-    +'<li>④の<b>実際に操作した時刻</b>に<b>いまの時刻</b>（例 12:30）を入れる。'
-    +'複数回足したときは<b>最後に操作した時刻</b>です。枠外の操作として記録されます。</li>'
-    +'<li>④の<b>操作後の本日の予算枠</b>が金額と合っているか確かめる。'
-    +'合っていなければ赤い帯が出るので「直す」を押します。</li>'
-    +'<li><b>メモ</b>に内訳を書く（例「9:44に+20,000、12:30に+10,000」）。</li>'
-    +'<li>保存する。提案は朝の数字のまま変わりません。'
-    +'提案額と違う合計になるので、実行は「別金額を実行」として残ります。</li>'
-    +'</ol>'
-    +'<div class="small muted" style="margin-top:7px">'
-    +'15:00の枠には入れません。15:00で入れる継続月予算は<b>足したあとの額</b>なので、'
-    +'そこに増減額も入れると二重に数えてしまいます。'
-    +'15:00を開いたときの継続月予算の初期値は、9:30の継続月予算＋金額から自動で出ます。</div>'
+  const L=(c,t)=>'<span class="tg t-'+c+'">'+t+'</span>';
+  const row=(c,t,k,v)=>'<tr><td class="hc">'+L(c,t)+'</td><td class="hk">'+k+'</td><td>'+v+'</td></tr>';
+  return '<div class="howto">'
+    +'<div class="note bad" style="margin:0 0 9px">'
+      +'<b>いまこの時刻に予算を足した（これから足す）ときは、この枠には入れません。</b>'
+      +'金額の欄はここには無く、入れても継続月予算の引き継ぎに反映されません。'
+      +'<b>9:30の枠</b>に付けます。</div>'
+
+    +'<div class="hlg">'+L('keep','そのまま')+'朝の数字を触らない　'
+      +L('in','入れる')+'自分で入力　'+L('auto','自動')+'ツールが計算</div>'
+
+    +'<div class="hstep a">'
+    +'<div class="hhd"><span class="hno">STEP 1</span><span class="hti">9:30 の枠を開き直す</span>'
+      +'<span class="hsub">上の「確認する時刻枠」で 9:30 を押す</span></div>'
+    +'<table><tbody>'
+    +row('keep','そのまま','① 実際の確認時刻','朝に見た時刻のまま（例 <span class="hnum">9:44</span>）')
+    +row('keep','そのまま','② 累計クリック数・累計実績額','朝に見た数字のまま')
+    +row('keep','そのまま','② 継続月予算・前日まで','朝に見た額のまま（例 <span class="hnum">¥1,195,000</span>）')
+    +row('in','入れる','④ 金額','<b>朝のチェック以降に足した合計</b><br>'
+        +'<span class="hsub">9:44に+20,000、12:30に+10,000 なら <span class="hnum">30,000</span></span>')
+    +row('in','入れる','④ 実際に操作した時刻','<b>最後に操作した時刻</b>（例 <span class="hnum">12:30</span>）<br>'
+        +'<span class="hsub">枠外の操作として記録されます</span>')
+    +row('auto','自動','④ 操作後の継続月予算','継続月予算 ＋ 金額（例 <span class="hnum">¥1,225,000</span>）')
+    +row('in','入れる','④ 操作後の本日の予算枠','赤い帯が出たら「直す」を押す')
+    +row('in','入れる','メモ','内訳（例「9:44に+20,000、12:30に+10,000」）')
+    +'</tbody></table>'
+    +'<div class="hsub" style="margin-top:7px">→ 保存する。'
+      +'提案は朝の数字のままで変わりません。実行は「別金額を実行」として残ります。</div>'
+    +'</div>'
+
+    +'<div class="harw">↓　<b>操作後の継続月予算</b> がそのまま次の枠に引き継がれます</div>'
+
+    +'<div class="hstep">'
+    +'<div class="hhd"><span class="hno">STEP 2</span><span class="hti">12:30 の枠に戻る</span>'
+      +'<span class="hsub">任意。分析用に数字を残したいときだけ</span></div>'
+    +'<table><tbody>'
+    +row('auto','自動','② 継続月予算','<b>足したあとの額</b>が自動で入る（例 <span class="hnum">¥1,225,000</span>）<br>'
+        +'<span class="hsub">STEP 1 の「操作後の継続月予算」と同じ額です</span>')
+    +row('auto','自動','② 前日まで','自動で入る')
+    +row('in','入れる','② 累計クリック数・累計実績額','<b>いま（12:30時点）の数字</b>')
+    +'</tbody></table>'
+    +'<div class="hsub" style="margin-top:7px">→ 保存する。記録だけで、判定も提案も行いません。</div>'
+    +'</div>'
+
+    +'<div class="hwhy">'
+    +'<b>なぜ9:30が先なのか。</b>'
+    +'12:30の継続月予算は9:30の記録から自動で計算されるので、先に9:30を保存しておくと手入力が減ります。'
+    +'<br><b>なぜ15:00ではないのか。</b>'
+    +'15:00で入れる継続月予算は<b>足したあとの額</b>です。そこに金額も入れると二重に数えてしまいます。'
+    +'15:00を開いたときの継続月予算は、9:30の継続月予算＋金額から自動で出ます。'
+    +'</div>'
     +'</div>';
 }
 /** ④の中にツールの提案を出す。判断材料をこの画面だけで完結させるため（v1.0026） */
