@@ -544,6 +544,20 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 .note.bad{background:var(--badbg);border-color:#f3b7bf;color:#8f1220}
 .note code{background:rgba(0,0,0,.06);border-radius:4px;padding:1px 5px;font-size:11px}
 
+/* KW保護つなぎ（v1.0173）。試行は点線、承認制は実線 */
+.kwg{margin-top:10px;border:2px dashed var(--line);border-radius:10px;padding:10px 12px;background:var(--panel);display:flex;gap:14px;flex-wrap:wrap}
+.kwg.approve{border-style:solid;border-color:#bcd3f7;box-shadow:0 0 0 2px var(--bluebg)}
+.kwg.ok{border-color:var(--ok)}
+.kwg .lb{font-size:11px;color:var(--tx2);font-weight:700}
+.kwg .amt{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+.kwg .why{flex:1;min-width:260px;font-size:12px;line-height:1.6}
+/* 月初チェック（v1.0173） */
+.mreset{margin-top:10px;border:2px solid var(--warn);border-radius:10px;padding:10px 12px;background:var(--panel)}
+.mreset.ok{border-color:var(--ok)}
+.mreset.bad{border-color:var(--bad)}
+.mreset .mrh{font-weight:800;font-size:14px;margin-bottom:6px}
+.mreset ol{margin:4px 0 6px 18px;padding:0;line-height:1.7}
+.mreset .mrst{margin-top:6px;font-weight:700}
 /* 枠外で予算を足したときの手順（v1.0166）。文章で並べると読まれないので、
    どの枠のどの欄に何を入れるかを、流れの図として出す。 */
 .howto{margin:10px 0 0;color:var(--tx)}
@@ -613,7 +627,7 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
 <header class="top">
   <div class="brand">
     <img class="logo" id="btnHome" title="押すと最新の状態に読み込み直して、ダッシュボードに戻ります" src="data:image/png;base64,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" alt="RPP NAVI" width="209" height="72">
-    <span class="ver" id="appVer" title="ビルド 2026-10-29 18:34">v1.0172</span>
+    <span class="ver" id="appVer" title="ビルド 2026-11-02 10:25">v1.0173</span>
   </div>
   <h1 class="sr">楽天RPP 20円広告 暴走抑制・動的予算ナビ（Phase 1）</h1>
   <span class="spacer"></span>
@@ -725,6 +739,13 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
       </div>
       <input type="hidden" id="dyBudget">
       <div class="small muted" id="dyBudgetNote" style="margin-top:7px"></div>
+      <!-- v1.0173：月初の予算戻しと再判定。1日の最初の枠だけ出る -->
+      <div id="dyMonthReset" class="mreset" style="display:none">
+        <div id="dyMonthResetBody"></div>
+        <div class="row" style="margin-top:8px">
+          <label class="f" title="RMSで継続月予算を戻した時刻。分からなければ空欄で構いません">RMSで戻した時刻<input type="time" id="dyResetTime"></label>
+        </div>
+      </div>
     </div>
 
     <div class="dystep"><span class="no">3</span>記録の種類
@@ -903,6 +924,8 @@ table.dt tfoot td{position:sticky;bottom:0;background:#f7f8fa;font-weight:700;bo
   </div>
   <div class="card"><h3>時刻枠ごとの追加傾向（学習） <span class="hint">「実行」欄の記録から、あなたの実際の追加額を学びます</span></h3><div id="hsLearn"></div></div>
   <div class="card"><h3>行動別の翌日20円ROAS <span class="hint">どの判断が防衛目標に寄与したかの検証</span></h3><div id="hsEval"></div></div>
+  <!-- v1.0173：KW保護つなぎの検証。増分利益（推定）と1日全体の利益を分けて出す -->
+  <div class="card"><h3>KW保護つなぎの記録 <span class="hint">試行・承認の判定と、その後の広告費・売上・推定利益</span></h3><div id="hsKwg"></div></div>
 </section>
 
 <!-- ==================== バックテスト ==================== -->
@@ -1466,9 +1489,15 @@ const CFG_DEF={
   capSale:    {v:90000, g:'cap', n:'セールのみの推奨上限(円)', d:''},
   capSaleFive:{v:120000,g:'cap', n:'セール＋5の倍数の推奨上限(円)', d:''},
   capSaleLast:{v:70000, g:'cap', n:'セール最終日の推奨上限(円)', d:'最終日は午前中に終わることが多いため、他条件より<b>優先</b>して適用します。'},
+  /* v1.0173：ワンダフルデー（毎月1日）。初期値は通常日と同じ。上げても増えた分は主に20円の安いクリックに流れるため */
+  capWonder:  {v:70000, g:'cap', n:'ワンダフルデー（毎月1日）の推奨上限(円)', d:'毎月1日。セール期間と重なる日はセールの区分を優先します。初期値は通常日と同じです。'},
   overRate:   {v:120, g:'cap', n:'上限超過提案の上限(%)', d:'好調と判断した場合に限り、推奨上限のこの割合まで超過提案を許します。理由の表示は必須です。'},
 
   /* 当日の逐次判定 */
+  wonderPrior:{v:6, g:'day', n:'ワンダフルデーの基準に混ぜる通常日の重み（日数）',
+    d:'ワンダフルデーは過去データが少ないため、クリック数・広告費の基準を「1日の中央値」と「通常日の中央値」を混ぜて作ります。1日の記録がこの日数と同じなら半々、増えるほど1日の値に寄ります。0にすると1日の値だけを使います。'},
+  wonderClickGuard:{v:2.5, g:'day', n:'ワンダフルデーの安全策：通常日比クリック倍率',
+    d:'ワンダフルデーでも、通常日の基準と比べてクリックがこの倍率以上なら異常として扱います。広告費は通常日比1.5倍（「異常に速い」の基準）以上で異常のままです。'},
   slotTol:    {v:0,   g:'day', n:'時刻枠の判定（0=既定枠を使う）', d:'既定枠は 9:00〜10:00／14:30〜15:30／18:00〜19:00。枠外の記録は最も近い枠に寄せ、信頼度を下げます。'},
   paceWarn:   {v:1.20,g:'day', n:'やや速いとみなす実績額の通常比', d:'同じ時刻枠・同じ日タイプの過去中央値との比。'},
   paceBad:    {v:1.50,g:'day', n:'異常に速いとみなす実績額の通常比', d:''},
@@ -1512,6 +1541,20 @@ const CFG_DEF={
      +'<b>判定ロジックには影響しません。</b>'},
 
   /* 露出の確保（露出ゼロの時間を作らない） */
+  /* v1.0173：KW保護つなぎ。既存の提案額は変えず、別枠で候補額を出す */
+  profitRate: {v:47.5, g:'expo', n:'利益率（広告費控除前, %）', d:'広告費を引く前の利益率。つなぎ予算の推定利益（売上×利益率−広告費）の計算だけに使います。判定には使いません。'},
+  kwgNormal:  {v:'shadow', g:'expo', n:'KW保護つなぎ：ワンダフルデー以外の日',
+    opts:[['shadow','試行（判定結果を表示するだけ・提案に含めない）'],['approve','手動承認（承認したときだけ④に入れる）'],['off','使わない']],
+    d:'消化が速くて「意図的停止」になる場面で、全体CPCの段階に応じて小さなつなぎ額の候補を出します。初期は試行で、提案額は変わりません。'},
+  kwgWonder:  {v:'approve', g:'expo', n:'KW保護つなぎ：ワンダフルデー',
+    opts:[['approve','手動承認（承認したときだけ④に入れる）'],['shadow','試行（表示するだけ）'],['off','使わない']],
+    d:'ワンダフルデーはKW広告の効率が高いため、承認すれば候補額を④に入れられます。自動では入りません。'},
+  kwgCpcHi:   {v:24, g:'expo', n:'KW保護つなぎ：全体CPCの上の境目(円)', d:'これ以上は需要の増加とみなし、次の確認までの必要額（推奨上限まで）を候補にします。'},
+  kwgCpcMid:  {v:20, g:'expo', n:'KW保護つなぎ：全体CPCの中の境目(円)', d:''},
+  kwgCpcLow:  {v:16, g:'expo', n:'KW保護つなぎ：全体CPCの下の境目(円)', d:'これ未満は安いクリックが大半とみなし、原則停止（候補0円）です。'},
+  kwgMaxMid:  {v:5000, g:'expo', n:'KW保護つなぎ：CPC 中〜上の境目の最大額(円)', d:'初期値は CPC20〜24円で最大5,000円。'},
+  kwgMaxLow:  {v:3000, g:'expo', n:'KW保護つなぎ：CPC 下〜中の境目の最大額(円)', d:'初期値は CPC16〜20円で最大3,000円。'},
+  kwgDayPct:  {v:20, g:'expo', n:'KW保護つなぎ：1日の合計の上限(推奨上限の%)', d:'承認したつなぎ額の1日の合計がこれを超えないようにします。'},
   expoOn:     {v:1, g:'expo', n:'露出ゼロの時間を避ける制御を使う',
     d:'20円広告が完全に止まっている時間が長いと、長期的に検索順位（SEO）の低下につながります。<b>絞ることと露出を絶やさないことを両立</b>させるための制御です。',
     opts:[['1','使う（推奨）'],['0','使わない：従来どおり完全停止も提案する']]},
@@ -2060,6 +2103,8 @@ function applyObs(o){
        RMSに「1日ぶんの予算」という項目は存在しないため、元になった2つの数字も残す。 */
     monthBudget:o.monthBudget!=null?o.monthBudget:null,
     monthPrev:o.monthPrev!=null?o.monthPrev:null,
+    /* 月初に継続月予算を戻した記録（v1.0173）。戻した額・目安・戻した時刻・判定した時刻 */
+    monthReset:o.monthReset||null,
     /* 分析用（v1.0036）。判定には使わない。保存時点のスナップショット */
     cpcAll:o.cpcAll!=null?o.cpcAll:(o.clicks>0?+(o.cost/o.clicks).toFixed(2):null),
     baseCpc:o.baseCpc!=null?o.baseCpc:null, baseClicks:o.baseClicks!=null?o.baseClicks:null,
@@ -2186,7 +2231,7 @@ function itemName(code){ return DB.names[code]||''; }
 /* =========================================================================
    日タイプとイベント（開始日時・終了日時を保持）
    ========================================================================= */
-const DT={normal:'通常日', five:'5の倍数', sale:'セールのみ', saleFive:'セール＋5の倍数', saleLast:'セール最終日'};
+const DT={normal:'通常日', five:'5の倍数', sale:'セールのみ', saleFive:'セール＋5の倍数', saleLast:'セール最終日', wonder:'ワンダフルデー'};
 const EVNAME={marathon:'お買い物マラソン', supersale:'スーパーSALE',
   blackfri:'ブラックフライデー', thanks:'大感謝祭', other:'販促'};
 /* カレンダーの帯に出す略称と色（v1.0097）。表示だけで判定には関係しない */
@@ -2317,12 +2362,19 @@ function dayType(date){
   if(ev&&five) return 'saleFive';
   if(ev) return 'sale';
   if(five) return 'five';
+  /* v1.0173：毎月1日はワンダフルデー。セール期間中はセールの区分を優先する（上の行で先に返る）。
+     通常日の基準づくり（matchT／typeMatch）では、従来どおり通常日として数える。
+     これで通常日・5の倍数・セール日の判定は1件も変わらない。 */
+  if(parseDate(date).getDate()===1) return 'wonder';
   return 'normal';
 }
+/** 基準づくりで「同じ日タイプ」とみなすか（v1.0173）。通常日の基準にはワンダフルデーも入れる */
+function typeMatch(t, want){ return want==='normal' ? (t==='normal'||t==='wonder') : t===want; }
 /** 本日の推奨上限（絶対上限ではない） */
 function dayCap(date){
   return +({normal:CFG.capNormal, five:CFG.capFive, sale:CFG.capSale,
-            saleFive:CFG.capSaleFive, saleLast:CFG.capSaleLast}[dayType(date)]);
+            saleFive:CFG.capSaleFive, saleLast:CFG.capSaleLast,
+            wonder:(CFG.capWonder!=null&&CFG.capWonder!==''?CFG.capWonder:CFG.capNormal)}[dayType(date)]);
 }
 function dayEnvText(date){
   const t=dayType(date), e=eventOf(date);
@@ -2371,6 +2423,7 @@ function isNormalDay(d){ return DB.tags[d]!=='burst'; }
 /** 条件を段階的に緩める：同一複合条件 → 同一セール種別 → 販促日全般 → 全日 */
 function ladder(t){
   if(t==='normal') return [['normal','通常日',3],['__all__','全日タイプ',1]];
+  if(t==='wonder') return [['wonder','ワンダフルデー',2],['normal','通常日（ワンダフルデーの代用）',2],['__all__','全日タイプ',1]];
   if(t==='five')   return [['five','5の倍数',3],['__all__','全日タイプ',1]];
   if(t==='saleFive')return [['saleFive','セール＋5の倍数',3],['sale','セールのみ',2],['__sale__','販促日全般',2],['__all__','全日タイプ',1]];
   if(t==='sale')   return [['sale','セールのみ',3],['__sale__','販促日全般',2],['__all__','全日タイプ',1]];
@@ -2381,7 +2434,7 @@ function matchT(d,w){
   const t=dayType(d);
   if(w==='__all__') return true;
   if(w==='__sale__') return t==='sale'||t==='saleFive'||t==='saleLast';
-  return t===w;
+  return typeMatch(t,w);
 }
 const CONF={3:'高',2:'中',1:'低'};
 /** 同日タイプ優先の中央値。{v,n,used,conf,label} */
@@ -2501,7 +2554,7 @@ function share20(d){
 function riskBoundary(dateOrType){
   const t = /^\d{4}-/.test(String(dateOrType)) ? dayType(dateOrType) : dateOrType;
   const v = {normal:+CFG.rbNormal, five:+CFG.rbFive, sale:+CFG.rbSale,
-             saleFive:+CFG.rbSaleFive, saleLast:+CFG.rbSaleLast}[t];
+             saleFive:+CFG.rbSaleFive, saleLast:+CFG.rbSaleLast, wonder:+CFG.rbNormal}[t];
   return (isFinite(v) && v>0) ? v : null;
 }
 /** 翌日の答え合わせ：確定した20円実績額が Risk Boundary を超えたか */
@@ -2854,6 +2907,7 @@ function slotStatus(){
 }
 /** slotにおける実績額・クリックの通常水準 */
 function slotNorm(slotKey, wantType, planTotal){
+  if(wantType==='wonder') return slotNormWonder(slotKey, planTotal);   // v1.0173
   const sh=slotShare(slotKey,wantType);
   const bt=baseType_forFinal(wantType);
   const ref = isFinite(bt.v)? bt.v : planTotal;
@@ -2861,7 +2915,7 @@ function slotNorm(slotKey, wantType, planTotal){
   // クリックは同条件の最終クリック数×進捗で近似
   const fc=[];
   AGG.dates.forEach(d=>{ if(CAP.has(d)||!isNormalDay(d)) return;
-    if(wantType&&dayType(d)!==wantType) return;
+    if(wantType&&!typeMatch(dayType(d),wantType)) return;
     if(AGG.day[d].allc>0) fc.push(AGG.day[d].allc); });
   const fcAll=AGG.dates.filter(d=>!CAP.has(d)&&isNormalDay(d)&&AGG.day[d].allc>0).map(d=>AGG.day[d].allc);
   const clicksFinal=median(fc.length>=+CFG.minSamples?fc:fcAll);
@@ -2878,6 +2932,38 @@ function baseType_forFinal(wantType){
   }
   const p=AGG.dates.filter(d=>!CAP.has(d)&&isNormalDay(d)&&AGG.day[d].alla>0).map(d=>AGG.day[d].alla);
   return {v:median(p), n:p.length, conf:'低', label:'全日タイプ '+p.length+'日'};
+}
+/* ─────────────────────────────────────────────────────────────
+   ワンダフルデーの基準（v1.0173）
+
+   1日はクリックが通常日の約1.8倍（中央値 4,013 vs 2,256）になるのが普通なので、
+   通常日の基準で比べると毎回「クリック異常」に見える。
+   ただし1日の記録は6日分しかなく、そのうち4日は20円の安いクリックが大量に出た日。
+   1日だけで基準を作ると、異常を「1日なら普通」として見逃す。そこで
+     ・最終額とクリックの基準は「1日の中央値」と「通常日の中央値」を日数で混ぜる
+       （1日の重み ＝ 1日の日数 ÷（1日の日数 ＋ wonderPrior））
+     ・時刻ごとの進捗率は、1日の手入力記録が足りないうちは通常日の値を使う
+     ・通常日の基準（normal）も返し、navigate() 側で通常日比の安全策に使う
+   ───────────────────────────────────────────────────────────── */
+function slotNormWonder(slotKey, planTotal){
+  const N=slotNorm(slotKey,'normal',planTotal);       // 通常日（従来どおり1日を含む）の基準
+  const sh=slotShare(slotKey,'wonder');                // 1日 → 足りなければ通常日
+  const CAP=cappedDays();
+  const W=AGG.dates.filter(d=>!CAP.has(d)&&isNormalDay(d)&&dayType(d)==='wonder');
+  const pc=W.map(d=>AGG.day[d].alla).filter(v=>v>0);
+  const pk=W.map(d=>AGG.day[d].allc).filter(v=>v>0);
+  const K=Math.max(0, +CFG.wonderPrior||0);
+  const nFinalN = N.share.pct>0 ? N.clicks/(N.share.pct/100) : NaN;   // 通常日の最終クリック数
+  const mix=(arr, normalVal)=>{
+    if(!arr.length || !isFinite(normalVal)) return {v:arr.length?median(arr):normalVal, w:arr.length?1:0};
+    const w=arr.length/(arr.length+K);
+    return {v:w*median(arr)+(1-w)*normalVal, w};
+  };
+  const ref=mix(pc, N.refFinal), clk=mix(pk, nFinalN);
+  const conf = pc.length>=+CFG.minSamples ? sh.conf : '低';
+  return {cost:ref.v*sh.pct/100, clicks:clk.v*sh.pct/100, share:sh, refFinal:ref.v,
+          refLabel:'ワンダフルデー'+pc.length+'日と通常日を混合（1日の重み '+Math.round(ref.w*100)+'%）',
+          conf, learned:sh.ok, normal:N, wonderDays:pc.length, wonderWeight:ref.w};
 }
 /** 夜(18:30以降)の需要シェア。0なら注文時間帯データから算出 */
 function nightShare(){
@@ -3034,11 +3120,16 @@ function obsNorm(slotKey, dtype, excludeDate){
   const POOL=obsPick();
   const pick=(sameType,dropCapped)=>POOL.filter(o=>
       base(o) && (!dropCapped || !CAP.has(o.date))
-      && (!sameType || dayType(o.date)===dtype));
+      && (!sameType || typeMatch(dayType(o.date),dtype)));
   const need=+CFG.minSamples;
   const lad=(dropCapped)=>{
     let r=pick(true,dropCapped);
     if(r.length>=need) return {rows:r, basis:'同時刻・同日タイプ'};
+    /* v1.0173：ワンダフルデーの記録が足りなければ、まず通常日で比べる */
+    if(dtype==='wonder'){
+      r=POOL.filter(o=>base(o) && (!dropCapped || !CAP.has(o.date)) && typeMatch(dayType(o.date),'normal'));
+      if(r.length>=need) return {rows:r, basis:'同時刻・通常日（ワンダフルデーの代用）'};
+    }
     r=pick(false,dropCapped);
     if(r.length>=need) return {rows:r, basis:'同時刻・全日タイプ'};
     return {rows:r, basis:'サンプル不足'};
@@ -3075,8 +3166,17 @@ function navigate(inp){
   const t=dayType(inp.date), cap=M.cap;
   const slot=slotByKey(inp.slot);
   const planTotal=M.planTotal;
-  const nrm=slotNorm(inp.slot,t,planTotal);
   const cpc=inp.clicks>0?inp.cost/inp.clicks:NaN;
+  let nrm=slotNorm(inp.slot,t,planTotal);
+  /* v1.0173：ワンダフルデーの基準（1日と通常日の混合）で比べるのは、全体CPCが kwgCpcHi（24円）以上、
+     つまり需要が増えている形のときだけ。それ未満は安いクリックが混ざっている形なので、
+     1日の普通として甘く見ないよう、従来どおり通常日の基準で判定する（2026-11-01 15:00 の検証で決めた）。 */
+  let wonderBase=null;
+  if(t==='wonder' && nrm.normal){
+    const useNormal = !(isFinite(cpc) && cpc>=+CFG.kwgCpcHi);
+    wonderBase={useNormal, blended:nrm};
+    if(useNormal) nrm=nrm.normal;
+  }
 
   const costRatio = nrm.cost>0 ? inp.cost/nrm.cost : NaN;
   const clickRatio= nrm.clicks>0&&inp.clicks>0 ? inp.clicks/nrm.clicks : NaN;
@@ -3097,8 +3197,23 @@ function navigate(inp){
   const clickWarm= isFinite(clickRatio)&&clickRatio>=+CFG.clickWarn;
   const costFast = isFinite(costRatio)&&costRatio>=+CFG.paceWarn;
   const costVery = isFinite(costRatio)&&costRatio>=+CFG.paceBad;
-  const fast = costFast || clickHot;
-  const veryFast = costVery || (costFast&&clickWarm) || (clickHot&&costFast);
+  let fast = costFast || clickHot;
+  let veryFast = costVery || (costFast&&clickWarm) || (clickHot&&costFast);
+  /* v1.0173：ワンダフルデーの安全策。基準は1日と通常日を混ぜて作るが、
+     通常日と比べて広告費1.5倍以上・クリック2.5倍以上なら、従来どおり異常として扱う */
+  let wonder=null;
+  if(wonderBase && !wonderBase.useNormal){
+    const N=wonderBase.blended.normal;
+    const crN = N.cost>0 ? inp.cost/N.cost : NaN;
+    const krN = N.clicks>0&&inp.clicks>0 ? inp.clicks/N.clicks : NaN;
+    const gCost = isFinite(crN) && crN>=+CFG.paceBad;
+    const gClk  = isFinite(krN) && krN>=+CFG.wonderClickGuard;
+    wonder={useNormal:false, costRatioNormal:crN, clickRatioNormal:krN, guard:gCost||gClk, guardCost:gCost, guardClick:gClk,
+            days:nrm.wonderDays, weight:nrm.wonderWeight};
+    if(wonder.guard){ veryFast=true; fast=true; }
+  } else if(wonderBase){
+    wonder={useNormal:true, guard:false, days:wonderBase.blended.wonderDays, weight:wonderBase.blended.wonderWeight};
+  }
   const slow = isFinite(costRatio)&&costRatio<+CFG.paceSlow && !clickWarm;
   const warnDay = M.level==='warn';
 
@@ -3125,6 +3240,14 @@ function navigate(inp){
     reasons.push(`※この枠の進捗率は<b>「${nrm.share.srcNote}」の記録（実時刻の中央値 ${fmtHour(nrm.share.medHour)}）</b>から求めています。${slot.label}ちょうどの記録が貯まると自動で置き換わります。`);
   if(!nrm.share.ok)
     reasons.push(`※${slot.label}枠の記録がまだ ${CFG.minSamples}日に達していないため、既定の配分率で暫定判定しています。記録が貯まると自動で実績ベースに切り替わります。`);
+  if(wonder && wonder.useNormal)
+    reasons.push(`<b>ワンダフルデー</b>ですが、全体CPC ${isFinite(cpc)?cpc.toFixed(1)+'円':'—'} が ${CFG.kwgCpcHi}円未満のため、`
+      +`<b>通常日の基準</b>で判定しています。安いクリックが混ざっている形のときに、1日の普通として甘く見ないためです。`);
+  else if(wonder)
+    reasons.push(`<b>ワンダフルデー</b>の基準（1日 ${wonder.days}日分と通常日を混合・1日の重み ${Math.round(wonder.weight*100)}%）で比べています。`
+      +`参考：通常日の基準と比べると 実績額 ${isFinite(wonder.costRatioNormal)?wonder.costRatioNormal.toFixed(2)+'倍':'—'}`
+      +`／クリック ${isFinite(wonder.clickRatioNormal)?wonder.clickRatioNormal.toFixed(2)+'倍':'—'}。`
+      +(wonder.guard?`<b style="color:var(--bad)">安全策：通常日比で${wonder.guardCost?'実績額 '+CFG.paceBad+'倍':''}${wonder.guardCost&&wonder.guardClick?'・':''}${wonder.guardClick?'クリック '+CFG.wonderClickGuard+'倍':''}以上のため、異常な消化として扱います。</b>`:''));
   if(isFinite(clickRatio))
     reasons.push(`クリック 通常比 <b>${clickRatio.toFixed(2)}倍</b>${clickHot?'（異常に多い）':clickWarm?'（やや多い）':''}。実績額とクリックの<b>増え方の組み合わせ</b>で見ています。`);
   if(isFinite(cpc))
@@ -3349,7 +3472,90 @@ function navigate(inp){
              final は learnedAdd・露出確保・つなぎまで通ったあとの実提案額。
              holdBack は露出確保で押し戻された額。75%の妥当性の再分析に使う */
           cpcFlag,
-          cpcSoft: cpcSoft ? Object.assign({holdBack:0}, cpcSoft, {final:addYen}) : null};
+          cpcSoft: cpcSoft ? Object.assign({holdBack:0}, cpcSoft, {final:addYen}) : null,
+          /* v1.0173：ワンダフルデーの安全策と、KW保護つなぎ（提案額とは別枠の候補）。addYen は変えない */
+          wonder,
+          kwGuard: kwGuardPlan(inp, {action, addYen, needAsk, bridged, veryFast, warnDay, wonder, planTotal, cap,
+                                     shNow, shNext, t})};
+}
+
+/* =========================================================================
+   KW保護つなぎ（v1.0173）
+   -------------------------------------------------------------------------
+   消化が速くて「意図的停止」になる場面（9:30・15:00、朝の判定が通常開始の日）で、
+   予算切れで止まるとKW広告まで止まるため、RMSで見える全体CPCの段階に応じて
+   小さなつなぎ額の「候補」を出す。既存の提案額（addYen）は一切変えない。
+
+   全体CPCの段階（初期値。設定で変更可）
+     24円以上     需要の増加とみなす。次の確認までの必要額（推奨上限まで）
+     20〜24円     最大 5,000円
+     16〜20円     最大 3,000円
+     16円未満     原則停止（候補0円）
+   根拠（2026-05〜11、15:00の全体CPC別の1日全体の平均。利益率47.5%）：
+     16円未満 広告1円あたり −0.07円／16〜20円 +0.25円／20〜24円 +0.41円／24円以上 +0.81円
+     平均であり、追加で使う分の効率はこれより低い。だから額を小さくし、試行から始める。
+
+   動かし方
+     ・ワンダフルデー：手動承認（kwgWonder）。承認したときだけ④に入る
+     ・それ以外の日：試行（kwgNormal）。判定結果を表示・記録するだけ
+     ・朝の判定が強警戒の日、18:30、日次締め、12:30（分析用）は対象外
+     ・承認したつなぎ額の1日の合計は推奨上限の kwgDayPct% まで
+     ・ワンダフルデーの安全策（通常日比の異常）に当たったときは、24円以上でも中段の上限まで
+   ========================================================================= */
+function kwgTier(cpc){
+  const hi=+CFG.kwgCpcHi, mid=+CFG.kwgCpcMid, low=+CFG.kwgCpcLow;
+  if(!isFinite(cpc)) return null;
+  if(cpc>=hi)  return {key:'hi',  label:hi+'円以上',          lo:hi,  hi:Infinity};
+  if(cpc>=mid) return {key:'mid', label:mid+'〜'+hi+'円',      lo:mid, hi:hi};
+  if(cpc>=low) return {key:'low', label:low+'〜'+mid+'円',     lo:low, hi:mid};
+  return            {key:'stop', label:low+'円未満',          lo:0,   hi:low};
+}
+/** その段階の過去の日の「広告1円あたりの利益」。同じ枠の観測時点のCPCで分け、その日の確定値で計算する */
+function kwgTierProfit(slotKey, tier){
+  const m=(+CFG.profitRate||0)/100;
+  const ds=new Set();
+  obsPick().forEach(o=>{
+    if(o.slot!==slotKey || o.missing || !(o.cost>0) || !(o.clicks>0)) return;
+    const c=o.cost/o.clicks; if(c>=tier.lo && c<tier.hi && AGG.day[o.date]) ds.add(o.date);
+  });
+  let a20=0,s20=0,akw=0,skw=0;
+  ds.forEach(d=>{ const D=AGG.day[d]; a20+=D.c20a||0; s20+=D.c20s||0; akw+=D.kwa||0; skw+=D.kws||0; });
+  const all=a20+akw;
+  if(!(all>0) || !(m>0)) return {n:ds.size, perYen:NaN};
+  const sh=a20/all, r20=a20>0?s20/a20:0, rkw=akw>0?skw/akw:0;
+  return {n:ds.size, perYen: sh*(m*r20-1)+(1-sh)*(m*rkw-1), share20:sh, roas20:r20*100, roasKw:rkw*100};
+}
+function kwGuardPlan(inp, c){
+  if(inp.slot!=='s0930' && inp.slot!=='s1500') return null;
+  if(c.warnDay || c.needAsk || c.bridged) return null;
+  if(!(c.action==='stop' && c.veryFast && c.addYen<=0)) return null;
+  const mode = String(c.t==='wonder' ? CFG.kwgWonder : CFG.kwgNormal);
+  if(mode!=='shadow' && mode!=='approve') return null;
+  const cpc = inp.clicks>0 ? inp.cost/inp.clicks : NaN;
+  const tier=kwgTier(cpc); if(!tier) return null;
+  const rest=Math.max(0,(inp.budget||0)-(inp.cost||0));
+  const need=Math.max(0, c.planTotal*((c.shNext-c.shNow)/100));
+  let max = tier.key==='hi' ? Infinity : tier.key==='mid' ? +CFG.kwgMaxMid : tier.key==='low' ? +CFG.kwgMaxLow : 0;
+  const guardCapped = !!(c.wonder && c.wonder.guard && tier.key==='hi');
+  if(guardCapped) max=Math.min(max, +CFG.kwgMaxMid);
+  const room=Math.max(0, c.cap-(inp.budget||0));
+  const dayLimit=Math.round(c.cap*(+CFG.kwgDayPct||0)/100);
+  const dayUsed=DB.props.filter(p=>p.date===inp.date && p.slot!==inp.slot && p.kwgApproved && p.kwgDone>0)
+                        .reduce((s,p)=>s+p.kwgDone,0);
+  const short=Math.max(0, need-rest);
+  let amount=Math.min(max, Math.ceil(short/1000)*1000, room, Math.max(0,dayLimit-dayUsed));
+  if(!(amount>0)) amount=0;
+  const tp=kwgTierProfit(inp.slot, tier);
+  let why;
+  if(tier.key==='stop') why='全体CPCが '+tier.label+' のため、安いクリックが大半とみなして原則停止のままにします。';
+  else if(short<=0) why='残予算 '+yen(rest)+' で次の確認までの想定消化 '+yen(need)+' に届くため、つなぎは不要です。';
+  else if(amount<=0) why=(room<=0?'本日の予算枠がすでに推奨上限に達しているため':'つなぎ額の1日の上限（推奨上限の'+CFG.kwgDayPct+'%）に達しているため')+'、候補は0円です。';
+  else why='全体CPC '+cpc.toFixed(1)+'円（'+tier.label+'）。次の確認までの不足 '+yen(short)+' に対し、'
+      +(tier.key==='hi'?'推奨上限までの範囲で':'この段階の上限 '+yen(max)+' までで')+' '+yen(amount)+' を候補にします。'
+      +(guardCapped?'（ワンダフルデーの安全策に当たっているため、中段の上限で抑えています）':'');
+  return {mode, tier:tier.key, tierLabel:tier.label, cpc, max:isFinite(max)?max:null, need, rest, short,
+          amount, room, dayLimit, dayUsed, guardCapped, perYen:tp.perYen, n:tp.n,
+          expProfit: isFinite(tp.perYen)? Math.round(amount*tp.perYen) : null, why};
 }
 
 /* =========================================================================
@@ -3361,6 +3567,7 @@ function tomorrowDraft(today){
   notes.push(`翌日 ${tm}（${DOWJ[dow(tm)]}）は <b>${dayEnvText(tm)}</b>。推奨上限は <b>${yen(cap)}</b>。`);
   if(t==='saleLast') notes.push('セール最終日は午前中に終わることが多いため、上限は他条件より優先して70,000円系の値を使います。');
   if(t==='saleFive') notes.push('セールと5の倍数が重なるため、上限は最も大きい区分になります。');
+  if(t==='wonder') notes.push('翌日は<b>ワンダフルデー（毎月1日）</b>です。月初なので、0:00以降にRMSで継続月予算を戻し、<b>戻したあとの額で9:30の判定</b>をしてください。');
   notes.push('<b>本日の最終20円ROASはまだ確定していないため、翌日の正式な危険度は断定しません。</b>翌朝に前日確定データを取り込んだ時点で、正式に判定します。');
   return {date:tm, cap, dtype:t, notes};
 }
@@ -3422,7 +3629,7 @@ function kindChip(k){
 function dtypeChip(d){
   const t=dayType(d);
   if(t==='normal') return el('span','chip','通常日');
-  const cls = t==='five' ? 'chip five':'chip ev';
+  const cls = (t==='five'||t==='wonder') ? 'chip five':'chip ev';
   return el('span',cls,dtLabel(t));
 }
 function confChip(c){
@@ -3901,7 +4108,7 @@ function dySaveLabel(){
    入力チェックだけで、判定・提案・学習には一切関与しない。
    ───────────────────────────────────────────────────────────── */
 const DYFORM_IDS=['#dyClicks','#dyCost','#dyMonthBudget','#dyMonthPrev','#dyAdd','#dyActTime',
-  '#dyBudgetAfter','#dyMemo','#dyStopFrom','#dyStopTo','#dyMidAdd','#dyMidTime','#dyMissKind'];
+  '#dyBudgetAfter','#dyMemo','#dyStopFrom','#dyStopTo','#dyMidAdd','#dyMidTime','#dyMissKind','#dyResetTime'];
 const DYFORM_PILLS=['#dyCapped','#dyMissing','#dyBackfill','#dyMidDone'];
 let DYFORM_BASE=null;
 function dyFormSnap(){
@@ -4018,6 +4225,8 @@ function renderDay(){
   $('#dyBudgetAfter').value = prevObs && prevObs.budgetAfter!=null ? prevObs.budgetAfter : '';
   const prevPr=DB.props.filter(x=>x.date===d&&x.slot===DYSLOT).sort((a,b)=>b.ts-a.ts)[0];
   $('#dyMemo').value = prevPr && prevPr.memo ? prevPr.memo : (prevObs && prevObs.memo ? prevObs.memo : '');
+  /* v1.0173：承認済みのKW保護つなぎを開き直したときも、承認の状態を戻す */
+  if(prevPr && prevPr.kwgApproved && prevPr.kwgDone>0) DYKWG[d+'|'+DYSLOT]=prevPr.kwgDone;
   /* v1.0085：12:30は分析専用。提案も判定も出さないので、④以降を隠す */
   const isA = isAnalysisSlot(DYSLOT);
   ['#dyAddRow','#dySuggest','#dyRun'].forEach(id=>{ const e=$(id); if(e) e.style.display=isA?'none':''; });
@@ -4034,6 +4243,7 @@ function renderDay(){
   $('#dyStopRow').style.display = stopOn ? '' : 'none';
   $('#dyStopFrom').value = (prevObs && prevObs.stopFrom) ? prevObs.stopFrom : '';
   $('#dyStopTo').value   = (prevObs && prevObs.stopTo)   ? prevObs.stopTo   : '';
+  $('#dyResetTime').value = (prevObs && prevObs.monthReset && prevObs.monthReset.resetTime) ? prevObs.monthReset.resetTime : '';
   /* 0:00 自動追加予約は18:30枠だけの項目 */
   const isN = (DYSLOT==='s1830');
   $('#dyMidRow').style.display = isN ? '' : 'none';
@@ -4222,9 +4432,11 @@ function midAddHowTo(){
     +'</div>';
 }
 /** ④の中にツールの提案を出す。判断材料をこの画面だけで完結させるため（v1.0026） */
+let DYLASTR=null;      // v1.0173：直近の判定（確認欄・保存で使う）
+const DYKWG={};        // v1.0173：承認したKW保護つなぎ（日付|枠 → 額）
 function dySuggest(){
   const host=$('#dySuggest'); if(!host) return;
-  host.innerHTML='';
+  host.innerHTML=''; DYLASTR=null;
   const mk=(cls,amt,sub,why,chip,btn)=>{
     const b=el('div','sug'+(cls?' '+cls:''));
     const L=el('div'); L.style.minWidth='170px';
@@ -4250,7 +4462,32 @@ function dySuggest(){
       +'ここに<b>追加すべきかどうか／追加するならいくら</b>が出ます。');
     return;
   }
+  /* v1.0173：月初に戻す前の継続月予算のままなら、提案そのものを出さない */
+  const mrs=monthResetSuspect(i);
+  if(mrs){ mk('stop','—','','<b>継続月予算が戻す前の額（'+yen(i.monthBudget)+'）に見えるため、提案を出しません。</b>'
+    +'<br>今日は月初です。この額のままだと本日の予算枠が '+yen(i.budget)+' と大きく見え、本来必要な追加が「追加しない」になります。'
+    +'<br>RMSで継続月予算を戻してから、<b>戻したあとの額</b>を②に入れてください。'); return; }
   let R; try{ R=navigate(i); }catch(e){ mk('','—','','いまの入力では判定できませんでした（'+e.message+'）'); return; }
+
+  /* v1.0173：同じ枠で先に見た判定・保存済みの判定と違えば、並べて見せる */
+  {
+    const L=dyViewLog(i,R);
+    const so=obsOf(i.date,i.slot);
+    const sp=DB.props.filter(x=>x.date===i.date&&x.slot===i.slot).sort((a,b)=>b.ts-a.ts)[0];
+    const lines=[];
+    if(so && !so.missing && sp && so.monthBudget!=null && i.monthBudget!=null && so.monthBudget!==i.monthBudget
+       && (sp.addYen!==R.addYen || sp.action!==R.action))
+      lines.push('保存済みの判定（継続月予算 '+yen(so.monthBudget)+'）：<b>'+(sp.actionText||sp.action)+'</b>');
+    const prevV=L.length>1 ? L[L.length-2] : null;
+    if(prevV && prevV.mb!==i.monthBudget && (prevV.act!==R.action || prevV.add!==R.addYen))
+      lines.push(prevV.at+' にこの画面で見た判定（継続月予算 '+yen(prevV.mb)+'）：<b>'+prevV.text+'</b>');
+    if(lines.length){
+      const ch=el('div','note warn'); ch.style.marginBottom='10px';
+      ch.innerHTML='<b>継続月予算が変わったので、判定が変わりました。</b><br>'+lines.join('<br>')
+        +'<br>いまの判定（継続月予算 '+yen(i.monthBudget)+'）：<b>'+R.actionText+'</b>　← RMSの操作はこちらに合わせてください';
+      host.appendChild(ch);
+    }
+  }
 
   /* 昨日が未取込のまま判定していないか。提案カードより前に出す（v1.0069） */
   if(R.morning && R.morning.prevStale){
@@ -4301,6 +4538,9 @@ function dySuggest(){
     };
   }
   const box=mk(cls, amt, sub, why.join('<br>'), confChip(R.conf), btn);
+  DYLASTR=R;
+  /* v1.0173：KW保護つなぎ。提案額とは別枠の候補。試行なら表示だけ、承認制なら承認したときだけ④に入る */
+  if(R.kwGuard) host.appendChild(kwgBox(i,R));
 
   /* 0:00 自動追加予約は「今日の追加」と完全に分けて出す */
   if(R.midnight){
@@ -4348,6 +4588,49 @@ function dySuggest(){
     +'提案と実行の両方がこの保存で「提案・実行履歴」に記録されます。';
   host.appendChild(nt);
 }
+/* ─────────────────────────────────────────────────────────────
+   KW保護つなぎの表示（v1.0173）。判定は kwGuardPlan()（p5）。
+   ここは表示と承認だけで、提案額（R.addYen）は変えない。
+   ───────────────────────────────────────────────────────────── */
+function kwgKey(i){ return i.date+'|'+i.slot; }
+function kwgBox(i,R){
+  const g=R.kwGuard, k=kwgKey(i);
+  const approved = DYKWG[k]!=null && i.addActual===DYKWG[k];
+  const b=el('div','kwg '+g.mode+(approved?' ok':''));
+  const L=el('div'); L.style.minWidth='190px';
+  L.appendChild(el('div','lb', g.mode==='approve' ? 'KW保護つなぎ（承認制）' : 'KW保護つなぎ（試行・表示のみ）'));
+  const a=el('div','amt'); a.textContent = g.amount>0 ? yen(g.amount)+' の候補' : '候補なし（0円）'; L.appendChild(a);
+  L.appendChild(el('div','small muted','全体CPC '+(isFinite(g.cpc)?g.cpc.toFixed(1)+'円':'—')+'（'+g.tierLabel+'）'));
+  if(g.mode==='approve' && g.amount>0){
+    const bt=el('button','btn sm', approved ? '承認を取り消す' : '承認して '+yen(g.amount)+' を④に入れる');
+    bt.style.marginTop='6px';
+    bt.onclick=()=>{
+      if(approved){ delete DYKWG[k]; $('#dyAdd').value=''; }
+      else{
+        if(!confirm('KW保護つなぎ '+yen(g.amount)+' を承認します。\n\n'
+          +'ツールの提案は「意図的停止」のままです。承認すると、この額を実際に追加する操作として④に入れます。\n'
+          +'RMSで継続月予算を +'+g.amount.toLocaleString()+'円 してから記録してください。')) return;
+        DYKWG[k]=g.amount; $('#dyAdd').value=g.amount;
+      }
+      $('#dyBudgetAfter').value=''; dyAddSync(); dyConfirm();
+    };
+    L.appendChild(bt);
+  }
+  b.appendChild(L);
+  const W=el('div','why');
+  const pe = isFinite(g.perYen)
+    ? 'この段階の過去 '+g.n+'日は、広告1円あたりの利益 <b>'+(g.perYen>=0?'+':'')+g.perYen.toFixed(2)+'円</b>'
+      +'（利益率 '+CFG.profitRate+'% で計算した1日全体の平均。追加で使う分の効率はこれより低い見込み）。'
+      +(g.amount>0&&g.expProfit!=null?'候補額での推定増分利益は 約 '+(g.expProfit>=0?'+':'−')+yen(Math.abs(g.expProfit))+'。':'')
+    : 'この段階の過去データがまだありません。';
+  W.innerHTML=g.why+'<br>'+pe
+    +(g.mode==='shadow'
+      ? '<br><span class="muted">試行期間中です。<b>実際の提案（'+R.actionText+'）は変わりません。</b>この候補は検証用に記録だけします。</span>'
+      : '<br><span class="muted">自動では入りません。承認したときだけ④に入り、提案・実行履歴に「つなぎを承認」として残ります。'
+        +'1日の合計は推奨上限の'+CFG.kwgDayPct+'%（'+yen(g.dayLimit)+'）まで'+(g.dayUsed?'（本日承認済み '+yen(g.dayUsed)+'）':'')+'。</span>');
+  b.appendChild(W);
+  return b;
+}
 /** その日が月の最終日か */
 function monthEnd(d){ return addDays(d,1).slice(0,7)!==d.slice(0,7); }
 /** その日が月の初日か */
@@ -4358,6 +4641,104 @@ function prevMonthBudget(date){
   const rows=DB.obs.filter(x=>x.monthBudget>0 && !isAnalysisSlot(x.slot) && x.date.slice(0,7)<ym)
     .sort((a,b)=>(a.date===b.date? b.hour-a.hour : (a.date<b.date?1:-1)));
   return rows[0]||null;
+}
+/* ─────────────────────────────────────────────────────────────
+   月初の予算戻しと再判定（v1.0173）
+
+   毎月1日は「前日まで」が0に戻るため、継続月予算がそのまま当日の予算枠になる。
+   2026-11-01、戻す前（10月）の継続月予算で9:30の提案を見て「追加しない」と判断し、
+   そのあとRMSで23,000円に戻したが判定をやり直さず、約3時間配信が止まった。
+   保存された9:30の判定（戻したあとの額）は +15,000円 だった。
+
+   ・前月の続きから入力する最初の枠（ふつうは1日の9:30）だけ「月初チェック」を出す
+   ・戻す額の目安 ＝ 前月最終の継続月予算（実行した増減と0:00の追加込み）− 前月の利用合計
+   ・戻す前の額らしい値（前月からの繰越の半分以上、または推奨上限の5倍超）では
+     提案を出さず、保存の前で止める。本当にその額なら確認して通せる
+   ・同じ枠で先に見た判定と違う判定になったら、並べて見せる
+   入力チェックと記録だけで、navigate() の判定そのものには触れない。
+   ───────────────────────────────────────────────────────────── */
+const DYMR_OK={};      // 「この額で正しい」と確認した継続月予算（日付ごと）
+const DYVIEW={};       // この画面で見た判定の移り変わり（日付|枠ごと）
+function monthResetCtx(date, slotKey){
+  if(!date || !monthStart(date) || isAnalysisSlot(slotKey) || slotKey==='close') return null;
+  const lm=lastMonthBudget(date, slotByKey(slotKey).target);
+  if(lm && !lm.crossMonth) return null;          // 同じ日の前の枠で記録済み＝もう戻してある
+  const d0=addDays(date,-1);
+  const carry = lm ? lm.v : null;
+  const ob=DB.obs.filter(x=>x.date===d0 && !x.missing && !isAnalysisSlot(x.slot) && x.monthPrev!=null)
+                 .sort((a,b)=>b.hour-a.hour)[0];
+  let used=null, usedSrc='';
+  if(ob){
+    const D=AGG.day[d0];
+    if(D && D.alla>0){ used=ob.monthPrev+D.alla; usedSrc=d0+' のレポート（確定）'; }
+    else{
+      const last=DB.obs.filter(x=>x.date===d0 && !x.missing && !isAnalysisSlot(x.slot) && x.cost>0)
+                       .sort((a,b)=>b.hour-a.hour)[0];
+      if(last){ used=ob.monthPrev+last.cost;
+        usedSrc=d0+' '+(last.slotLabel||slotByKey(last.slot).label)+' 時点（前日のレポート未取込のため概算）'; }
+    }
+  }
+  const remain=(carry!=null && used!=null) ? Math.max(0, carry-used) : null;
+  return {date, d0, carry, from:lm?lm.from:null, added:lm?lm.added:0, mid:lm?lm.mid:0,
+          used, usedSrc, remain};
+}
+/** 戻す前の額らしいか。確認済み（DYMR_OK）なら通す */
+function monthResetSuspect(i){
+  const c=monthResetCtx(i.date, i.slot);
+  if(!c || i.monthBudget==null) return null;
+  if(DYMR_OK[i.date]===i.monthBudget) return null;
+  const byCarry = c.carry!=null && i.monthBudget>=c.carry*0.5;
+  const byCap   = i.monthBudget > dayCap(i.date)*5;
+  return (byCarry||byCap) ? {ctx:c, mb:i.monthBudget, byCarry, byCap} : null;
+}
+function renderMonthReset(){
+  const box=$('#dyMonthReset'); if(!box) return;
+  const i=dayInput(), c=monthResetCtx(i.date, i.slot);
+  if(!c || i.missing){ box.style.display='none'; return; }
+  box.style.display='';
+  const sus=monthResetSuspect(i);
+  const ok = i.monthBudget!=null && !sus;
+  box.className='mreset'+(ok?' ok':(sus?' bad':''));
+  const g = c.remain!=null
+    ? '<b>'+yen(c.remain)+'</b>（前月最終の継続月予算 '+yen(c.carry)
+      +(c.from?'〔'+c.from.date+' '+(c.from.slotLabel||'')+' の '+yen(c.from.monthBudget)
+        +(c.added?' ＋実行 '+yen(c.added):'')+(c.mid?' ＋0:00の追加 '+yen(c.mid):'')+'〕':'')
+      +' − 前月の利用合計 '+yen(c.used)+'〔'+c.usedSrc+'〕）'
+    : '前月の記録が足りないため計算できません。RMSで「前月の残り＋0:00の追加額」を目安にしてください';
+  let st;
+  if(i.monthBudget==null) st='<span style="color:var(--warn)">まだ継続月予算が入っていません。戻したあとの額を入れるまで、提案は出しません。</span>';
+  else if(sus) st='<span style="color:var(--bad)">⚠ '+yen(i.monthBudget)+' は<b>戻す前の額</b>に見えます'
+    +(sus.byCarry?'（前月からの繰越 '+yen(c.carry)+' の半分以上）':'（推奨上限の5倍超）')
+    +'。この額では提案を出しません。RMSで戻してから、<b>戻したあとの額</b>を入れてください。</span>';
+  else st='<span style="color:var(--ok)">✓ 戻したあとの継続月予算 '+yen(i.monthBudget)+' で判定しています'
+    +(c.remain!=null?'（目安との差 '+(i.monthBudget-c.remain>=0?'+':'−')+yen(Math.abs(i.monthBudget-c.remain))+'）':'')+'。</span>';
+  $('#dyMonthResetBody').innerHTML=
+    '<div class="mrh">月初チェック：継続月予算を戻してから判定します</div>'
+    +'<ol>'
+    +'<li>RMSで継続月予算を戻す。<b>戻す額の目安</b>：'+g+'</li>'
+    +'<li>戻した<b>あと</b>の継続月予算を、上の「継続月予算」に入れる（前月の額のままでは判定しません）</li>'
+    +'<li>下の提案を見て、その場で提案どおりに操作する</li>'
+    +'</ol>'
+    +'<div class="small muted">0:00から戻すまでに使った額も、今日の予算枠から引かれます（当日分に含まれています）。</div>'
+    +'<div class="mrst">'+st+'</div>';
+  if(sus){
+    const b=el('button','btn ghost sm','この額で正しい（戻す前の額ではない）');
+    b.style.marginTop='6px';
+    b.onclick=()=>{ if(!confirm(yen(i.monthBudget)+' を、戻したあとの継続月予算として扱います。\n\n'
+        +'RMSの継続月予算が本当にこの額になっていることを確かめましたか？')) return;
+      DYMR_OK[i.date]=i.monthBudget; dyBudgetSync(); dyAddSync(); dyConfirm(); };
+    $('#dyMonthResetBody').appendChild(b);
+  }
+}
+/** この画面で見た判定を、変わったときだけ残す（保存時に提案・実行履歴へ入れる） */
+function dyViewLog(i,R){
+  const k=i.date+'|'+i.slot, L=(DYVIEW[k]=DYVIEW[k]||[]);
+  const n=new Date(), at=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
+  const last=L[L.length-1];
+  if(last && last.mb===i.monthBudget && last.act===R.action && last.add===R.addYen) return L;
+  L.push({at, mb:i.monthBudget, budget:i.budget, act:R.action, add:R.addYen, text:R.actionText});
+  if(L.length>12) L.shift();
+  return L;
 }
 /** 0:00 自動追加予約の入力を整える。本日の予算枠には足さない */
 function dyMidSync(){
@@ -4592,6 +4973,7 @@ function expectedMonthPrev(date){
  *  RMSを見て今月の額を自分で入れてもらうのが目的で、ここで値を確定させない。 */
 function monthStartNote(){
   if(!monthStart(dyDate())) return '';
+  if(monthResetCtx(dyDate(), DYSLOT)) return '';   // v1.0173：月初チェックが代わりに出る
   if($('#dyMonthBudget').value!=='') return '';
   const c=lastMonthBudget(dyDate(), slotByKey(DYSLOT).target);
   let s='<br><b style="color:var(--warn)">月が変わりました。</b>'
@@ -4636,7 +5018,7 @@ function dyBudgetSync(){
        金額自体は前から足していた（v1.0088）が、注記が「18:30で追加した額」しか
        書いていなかったため、0:00の予約が入っていないように見えていた。
        0:00ぶんだけがある場合（当日の追加が0円）は注記そのものが出ていなかった。 */
-    if(lm && (lm.added!==0 || lm.mid>0) && mb===lm.v){
+    if(lm && (lm.added!==0 || lm.mid>0) && mb===lm.v && !monthResetCtx(dyDate(), DYSLOT)){   // v1.0173：月初は月初チェックに任せる
       const parts=[];
       if(lm.added>0) parts.push('そこで実際に追加した '+yen(lm.added));
       if(lm.added<0) parts.push('そこで実際に減額した '+yen(-lm.added));
@@ -4646,7 +5028,7 @@ function dyBudgetSync(){
         +(parts.length>1?('（合計 '+yen(lm.v)+'）'):'')
         +'。RMSの実際の値と違う場合は上書きしてください。</span>';
     }
-    if(monthStart(dyDate())){
+    if(monthStart(dyDate()) && !monthResetCtx(dyDate(), DYSLOT)){
       const carried=lastMonthBudget(dyDate(), slotByKey(DYSLOT).target);
       /* 「前月の値のまま」と言えるのは、引き継ぎ元が前月の記録のときだけ。
          同じ日の前の枠から引き継いだ値は正しい値なので警告しない（v1.0062） */
@@ -4665,6 +5047,7 @@ function dyBudgetSync(){
       +'　／　消化率 '+((mp+cost)/mb*100).toFixed(2)+'%'
       +q;
   }
+  renderMonthReset();   // v1.0173
 }
 function syncCpc(){
   const c=toNum($('#dyCost').value), k=toNum($('#dyClicks').value);
@@ -5017,12 +5400,27 @@ function dyConfirm(){
     if(mm) add('メモ','<b>'+mm.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))+'</b>');
   }
   if(!i.missing && ANA) add('記録の種類','<b>分析用</b><span class="muted">（判定・提案・学習には使いません）</span>');
+  /* v1.0173：KW保護つなぎ */
+  if(!i.missing && !ANA && DYLASTR && DYLASTR.kwGuard){
+    const g=DYLASTR.kwGuard, ok=DYKWG[kwgKey(i)]!=null && i.addActual===DYKWG[kwgKey(i)];
+    add('KW保護つなぎ', g.mode==='shadow'
+      ? '試行判定 '+yen(g.amount)+'<span class="muted">（表示のみ・提案は変わりません）</span>'
+      : (ok ? '<b>承認 '+yen(g.amount)+'</b>' : '候補 '+yen(g.amount)+'<span class="muted">（未承認）</span>'));
+  }
   box.appendChild(it);
 
   const ck=[]; let worst='ok';
   const bad=t=>{ ck.push(['bad',t]); worst='bad'; };
   const wrn=t=>{ ck.push(['warn',t]); if(worst!=='bad') worst='warn'; };
   if(obsOf(d,i.slot)) bad(s.label+' はすでに記録済みです。保存すると上書きされます');
+  /* v1.0173：月初に戻す前の継続月予算のまま記録しようとしていないか */
+  if(!i.missing){
+    const mrs=monthResetSuspect(i);
+    if(mrs) bad('<b>継続月予算 '+yen(i.monthBudget)+' は戻す前の額に見えます。</b>今日は月初です。RMSで戻してから、戻したあとの額を入れてください'
+      +(mrs.ctx.remain!=null?'（戻す額の目安 '+yen(mrs.ctx.remain)+'）':''));
+    else if(monthResetCtx(i.date,i.slot) && i.monthBudget!=null)
+      add('月初チェック','<b>戻したあとの継続月予算 '+yen(i.monthBudget)+' で判定</b>'+($('#dyResetTime').value?'（戻した時刻 '+$('#dyResetTime').value+'）':''));
+  }
   /* 前日が未取込のまま提案を記録しようとしていないか（v1.0069）。
      v1.0165：分析専用枠は提案を出さないので対象外。 */
   if(!i.missing && !i.backfill && !ANA){
@@ -5286,9 +5684,15 @@ function runDay(save){
        提案・実行履歴のほうは inp.slot で保存していたので、
        「履歴には9:30があるのに当日チェックでは未登録」というズレが起きていた
        （2026-10-18〜19 に繰り返し発生）。選んだ枠を必ず優先する。 */
+    /* v1.0173：月初に戻した記録。前月の続きから入力する最初の枠でだけ残す */
+    const mrc=monthResetCtx(inp.date, inp.slot);
+    const monthReset = mrc ? {amount:inp.monthBudget, guide:mrc.remain, carry:mrc.carry, used:mrc.used,
+      usedSrc:mrc.usedSrc, resetTime:($('#dyResetTime').value||''), judgedAt:new Date().toISOString(),
+      confirmedOverride: DYMR_OK[inp.date]===inp.monthBudget} : null;
     applyObs({date:inp.date, slot:inp.slot, hour:inp.hour, cost:inp.cost, clicks:inp.clicks,
       budget:inp.budget, capped:inp.capped, time:$('#dyTime').value, src:'manual',
       monthBudget:inp.monthBudget, monthPrev:inp.monthPrev,
+      monthReset,
       stopFrom:inp.stopFrom, stopTo:inp.stopTo,
       ...obsAnalysis(inp),
       addActual:inp.addActual, budgetAfter:inp.budgetAfter, actTime:inp.actTime,
@@ -5305,6 +5709,15 @@ function runDay(save){
     DB.props.push({ts:Date.now(), date:inp.date, slot:inp.slot, slotLabel:R.slot.label,
       time:$('#dyTime').value||'', cap:R.cap, cost:inp.cost, clicks:inp.clicks,
       curBudget:inp.budget, addYen:R.addYen, newBudget:R.newBudget,
+      /* v1.0173：月初の戻し記録と、この画面で見た判定の移り変わり（保存した判定と違う判定を見ていないか） */
+      monthReset, viewLog:(DYVIEW[inp.date+'|'+inp.slot]||[]).slice(),
+      /* v1.0173：KW保護つなぎ。判定時点の値と、承認・実行を分けて残す（増分利益の検証用） */
+      ...(R.kwGuard ? (()=>{ const g=R.kwGuard, ok=DYKWG[kwgKey(inp)]!=null && inp.addActual===DYKWG[kwgKey(inp)];
+        return {kwgMode:g.mode, kwgTier:g.tier, kwgTierLabel:g.tierLabel, kwgCpc:isFinite(g.cpc)?+g.cpc.toFixed(2):null,
+          kwgMax:g.max, kwgNeed:Math.round(g.need), kwgRest:g.rest, kwgAmount:g.amount,
+          kwgPerYen:isFinite(g.perYen)?+g.perYen.toFixed(3):null, kwgN:g.n, kwgExpProfit:g.expProfit,
+          kwgApproved:ok, kwgDone: ok ? inp.addActual : 0, kwgAt:new Date().toISOString(),
+          kwgCostAt:inp.cost, kwgBudgetAt:inp.budget, kwgProfitRate:+CFG.profitRate}; })() : {}),
       action:R.action, actionText:R.actionText, over:R.over, conf:R.conf,
       needAsk:!!R.needAsk,
       costRatio:isFinite(R.costRatio)?+R.costRatio.toFixed(2):null,
@@ -5463,7 +5876,7 @@ function renderDayToday(){
 }
 function renderDayCurve(){
   const host=$('#dyCurve'); host.innerHTML='';
-  const types=['normal','five','sale','saleFive','saleLast'];
+  const types=['normal','five','sale','saleFive','saleLast','wonder'];
   const rows=[];
   SLOTS.filter(s=>s.key!=='close').forEach(s=>{
     const r={slot:s.label, key:s.key};
@@ -6331,14 +6744,15 @@ function renderEv(){
   ], rows, {sort:{k:'from',dir:-1}});
 
   const caps=[['normal','capNormal'],['five','capFive'],['sale','capSale'],
-              ['saleFive','capSaleFive'],['saleLast','capSaleLast']];
+              ['saleFive','capSaleFive'],['saleLast','capSaleLast'],['wonder','capWonder']];
   buildTable($('#evCaps'),[
     {t:'日タイプ',k:'l',sort:false},
     {t:'推奨上限',k:'v',num:1,sort:false,f:r=>yen(CFG[r.k])},
     {t:'備考',k:'note',cls:'name',sort:false}
   ], caps.map(([t,k])=>({l:dtLabel(t),k,
     note:t==='saleLast'?'終了日時の日付。他条件より優先して適用します。':
-         t==='saleFive'?'セール期間かつ5の倍数。最も大きい区分。':''})), {});
+         t==='saleFive'?'セール期間かつ5の倍数。最も大きい区分。':
+         t==='wonder'?'毎月1日。セール期間中はセールの区分を優先。月初なので継続月予算を戻してから判定。':''})), {});
 
   const start=AGG.dates.length?addDays(AGG.dates[AGG.dates.length-1],1):ymd(new Date());
   const fc=[];
@@ -6411,7 +6825,7 @@ function renderHistCols(){
 }
 const HIST_SLOT_MUL={s0930:1, s1230:1.4, s1500:1.75, s1830:2.25, close:3};
 const DTCLS={'通常日':'tx3', '5の倍数':'blue', 'セールのみ':'ok',
-             'セール＋5の倍数':'bad', 'セール最終日':'purple'};
+             'セール＋5の倍数':'bad', 'セール最終日':'purple', 'ワンダフルデー':'blue'};
 function histCostCls(r){
   const m=HIST_SLOT_MUL[r.slot];
   if(m==null||!isFinite(r.cost)) return null;
@@ -6426,7 +6840,66 @@ function histClickCls(r){
   if(r.clicks >= +CFG.histBlue * m / c) return 'ok';
   return 'blue';
 }
+/* ─────────────────────────────────────────────────────────────
+   KW保護つなぎの検証用の行（v1.0173）
+   判定時点の値は提案・実行履歴に保存してある。その後の広告費は次の枠の観測、
+   その日の売上・広告費は翌日に取り込むレポートから、表示のたびに計算する。
+   ・1日全体の推定利益 ＝ その日のRPP売上 × 利益率 − その日のRPP広告費（実測）
+   ・追加分の推定増分利益 ＝ 実行額（試行は候補額）× その段階の過去の「広告1円あたり利益」
+     → これは推定。つなぎを入れなかった場合の売上は観測できないため、実測の増分ではない
+   ───────────────────────────────────────────────────────────── */
+function kwgRows(from,to){
+  const ord=['s0930','s1500','s1830','close'];
+  return DB.props.filter(p=>p && p.kwgMode && (!from||p.date>=from) && (!to||p.date<=to))
+    .sort((a,b)=>a.date===b.date?a.ts-b.ts:(a.date<b.date?-1:1))
+    .map(p=>{
+      const m=(p.kwgProfitRate!=null?p.kwgProfitRate:+CFG.profitRate)/100;
+      const nk=ord[ord.indexOf(p.slot)+1];
+      const nx=nk?DB.obs.filter(o=>o.date===p.date&&o.slot===nk&&!o.missing&&o.cost>0).sort((a,b)=>b.ts-a.ts)[0]:null;
+      const D=AGG.day[p.date];
+      const base=p.kwgApproved ? p.kwgDone : p.kwgAmount;
+      return {date:p.date, slot:p.slotLabel||slotByKey(p.slot).label, time:p.time||'', at:p.kwgAt||'',
+        dtype:p.dtypeAt||dtLabel(dayType(p.date)), mode:p.kwgMode==='approve'?'承認制':'試行',
+        cpc:p.kwgCpc, tier:p.kwgTierLabel||p.kwgTier, cand:p.kwgAmount, approved:!!p.kwgApproved, done:p.kwgDone||0,
+        action:String(p.actionText||'').replace(/<[^>]+>/g,''),
+        spendAfter: nx&&p.kwgCostAt!=null ? nx.cost-p.kwgCostAt : null, nextLabel:nx?(nx.slotLabel||slotByKey(nx.slot).label):'',
+        cappedNext: nx?!!nx.capped:null,
+        dayCost: D?D.alla:null, daySales: D?D.alls:null,
+        dayProfit: D&&D.alla>0 ? Math.round(D.alls*m-D.alla) : null,
+        perYen:p.kwgPerYen, incEst: (p.kwgPerYen!=null && base>0) ? Math.round(base*p.kwgPerYen) : (base>0?null:0),
+        incKind: p.kwgApproved ? '実行額×段階平均' : (p.kwgMode==='shadow'?'仮に入れていたら':'未承認（候補額）')};
+    });
+}
+function renderKwg(){
+  const host=$('#hsKwg'); if(!host) return; host.innerHTML='';
+  const rows=kwgRows();
+  if(!rows.length){ host.appendChild(el('div','small muted','まだ記録がありません。「意図的停止」になる場面で、全体CPCの段階に応じた候補が記録されます。')); return; }
+  const ap=rows.filter(r=>r.approved), sh=rows.filter(r=>r.mode==='試行');
+  const sum=a=>a.reduce((s,v)=>s+(v||0),0);
+  const t=el('div','small'); t.style.marginBottom='8px';
+  t.innerHTML='判定 <b>'+rows.length+'件</b>（試行 '+sh.length+'件・承認制 '+(rows.length-sh.length)+'件）／承認して実行 <b>'+ap.length+'件・'+yen(sum(ap.map(r=>r.done)))+'</b>'
+    +'／承認分の推定増分利益 <b>'+(sum(ap.map(r=>r.incEst))>=0?'+':'−')+yen(Math.abs(sum(ap.map(r=>r.incEst))))+'</b>'
+    +'<br><span class="muted">推定増分利益は「実行額 × その段階の過去の広告1円あたり利益」で、実測ではありません。'
+    +'1日全体の推定利益（売上×利益率−広告費）は別の列です。両者を足したり比べたりしないでください。</span>';
+  host.appendChild(t);
+  const tb=el('div'); host.appendChild(tb);   // buildTable は入れ物を空にするので分ける
+  buildTable(tb,[
+    {t:'日付',k:'date'},{t:'枠',k:'slot',sort:false},{t:'確認時刻',k:'time',sort:false},{t:'日タイプ',k:'dtype',sort:false},
+    {t:'方式',k:'mode',sort:false},{t:'全体CPC',k:'cpc',num:1,f:r=>r.cpc!=null?r.cpc.toFixed(1)+'円':'—'},
+    {t:'段階',k:'tier',sort:false},{t:'候補額',k:'cand',num:1,f:r=>yen(r.cand)},
+    {t:'承認・実行',k:'done',num:1,f:r=>r.approved?el('b',null,yen(r.done)):el('span','small muted',r.mode==='試行'?'（試行）':'未承認')},
+    {t:'次の枠までの広告費',k:'spendAfter',num:1,f:r=>r.spendAfter!=null?yen(r.spendAfter)+(r.cappedNext?'（停止中）':''):el('span','small muted','—'),
+      title:'次の枠の当日分ご利用金額 − 判定時点の当日分ご利用金額'},
+    {t:'その日の広告費',k:'dayCost',num:1,f:r=>r.dayCost!=null?yen(r.dayCost):el('span','small muted','未取込')},
+    {t:'その日のRPP売上',k:'daySales',num:1,f:r=>r.daySales!=null?yen(r.daySales):el('span','small muted','未取込')},
+    {t:'1日全体の推定利益',k:'dayProfit',num:1,f:r=>r.dayProfit!=null?yen(r.dayProfit):el('span','small muted','未取込'),
+      title:'その日のRPP売上 × 利益率 − その日のRPP広告費'},
+    {t:'追加分の推定増分利益',k:'incEst',num:1,f:r=>r.incEst!=null?((r.incEst>=0?'+':'−')+yen(Math.abs(r.incEst))+' ('+r.incKind+')'):'—',
+      title:'実行額（試行は候補額）× その段階の過去の広告1円あたり利益。推定であり実測の増分ではありません'}
+  ], rows, {sort:{k:'date',dir:-1}});
+}
 function renderHist(){
+  renderKwg();   // v1.0173
   const sel=$('#hsMonth'), cur=sel.value;
   const months=[...new Set(DB.props.map(p=>p.date.slice(0,7)))].sort().reverse();
   sel.innerHTML=''; const oA=el('option'); oA.value=''; oA.textContent='すべて'; sel.appendChild(oA);
@@ -6980,6 +7453,7 @@ function openExport(){
    +'・<b>items_daily.csv</b>　日×商品の明細（20円とキーワードを分けた値）<br>'
    +'・<b>observations.csv</b>　9:30／12:30／15:00／18:30 の観測記録<br>'
    +'・<b>proposals.csv</b>　ツールの提案と、実際に行った操作<br>'
+   +'・<b>kw_bridge.csv</b>　KW保護つなぎの判定・承認と、その後の広告費・売上・推定利益<br>'
    +'・<b>events.csv</b>　セール日程<br>'
    +'・<b>settings.json</b>　判定に使っているしきい値一式<br>'
    +'・<b>state.json</b>　上記の元データ（機械処理用）<br>'
@@ -7138,6 +7612,10 @@ async function exportZip(from,to){
 +'observations.csv   1日3回（9:30／15:00／18:30）の観測。12:30は分析専用で判定には使いません。\n'
 +'                   「本日の予算枠」＝継続月予算 − 当月利用額(前日まで)。\n'
 +'proposals.csv      ツールが出した提案と、担当者が実際に行った操作。\n'
++'kw_bridge.csv      KW保護つなぎ（v1.0173〜）。「意図的停止」の場面で出した候補額、承認・実行、\n'
++'                   次の枠までの広告費、その日の売上・広告費・推定利益。\n'
++'                   「追加分の推定増分利益」は 実行額×段階の過去平均 の推定で、実測ではありません。\n'
++'                   1日全体の推定利益とは別物なので、足したり比べたりしないでください。\n'
 +'                   提案と実行は別の列です。両方を突き合わせて検証できます。\n'
 +'events.csv         お買い物マラソン等のセール日程。\n'
 +'settings.json      判定に使っているしきい値一式。\n'
@@ -7158,6 +7636,12 @@ async function exportZip(from,to){
     {name:'items_daily.csv',   text:toCSV(itHead,itRows)},
     {name:'observations.csv',  text:toCSV(obsHead,obsRows)},
     {name:'proposals.csv',     text:toCSV(prHead,prRows)},
+    {name:'kw_bridge.csv',     text:toCSV(['日付','枠','確認時刻','保存時刻','日タイプ','方式','全体CPC','段階','候補額','承認','実行額',
+      '次の枠','次の枠までの広告費','次の枠で停止中','その日のRPP広告費','その日のRPP売上','1日全体の推定利益',
+      '段階の広告1円あたり利益','追加分の推定増分利益','増分利益の根拠','ツールの提案'],
+      kwgRows(from,to).map(r=>[r.date,r.slot,r.time,r.at,r.dtype,r.mode,r.cpc,r.tier,r.cand,r.approved?'承認':'',r.done,
+        r.nextLabel,r.spendAfter,r.cappedNext==null?'':(r.cappedNext?'停止中':''),r.dayCost,r.daySales,r.dayProfit,
+        r.perYen,r.incEst,r.incKind,r.action]))},
     {name:'events.csv',        text:toCSV(['種別','開始日','開始時刻','終了日','終了時刻','メモ'],evRows)},
     {name:'settings.json',     text:JSON.stringify(CFG,null,1)},
     {name:'state.json',        text:JSON.stringify(state)}
@@ -7421,6 +7905,7 @@ function bind(){
     dyConfirm(); };
   $('#dyTime').onchange=dyConfirm;
   $('#dyMissKind').onchange=dyConfirm;
+  $('#dyResetTime').onchange=dyConfirm;   // v1.0173
   $('#dyNow').onclick=()=>{ if(!dyLeaveOk()) return; const n=new Date();
     $('#dyTime').value=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
     $('#dyDate').value=ymd(n); DYMANUAL=false; DYLASTDATE=''; renderDay(); };
@@ -7515,6 +8000,18 @@ function bind(){
       alert('未観測の枠で予算の操作を記録するには、②の「継続月予算」に足す前の額が必要です。\n\n'
         +'これが無いと、足した額が次の枠の継続月予算に引き継がれません。');
       dyFocusField('#dyMonthBudget','足す前の継続月予算'); return;
+    }
+    /* v1.0173：月初に戻す前の継続月予算のまま記録させない */
+    if(!i.missing){
+      const mrs=monthResetSuspect(i);
+      if(mrs){
+        alert('今日は月初です。継続月予算 '+i.monthBudget.toLocaleString()+'円 は、戻す前の額に見えます。\n\n'
+          +'この額のまま判定すると、本日の予算枠が大きく見えて、本来必要な追加が「追加しない」になります。\n\n'
+          +'RMSで継続月予算を戻してから、戻したあとの額を入れてください。'
+          +(mrs.ctx.remain!=null?'\n（戻す額の目安 '+mrs.ctx.remain.toLocaleString()+'円）':'')
+          +'\n\n本当にこの額で正しい場合は、月初チェックの「この額で正しい」を押してください。');
+        dyFocusField('#dyMonthBudget','戻したあとの継続月予算を入れてください'); return;
+      }
     }
     if(prev){
       const t=prev.missing?'未観測として記録済み'
